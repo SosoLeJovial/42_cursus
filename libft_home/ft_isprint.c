@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 18:24:21 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/06 18:26:40 by tsofien-         ###   ########.fr       */
+/*   Created: 2023/11/04 18:05:29 by tsofien-          #+#    #+#             */
+/*   Updated: 2023/11/04 18:11:49 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isprint(char c)
+int ft_isprint(int c)
 {
-    if (c >= 32 && c <= 127)
-        return (16384);
+    if (c >= 32 && c <= 126)
+        return (1);
     return (0);
 }

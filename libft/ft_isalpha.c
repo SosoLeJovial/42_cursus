@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 17:49:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/04 18:11:36 by tsofien-         ###   ########.fr       */
+/*   Created: 2023/11/06 17:24:01 by tsofien-          #+#    #+#             */
+/*   Updated: 2023/11/06 18:05:10 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isalpha(int c)
+int ft_isalpha(char c)
 {
-    if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) 
-        return (1);
+    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+        return (1024);
     return (0);
 }

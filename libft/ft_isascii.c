@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:04:45 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/04 18:11:40 by tsofien-         ###   ########.fr       */
+/*   Created: 2023/11/06 17:48:56 by tsofien-          #+#    #+#             */
+/*   Updated: 2023/11/06 18:23:18 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isascii(int c)
+int ft_isascii(char c)
 {
     if (c >= 0 && c <= 127)
         return (1);

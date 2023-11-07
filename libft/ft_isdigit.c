@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:02:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/04 18:11:44 by tsofien-         ###   ########.fr       */
+/*   Created: 2023/11/06 17:39:06 by tsofien-          #+#    #+#             */
+/*   Updated: 2023/11/06 18:24:16 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isdigit(int c)
+int ft_isdigit(char c)
 {
-    if (c >= 48 && c <= 57)
+    if (c >= '0' && c <= '9')
         return (1);
     return (0);
 }

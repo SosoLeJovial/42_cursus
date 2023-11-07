@@ -5,17 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:07:59 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/04 18:11:54 by tsofien-         ###   ########.fr       */
+/*   Created: 2023/11/06 18:27:20 by tsofien-          #+#    #+#             */
+/*   Updated: 2023/11/06 18:42:23 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_strlen(char *str)
+#include <stdio.h>
+#include <string.h>
+
+
+/*int ft_strlen(const char * s)
 {
     int i;
 
     i = 0;
-    while (str[i])
+    while (s[i])
         i++;
-    return (i);
+    return (i - 1);    
+}*/
+int main()
+{
+    char * s = 'test';
+    printf(" %d", strlen(s));
 }
