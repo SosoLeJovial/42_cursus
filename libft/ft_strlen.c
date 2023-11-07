@@ -6,25 +6,22 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:27:20 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/06 18:42:23 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:03:43 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-
-
-/*int ft_strlen(const char * s)
+int	ft_strlen(char *s)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (s[i])
-        i++;
-    return (i - 1);    
-}*/
+	i = 0;
+	while (s[i])
+		i++;
+	return (i - 1);
+}
+/*
 int main()
 {
-    char * s = 'test';
-    printf(" %d", strlen(s));
-}
+    char *s = "test";
+    printf(" %d", ft_strlen(s));
+}*/

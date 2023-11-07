@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tsofien- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 17:24:01 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/07 09:30:49 by tsofien-         ###   ########.fr       */
+/*   Created: 2023/11/07 09:43:34 by tsofien-          #+#    #+#             */
+/*   Updated: 2023/11/07 10:40:04 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(char c)
+char	*ft_strchr(char *s, int c)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
+	int	i;
+
+	i = -1;
+	while (s[++i])
+	{
+		if (s[i] == c)
+			return (s + i);
+	}
 	return (0);
 }
+/*
+int	main()
+{
+	printf("%s\n%s", strchr("te st ", 32), ft_strchr("te st ", 32));
+	return (0);
+}*/
