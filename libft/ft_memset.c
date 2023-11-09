@@ -10,25 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memset(char *s, int c, unsigned int n)
-{
-	int	i;
 
-	i = 0;
-	while (i < n)
+void	*ft_memset(void *s, int c, unsigned int n)
+{
+	unsigned char	*str;
+
+	str = (unsigned char *)s;
+	while (n--)
 	{
-		s[i] = c;
-		i++;
+		*str = (unsigned char)c;
+		str++;
 	}
 }
-
+/*
 int	main()
 {
 	char s1[] = "et oui";
 	char s2[] = "et oui";
 
 	memset(s1, '.', 10);
-	ft_memset(s2, '.', 10);
+	ft_memset(s2, '.', 2);
 	printf("%s\n%s", s1, s2);
 	return (0);
-}
+}*/

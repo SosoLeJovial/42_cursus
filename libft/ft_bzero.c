@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soso <soso@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:47:39 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/08 16:13:31 by soso             ###   ########.fr       */
+/*   Created: 2023/11/08 17:52:53 by soso              #+#    #+#             */
+/*   Updated: 2023/11/08 18:14:13 by soso             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_memcmp(const void *s1, const void *s2, unsigned int n)
+void    *ft_bzero(void *s, size_t n)
 {
-    unsigned char *str1;
-    unsigned char *str2;
+    unsigned char *str;
     int i;
-
-    str1 = (unsigned char *)s1;
-    str2 = (unsigned char *)s2;
+    
+    str = (unsigned char *)s;
     i = 0;
-    while (n--)
+    while (i < n)
     {
-        if (str1[i] != str2[i])
-            return (str1[i] - str2[i]);
-        i++;
+        str[i] = 0;
+        str++;
     }
+}
+
+#include <stdio.h>
+#include <string.h>
+#include <stddef.h>
+
+int main()
+{
+    char s1[] = "true story";
+    char s2[] = "love story";
+
+    ft_bzero(s1, sizeof(s1));
+    bzero(s2, sizeof(s2));
+
+    printf("%s\n%s", s1, s2);
     return (0);
 }
