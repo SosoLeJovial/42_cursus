@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soso <soso@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:52:53 by soso              #+#    #+#             */
-/*   Updated: 2023/11/09 14:13:14 by soso             ###   ########.fr       */
+/*   Updated: 2023/11/10 10:45:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void    *ft_bzero(void *s, size_t n)
     str = (unsigned char *)s;
     while (n--)
     {
-        *str = 48;
+        *str = 0;
         str++;
     }
 }
-
+/*
 #include <stdio.h>
 #include <string.h>
 
@@ -35,4 +35,4 @@ int main()
 
     printf("%s\n%s", s1, s2);
     return (0);
-}
+}*/

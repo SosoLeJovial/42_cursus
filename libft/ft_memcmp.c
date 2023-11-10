@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soso <soso@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 16:43:04 by soso              #+#    #+#             */
-/*   Updated: 2023/11/08 17:52:35 by soso             ###   ########.fr       */
+/*   Created: 2023/11/08 16:43:04 by tsofien-          #+#    #+#             */
+/*   Updated: 2023/11/10 11:06:01 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-int ft_memcmp(void *s1, void *s2, size_t n)
+int ft_memcmp(const void *s1, const void *s2, size_t n)
 {
     unsigned char *str;
     unsigned char *str1;
