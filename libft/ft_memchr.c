@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:35:10 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/10 11:08:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/11 21:37:54 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 {
 	unsigned char	*str;
 	unsigned char	chr;
-	size_t	i;
+	size_t			i;
 
 	chr = (unsigned char) c;
 	str = (unsigned char *) s;
@@ -25,7 +25,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (str[i] == chr)
-			return (void *)(str + i);
+			return ((void *)(str + i));
 		i++;
 	}
 	return (0);

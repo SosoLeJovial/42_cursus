@@ -6,10 +6,9 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:35:10 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/10 11:06:24 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/11 21:42:54 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 void	*ft_memset(void *s, int c, size_t n)
 {

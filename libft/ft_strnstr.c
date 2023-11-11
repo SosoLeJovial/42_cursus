@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:24:21 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/10 17:28:38 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/11 21:43:46 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 			return (big[len]);
 	}
 	return (NULL);
-
 }
 /*
 int	main(void)
