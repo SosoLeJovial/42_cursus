@@ -6,9 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:46:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/10 11:08:30 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:28:09 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	ft_tolower(int c)
 {

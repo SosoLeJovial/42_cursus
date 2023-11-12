@@ -6,20 +6,20 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:52:53 by soso              #+#    #+#             */
-/*   Updated: 2023/11/11 21:35:59 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:29:29 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_bzero(void *s, size_t n)
+#include <stdio.h>
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*str;
 
 	str = (unsigned char *)s;
 	while (n--)
-	{
-		*str = 0;
-		str++;
-	}
+		*str++ = 0;
 }
 /*
 #include <stdio.h>

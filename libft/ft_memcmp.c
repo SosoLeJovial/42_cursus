@@ -6,9 +6,12 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:43:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/11 21:41:05 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:27:08 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
+#include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {

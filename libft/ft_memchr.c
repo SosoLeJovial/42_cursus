@@ -6,12 +6,12 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:35:10 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/11 21:37:54 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:26:37 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include <stdio.h>
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

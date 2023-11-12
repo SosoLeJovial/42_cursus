@@ -6,33 +6,38 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:24:21 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/11 21:43:46 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:51:34 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	unsigned char	*haystach;
-	unsigned char	*needle;
-	int				i;
+	int		i;
+	int		j;
+	char	*ptr;
 
-	haystach = (unsigned char *)big;
-	needle = (unsigned char *)little;
-	if (!needle)
-		return (haystach);
 	i = 0;
-	while (len--)
+	j = 0;
+	ptr = (char *) haystack;
+	if (needle[0] == '\0')
+		return (ptr);
+	while (ptr[i] && i < (int) len)
 	{
-		while (little == big)
-			i++;
-		if (little[i] == '\0' && big[i + len] != '\0')
-			return (big[len]);
+		while (ptr[i + j] == needle[j] && i + j < (int) len)
+		{
+			if (needle[j + 1] == '\0')
+				return (ptr + i);
+			j++;
+		}
+		j = 0;
+		i++;
 	}
 	return (NULL);
 }
-/*
+
 int	main(void)
 {
 	const char	*largestring = "A la piscine nous scions des scitrons";
@@ -45,4 +50,4 @@ int	main(void)
 
 	printf("%s\n%s\n", ptr, test);
 	return (0);
-}*/
+}

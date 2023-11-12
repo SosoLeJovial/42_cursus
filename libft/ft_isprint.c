@@ -6,9 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:24:21 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/10 10:41:03 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:26:16 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isprint(int c)
 {

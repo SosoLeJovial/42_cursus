@@ -6,9 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:40:42 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/10 10:37:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:25:52 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isalnum(int c)
 {

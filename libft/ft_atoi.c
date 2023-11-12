@@ -6,13 +6,12 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:30:59 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/11 21:34:07 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:24:52 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
-// #include <limits.h>
-// #include <stdlib.h>
+#include <stdio.h>
+#include "libft.h"
 
 int	ft_atoi(const char *nptr)
 {

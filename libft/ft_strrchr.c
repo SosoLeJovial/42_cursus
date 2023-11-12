@@ -6,9 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:50:30 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/10 11:08:06 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:28:02 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {

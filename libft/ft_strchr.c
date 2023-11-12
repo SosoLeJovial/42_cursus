@@ -6,21 +6,26 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:43:34 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/10 11:06:53 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:46:09 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
+#include "libft.h"
 
-	i = -1;
-	while (s[++i])
+char	*ft_strchr(const char *str, int c)
+{
+	char	*s;
+
+	s = (char *)str;
+	while (*s)
 	{
-		if (s[i] == c)
-			return (s + i);
+		if (*s == (char)c)
+			return (s);
+		s++;
 	}
-	return (0);
+	if (*s == (char)c)
+		return (s);
+	return (NULL);
 }
 /*
 int	main()
