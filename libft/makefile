@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 20:10:49 by tsofien-          #+#    #+#              #
-#    Updated: 2023/11/12 20:46:52 by tsofien-         ###   ########.fr        #
+#    Updated: 2023/11/13 11:24:04 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,9 @@ $(NAME): $(OBJS)
 bonus: $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
+
+clean:
+	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)

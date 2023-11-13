@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:24:21 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/12 20:51:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:25:43 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
-
+/*
 int	main(void)
 {
 	const char	*largestring = "A la piscine nous scions des scitrons";
@@ -50,4 +50,4 @@ int	main(void)
 
 	printf("%s\n%s\n", ptr, test);
 	return (0);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:27:20 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/12 20:27:46 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:41:13 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	ft_strlen(const char *s)
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
 		i++;
-	return (i - 1);
+	return (i);
 }
 /*
 int main()

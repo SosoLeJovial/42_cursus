@@ -6,14 +6,14 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:47:43 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/12 20:27:35 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:33:32 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
 
-size_t	ft_strlcat(char * restrict dst, const char * restrict src, size_t size)
+size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t size)
 {
 	size_t	i;
 	size_t	j;
@@ -35,7 +35,7 @@ size_t	ft_strlcat(char * restrict dst, const char * restrict src, size_t size)
 	else
 		return (ft_strlen((char *)src) + len_dst);
 }
-
+/*
 int	main(void)
 {
 	char dst[20] = "cool";
@@ -46,4 +46,4 @@ int	main(void)
 	strlcat(dst, src, 20);
 	ft_strlcat(dest, sorc, 20);
 	printf("%s | %s\n", dst, dest);
-}
+}*/
