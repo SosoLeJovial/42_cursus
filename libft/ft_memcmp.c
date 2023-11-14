@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:43:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/14 09:37:18 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:55:23 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	unsigned char	*str;
-	unsigned char	*str1;
+	unsigned char	*str2;
 	size_t			i;
 
-	str = (unsigned char *) s1;
-	str1 = (unsigned char *) s2;
 	i = 0;
-	while (n-- && str[i] && str1[i])
-	{
-		if (str[i] != str1[i])
-			return (str[i] - str1[i]);
+	str = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (i < n - 1 && str[i] == str2[i])
 		i++;
-	}
-	return (0);
+	return (str[i] - str2[i]);
 }
 /*
 #include <string.h>

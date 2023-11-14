@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:47:43 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/13 11:33:32 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/14 10:59:48 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,23 @@
 
 size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t size)
 {
-	size_t	i;
-	size_t	j;
 	size_t	len_dst;
+	size_t	src_len;
 
-	i = 0;
-	j = 0;
 	len_dst = ft_strlen(dst);
-	if (size == 0)
-		return (ft_strlen((char *)src));
-	while (dst[i] != '\0' && i < size)
-		i++;
-	while (i < size - 1)
-		dst[i++] = src[j++];
-	if (size != 0 && size >= len_dst)
-		dst[i] = '\0';
-	if (size < ft_strlen(dst))
-		return (ft_strlen((char *)src) + size);
+	src_len = ft_strlen(src);
+	if (len_dst == size)
+		return (size + src_len);
+	if (src_len < (size - len_dst))
+	{
+		ft_memcpy((dst + len_dst), src, (src_len + 1));
+	}
 	else
-		return (ft_strlen((char *)src) + len_dst);
+	{
+		ft_memcpy(dst + len_dst, src, (size - (len_dst - 1)));
+		dst[size - 1] = '\0';
+	}
+	return (len_dst + src_len);
 }
 /*
 int	main(void)
@@ -46,4 +44,5 @@ int	main(void)
 	strlcat(dst, src, 20);
 	ft_strlcat(dest, sorc, 20);
 	printf("%s | %s\n", dst, dest);
-}*/
+}
+*/

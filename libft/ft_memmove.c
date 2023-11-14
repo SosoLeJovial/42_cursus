@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 22:25:34 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/14 09:23:14 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:48:02 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,30 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char	*dst;
-	unsigned char	*source;
-	unsigned char	tmp;
+	unsigned char	*str;
+	unsigned char	*str2;
+	size_t			i;
 
-	dst = (unsigned char *) dest;
-	source = (unsigned char *) src;
-	if (!src)
-		return (dst);
-		
-	else
+	i = 0;
+	str = (unsigned char *)dest;
+	str2 = (unsigned char *)src;
+	if (str2 < str)
 	{
-		while (n--)
+		while (n > 0)
 		{
-			tmp = *source++;
-			*dst++ = tmp;
+			str[n - 1] = str2[n - 1];
+			n--;
 		}
 	}
-	return ((void *) dest);
+	else
+	{
+		while (i < n)
+		{
+			str[i] = str2[i];
+			i++;
+		}
+	}
+	return (dest);
 }
 /*
 int	main(void)

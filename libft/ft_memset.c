@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:35:10 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/14 09:32:03 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:44:01 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@
 void	*ft_memset(void *s, int c, size_t n)
 {
 	unsigned char	*str;
+	size_t			i;
+	unsigned char	chr;
 
+	i = 0;
 	str = (unsigned char *)s;
-	if (!n)
-		return ((void *)str);
-	while (n--)
-		*str++ = (unsigned char)c;
-	return ((void *)str);
+	chr = (unsigned char)c;
+	while (i < n)
+	{
+		str[i] = chr;
+		i++;
+	}
+	return (s);
 }
 /*
 #include <string.h>
