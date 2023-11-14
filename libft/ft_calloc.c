@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:05:34 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/14 11:20:28 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:01:31 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ptr = (void *) malloc(nmemb * size);
 	if (nmemb == 0 || size == 0)
 		return (NULL);
-	if (ptr == 0)
+	if (!ptr)
 		return (NULL);
-	else
-		return (ptr);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
 }
