@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:43:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/12 20:27:08 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:37:18 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,28 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	unsigned char	*str;
 	unsigned char	*str1;
+	size_t			i;
 
 	str = (unsigned char *) s1;
 	str1 = (unsigned char *) s2;
-	while (n--)
+	i = 0;
+	while (n-- && str[i] && str1[i])
 	{
-		if (str != str1)
-			return (*str - *str1);
-		str++;
-		str1++;
+		if (str[i] != str1[i])
+			return (str[i] - str1[i]);
+		i++;
 	}
 	return (0);
 }
 /*
+#include <string.h>
 int main()
 {
-    char s1[] = "a";
-    char s2[] = "a";
+    char s1[] = "Coucoo";
+    char s2[] = "Coucou";
     
-    printf("%d\n", memcmp(s1, s2, sizeof(s1)));
-    printf("%d\n", ft_memcmp(s1, s2, sizeof(s1)));
+    printf("%d\n", memcmp(s1, s2, 0));
+    printf("%d\n", ft_memcmp(s1, s2, 0));
     return (0);
-}*/
+}
+*/
