@@ -6,20 +6,18 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 11:04:34 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/14 10:46:20 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:50:32 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
-#include <string.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	while (n-- && (*s1 || *s2))
+	while ((*s1 || *s2) && n--)
 	{
 		if (*s1 != *s2)
-			return (*s1 - *s2);
+			return ((unsigned char)*s1 - (unsigned char)*s2);
 		s1++;
 		s2++;
 	}

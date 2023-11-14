@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 19:48:56 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/13 11:32:32 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:00:42 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strchr(const char *s, int c);
-size_t	ft_strlcat(char *restrict dst, const char *restrict src,
+size_t	ft_strlcpy(char *dst, const char *src,
 			size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 int		ft_strlen(const char *s);
