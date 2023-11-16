@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:42:43 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/16 16:00:47 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:45:38 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	s_len;
 
 	s_len = (size_t) ft_strlen(s);
-	if (start > s_len)
+	if (start >= s_len)
 		return (ft_strdup(""));
-	ptr = (char *) malloc((len + 1) * sizeof(char));
+	ptr = malloc((len + 1) * sizeof(char));
 	if (!ptr)
 		return (NULL);
 	i = 0;
@@ -31,6 +31,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		ptr[i] = s[i + start];
 		i++;
 	}
-		ptr[i] = '\0';
+	ptr[i] = '\0';
 	return (ptr);
 }
