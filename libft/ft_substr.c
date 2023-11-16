@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:42:43 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/16 16:52:32 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:05:34 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (len > len_s)
 		len = len_s;
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
 	while ((i < len) && (s[start + i]))
 	{
-		str[i] = (char)s[start + i];
+		str[i] = s[start + i];
 		i++;
 	}
 	str[i] = '\0';
