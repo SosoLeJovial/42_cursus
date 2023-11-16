@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strtrim.c                                          :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 12:55:12 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/16 13:26:22 by tsofien-         ###   ########.fr       */
+/*   Created: 2023/11/16 13:45:56 by tsofien-          #+#    #+#             */
+/*   Updated: 2023/11/16 14:57:37 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,42 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char		*to_return;
-	size_t		start;
-	size_t		end;
-	size_t		i;
-	size_t		j;
+	int		i;
+	int		j;
+	int		k;
+	char	*to_return;
 
-	start = -1;
-	end = ft_strlen(s1);
-	i = 0;
-	while (s1[++start])
-	{
-		while (s1[start] == set[i])
-			i++;
-		if (set[i] == '\0')
-			break ;
-		else
-			i = 0;
-	}
-	to_return = (char *) malloc((end - start) * sizeof(char));
+	i = -1;
+	j = -1;
+	k = -1;
+	to_return = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!to_return)
 		return (NULL);
-	j = -1;
-	while (to_return[++j])
+	while (s1[++i] != '\0')
 	{
-		to_return[j] = s1[start + j];
+		while (set[++j] != '\0')
+		{
+			if (s1[i] == set[j])
+				i++;
+		}
+		to_return[++k] = s1[i];
+		j = -1;
 	}
+	to_return[k] = '\0';
 	return (to_return);
 }
 
-int	main(void)
-{
-	char s1[] = "Ekip Cool mon poto Ekip";
-	char set[] = "Ekip";
+// int	main(void)
+// {
+// 	char s1[] = "Ekip Cool mon poto Ekip";
+// 	char set[] = "Ekip";
+//     char *to_return;
 
-	printf("%s", ft_strtrim(s1, set));
-	return (0);
-}
+//     to_return = ft_strtrim(s1, set);
+
+// 	printf("%s", to_return);
+//     free(to_return);
+// 	return (0);
+// }

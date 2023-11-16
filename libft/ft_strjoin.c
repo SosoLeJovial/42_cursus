@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:25:58 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/16 11:58:10 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:10:16 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcat(s3, s2, len_s1 + len_s2 + 1);
 	return (s3);
 }
-
+/*
 int	main(void)
 {
 	char s1[] = "coucou";
@@ -37,3 +37,4 @@ int	main(void)
 
 	printf("%s", ft_strjoin(s1, s2));
 }
+*/
