@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:53:25 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/16 18:16:30 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/17 11:23:31 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// size_t	ft_charset(char const *s1, char const *set)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (s1[i] == set[i] && (set[i] || s1[i]))
-// 	{
-// 		if 
-// 		i++;
-// 	}
-// 	return (i);
-// }
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	start;
-	size_t	end;
-	size_t	i;
-	char	*to_return;
+	int		i;
+	int		j;
+	int		k;
+	char	*ptr;
 
-	i = ft_strlen(set);
-	end = ft_strlen(s1);
-	start = 0; 
-	while (s1[start] == set[start] && set[start])
+	i = 0;
+	j = 0;
+	k = 0;
+	ptr = (char *)s1;
+	while (ptr[i] && ft_strchr(set, ptr[i]))
 		i++;
-	while (s1[end] == set[i] && set[i])
-	{
-		end--;
-		i--;
-	}
-	to_return = malloc((end - start) * sizeof(char));
-	if (!to_return)
-		return (0);
-	return (to_return);
+	j = ft_strlen(ptr) - 1;
+	while (ptr[j] && ft_strchr(set, ptr[j]) && j > i)
+		j--;
+	ptr = malloc(sizeof(char) * (j - i + 2));
+	if (!ptr)
+		return (NULL);
+	while (i <= j)
+		ptr[k++] = s1[i++];
+	ptr[k] = '\0';
+	return (ptr);
 }

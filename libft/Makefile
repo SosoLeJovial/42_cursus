@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 20:10:49 by tsofien-          #+#    #+#              #
-#    Updated: 2023/11/16 14:57:11 by tsofien-         ###   ########.fr        #
+#    Updated: 2023/11/17 10:31:01 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,6 @@ $(NAME): $(OBJS)
 %.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 	
-
-bonus: $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
 
 clean:
 	$(RM) $(OBJS)

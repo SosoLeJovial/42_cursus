@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:24:21 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/13 11:25:43 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/17 11:20:45 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	i = 0;
 	j = 0;
-	ptr = (char *) haystack;
+	ptr = (char *)haystack;
 	if (needle[0] == '\0')
 		return (ptr);
-	while (ptr[i] && i < (int) len)
+	while (ptr[i] && i < (int)len)
 	{
-		while (ptr[i + j] == needle[j] && i + j < (int) len)
+		while (ptr[i + j] == needle[j] && (ptr[i + j] && (i + j) < (int)len))
 		{
 			if (needle[j + 1] == '\0')
 				return (ptr + i);
@@ -45,9 +45,10 @@ int	main(void)
 	char		*ptr;
 	char		*test;
 
-	test = strnstr(largestring, smallstring, 38);
+	test = ft_strnstr(largestring, smallstring, 38);
 	ptr = strnstr(largestring, smallstring, 38);
 
 	printf("%s\n%s\n", ptr, test);
 	return (0);
-}*/
+}
+*/

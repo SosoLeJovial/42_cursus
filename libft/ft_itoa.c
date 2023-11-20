@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:55:49 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/16 19:43:44 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:28:35 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,63 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	ft_count_int(int n)
+int	ft_count_digits(int n)
 {
-	int	char_count;
+	int	i;
 
-	char_count = 0;
+	i = 0;
 	if (n < 0)
 	{
+		i++;
 		n *= -1;
-		char_count++;
 	}
-	while ((n % 10) != 0)
-		char_count++;
-	return (char_count);
+	if (n == 0)
+		i++;
+	while (n > 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*result;
-	int		len_result;
-	int		i;
+	char		*str;
+	int			i;
+	long int	num;
 
-	len_result = ft_count_int(n);
-	result = malloc(sizeof(char) * (len_result + 1));
-	if (!result)
+	num = n;
+	i = ft_count_digits(n);
+	str = malloc(sizeof(char) * (i + 1));
+	if (!str)
 		return (NULL);
-	i = 0;
+	str[i--] = '\0';
 	if (n < 0)
 	{
-		result[i] = '-';
-		n *= -1;
-		i++;
+		str[0] = '-';
+		num *= -1;
 	}
-	while (len_result > 0)
+	while (i >= 0 && str[i] != '-')
 	{
-		result[i] = (n % 10) + '0';
-		len_result--;
-		i++;
+		str[i] = (num % 10) + '0';
+		num /= 10;
+		i--;
 	}
-	return (result);
+	return (str);
 }
 /*
 int	main(void)
 {
-	printf("%s \n", ft_itoa(atoi("123")));
-	return(0);
+	char	*str;
+
+	str = ft_itoa(0);
+	if (!str)
+		return (1);
+	printf("%s \n", str);
+	free(str);
+	return (0);
 }
 */
+
+
