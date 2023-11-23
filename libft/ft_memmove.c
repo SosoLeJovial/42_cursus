@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 22:25:34 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/14 09:48:02 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/23 02:23:04 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,36 @@
 #include "libft.h"
 #include <string.h>
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*str;
-	unsigned char	*str2;
-	size_t			i;
+	long	i;
 
-	i = 0;
-	str = (unsigned char *)dest;
-	str2 = (unsigned char *)src;
-	if (str2 < str)
+	if (dst < src)
 	{
-		while (n > 0)
+		i = 0;
+		while ((size_t)i < len)
 		{
-			str[n - 1] = str2[n - 1];
-			n--;
+			*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+			i++;
 		}
+		return (dst);
 	}
 	else
 	{
-		while (i < n)
+		i = len - 1;
+		while (i >= 0)
 		{
-			str[i] = str2[i];
-			i++;
+			*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+			i--;
 		}
+		return (dst);
 	}
-	return (dest);
 }
 /*
 int	main(void)
 {
-	char src[] = "tester mon cochon";
-	char dest[17];
-	char source[] = "tester mon cochon";
-	char dst[17];
-	
-	memmove(dst, source, 19);
-	ft_memmove(dest, src, 19);
-	printf("mine : %s \noriginal : %s", dest, dst);
+	memmove(((void *)0), ((void *)0), 5);
+	ft_memmove(((void *)0), ((void *)0), 5);
 	return (0);
-}*/
+}
+*/

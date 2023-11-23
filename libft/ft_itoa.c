@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:55:49 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/17 10:28:35 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:02:08 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	ft_count_digits(int n)
+static size_t	ft_count_digits(long int n)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ int	ft_count_digits(int n)
 		n /= 10;
 		i++;
 	}
-	return (i);
+	return ((size_t) i);
 }
 
 char	*ft_itoa(int n)
@@ -41,7 +41,7 @@ char	*ft_itoa(int n)
 	long int	num;
 
 	num = n;
-	i = ft_count_digits(n);
+	i = ft_count_digits(num);
 	str = malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
@@ -72,5 +72,3 @@ int	main(void)
 	return (0);
 }
 */
-
-

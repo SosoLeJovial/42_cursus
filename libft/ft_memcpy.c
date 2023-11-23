@@ -6,25 +6,24 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:10:55 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/12 20:34:00 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:03:02 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
 
-void	*memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char	*sorc;
-	unsigned char	*dst;
+	size_t	i;
 
-	sorc = (unsigned char *) src;
-	dst = (unsigned char *) dest;
-	while (n--)
+	if (dst == src)
+		return (NULL);
+	i = 0;
+	while (i < n)
 	{
-		dst = sorc;
-		dst++;
-		sorc++;
+		*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+		i++;
 	}
 	return (dst);
 }
