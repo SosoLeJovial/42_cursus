@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:30:59 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/27 04:25:28 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/27 23:31:42 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *nptr)
 {
 	int		i;
 	int		s;
@@ -23,20 +23,20 @@ int	ft_atoi(const char *str)
 	i = 0;
 	s = 1;
 	res = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || \
-			str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t' || \
+			nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		if (str[i] == '-')
+		if (nptr[i] == '-')
 			s = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		if (res != ((res * 10) + str[i] - '0') / 10)
+		if (res != ((res * 10) + nptr[i] - '0') / 10)
 			return ((s + 1) / 2 / -1);
-		res = (res * 10) + (str[i] - '0');
+		res = (res * 10) + (nptr[i] - '0');
 		i++;
 	}
 	return (res * s);
