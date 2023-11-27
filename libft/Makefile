@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 20:10:49 by tsofien-          #+#    #+#              #
-#    Updated: 2023/11/22 11:17:52 by tsofien-         ###   ########.fr        #
+#    Updated: 2023/11/26 21:49:58 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ ft_strchr.c ft_calloc.c ft_strdup.c ft_strlcat.c \
 ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_strnstr.c \
 ft_strrchr.c ft_tolower.c ft_toupper.c ft_putendl_fd.c \
 ft_substr.c ft_strjoin.c ft_strtrim.c ft_itoa.c ft_strmapi.c ft_split.c \
-ft_putnbr_fd.c ft_striteri.c \
+ft_putnbr_fd.c ft_striteri.c ft_putchar_fd.c \
 
 
 OBJS = $(SRCS:.c=.o)

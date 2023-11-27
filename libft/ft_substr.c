@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:42:43 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/16 17:05:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/26 22:47:43 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int	len_s;
 
 	len_s = ft_strlen(s);
-	if (!s)
-		return (NULL);
+	if (!s || start >= len_s)
+		return (ft_calloc(1, 1));
 	if (start > len_s)
 		return (ft_strdup(""));
-	if (len > len_s)
-		len = len_s;
+	if (len > len_s - start)
+		len = len_s - start;
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
