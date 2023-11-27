@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 20:10:49 by tsofien-          #+#    #+#              #
-#    Updated: 2023/11/26 21:49:58 by tsofien-         ###   ########.fr        #
+#    Updated: 2023/11/27 05:44:55 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,11 @@ ft_strrchr.c ft_tolower.c ft_toupper.c ft_putendl_fd.c \
 ft_substr.c ft_strjoin.c ft_strtrim.c ft_itoa.c ft_strmapi.c ft_split.c \
 ft_putnbr_fd.c ft_striteri.c ft_putchar_fd.c \
 
+SRCSB = ft_lstnew_bonus.c ft_lstadd_front_bonus.c  ft_lstsize_bonus.c \
+ft_lstlast_bonus.c ft_lstadd_back_bonus.c\
 
 OBJS = $(SRCS:.c=.o)
+OBJSB = $(SRCSB:.c=.o)
 
 CC = gcc
 
@@ -35,16 +38,21 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
-	
+
+bonus: $(OBJSB)
+	ar rc $(NAME) $(OBJSB)
+	ranlib $(NAME)
+
 %.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 	
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJSB)
 
 fclean: clean
 	$(RM) $(NAME)
+
 
 re: fclean all
 
