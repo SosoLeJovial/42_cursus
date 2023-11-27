@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 22:25:34 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/23 02:23:04 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/27 04:23:05 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	long	i;
 
+	if (!dst && !src)
+		return (NULL);
 	if (dst < src)
 	{
 		i = 0;

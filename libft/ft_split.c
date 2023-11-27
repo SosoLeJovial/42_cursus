@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:28:00 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/27 04:18:42 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/27 04:26:59 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static size_t	ft_count_words(char const *s, char c)
 	return (count);
 }
 
-static size_t ft_word_lenght(char const *s, char c, size_t index)
+static size_t	ft_word_lenght(char const *s, char c, size_t index)
 {
 	size_t	i;
 
@@ -45,7 +45,8 @@ static size_t ft_word_lenght(char const *s, char c, size_t index)
 		i++;
 	return (i);
 }
-int	ft_tab_init(char*** tab, char const *s, char c)
+
+int	ft_tab_init(char ***tab, char const *s, char c)
 {
 	if (!s)
 		return (1);
@@ -54,13 +55,15 @@ int	ft_tab_init(char*** tab, char const *s, char c)
 		return (1);
 	return (0);
 }
-static void *ft_freetab(char **tab, size_t i)
+
+static void	*ft_freetab(char **tab, size_t i)
 {
 	while (i > 0)
 		free(tab[--i]);
 	free(tab);
 	return (NULL);
 }
+
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
@@ -107,7 +110,6 @@ char	**ft_split(char const *s, char c)
 // 	return (0);
 // }
 
-
 // static size_t	index_start(char const *s, char c)
 // {
 // 	size_t	i;
@@ -137,4 +139,3 @@ char	**ft_split(char const *s, char c)
 // 	len_total = len_s - start - (len_s - end);
 // 	return (len_total);
 // }
-
