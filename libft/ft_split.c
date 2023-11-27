@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:28:00 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/27 04:26:59 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:07:18 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	**ft_split(char const *s, char c)
 			tab[k++][j] = '\0';
 		}
 	}
-	tab[k] = '\0';
+	tab[k] = 0;
 	return (tab);
 }
 
