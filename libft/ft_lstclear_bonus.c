@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:11:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/27 19:43:13 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/27 23:43:16 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*tmp;
 
-	if (lst)
+	if (lst && del)
 	{
 		while ((*lst))
 		{

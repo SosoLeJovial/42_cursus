@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 22:25:34 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/27 04:23:05 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/11/27 23:38:02 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,31 @@
 #include "libft.h"
 #include <string.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
 	long	i;
 
-	if (!dst && !src)
+	if (!dest && !src)
 		return (NULL);
-	if (dst < src)
+	if (dest < src)
 	{
 		i = 0;
 		while ((size_t)i < len)
 		{
-			*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+			*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
 			i++;
 		}
-		return (dst);
+		return (dest);
 	}
 	else
 	{
 		i = len - 1;
 		while (i >= 0)
 		{
-			*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+			*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
 			i--;
 		}
-		return (dst);
+		return (dest);
 	}
 }
 /*
