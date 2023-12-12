@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:16:58 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/01 09:45:47 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/12 02:06:53 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,60 @@
 
 char	*get_next_line(int fd)
 {
-	char	*buffer;
+	char	stock[BUFFER_SIZE] = "\0";
 	char	*line;
-	size_t	index;
+	int		byte_read;
 
-	index = 0;
-	line = NULL;
-	buffer = malloc(sizeof(char) * BUFFER_SIZE + index + 1);
-	if (read(fd, buffer, (BUFFER_SIZE + index)) == 0)
+	byte_read = ft_read_line(line, fd);
+	while (line_break(line) < 0)
 	{
-		index += BUFFER_SIZE;
-		get_next_line(fd);
+		stock = line;
+		
 	}
-	line = buffer;
-	printf("%s", buffer);
-	return (line);
 }
 
-size_t	ft_line_break(char *buffer, size_t index)
+
+char	*ft_strdup(const char *s)
 {
-	size_t i;
+	char	*str;
+	int		len;
+	int		i;
 
-	i = index;
-	while (buffer[i] != '\0')
-	{
-		if (buffer[i] != '\n')
-			return (i);
-		i++;
-	}
-	return (0);
-}
-
-size_t	ft_strlen(char *buffer)
-{
-	size_t	i;
-
+	len = ft_strlen(s);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
 	i = 0;
-	while (buffer[i] != '\0')
+	while (s[i])
+	{
+		str[i] = (char)s[i];
 		i++;
-	return (i);
+	}
+	str[i] = '\0';
+	return (str);
 }
 
-int main(void)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	int fd;
+	void	*ptr;
 
-	fd = open("text.md", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	close(fd);
+	ptr = (void *) malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*str;
+
+	str = (unsigned char *)s;
+	while (n--)
+		*str++ = 0;
+}
+
+int	*ft_read_line(char	*line_read, int fd)
+{
+	return (read(fd, line_read, BUFFER_SIZE));
 }

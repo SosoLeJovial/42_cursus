@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:13:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/01 08:16:56 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/12 01:51:29 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-// typedef struct t_lst
-// {
-// 	int				fd;
-// 	char			buffer[BUFFER_SIZE];
-// 	char			*str;
-// 	struct t_lst	*next;
-// }	t_lst;
-
 char	*get_next_line(int fd);
-
+int		ft_strlen(char *len);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+int		line_break(char *stock);
+char	*ft_strdup(const char *s);
+void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_bzero(void *s, size_t n);
+char	*ft_read_line(char	*line_read, int fd);
 #endif
