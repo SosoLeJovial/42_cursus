@@ -22,58 +22,32 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	c;
-	size_t	d;
+	int		sizetotal;
+	char	*res;
+	int		i;
+	int		j;
 
-	if (dstsize <= (unsigned long)ft_strlen(dst))
-		return (dstsize + (unsigned long)ft_strlen(src));
-	c = (unsigned long) ft_strlen(dst);
-	d = 0;
-	while (src[d] != '\0' && c + 1 < dstsize)
-	{
-		dst[c] = src[d];
-		c++;
-		d++;
-	}
-	dst[c] = '\0';
-	return (ft_strlen(dst) + ft_strlen(&src[d]));
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	srcsize;
-	size_t	i;
-
-	srcsize = ft_strlen(src);
 	i = 0;
-	if (dstsize != 0)
-	{
-		while (src[i] != '\0' && i < (dstsize - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (srcsize);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*s3;
-	int		len_s1;
-	int		len_s2;
-
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	s3 = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
-	if (!s3)
+	sizetotal = ft_strlen(s1) + ft_strlen(s2);
+	res = malloc(sizeof(char) * (sizetotal + 1));
+	if (!res || !s1 || !s2)
 		return (NULL);
-	ft_strlcpy(s3, s1, len_s1 + 1);
-	ft_strlcat(s3, s2, len_s1 + len_s2 + 1);
-	return (s3);
+	while (s1[i] != 0)
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j] != 0)
+	{
+		res[i] = s2[j];
+		i++;
+		j++;
+	}
+	res[sizetotal] = 0;
+	return (res);
 }
 
 int	line_break(char *stock)
