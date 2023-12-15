@@ -1,5 +1,6 @@
 Accroupi près
- d’une fente
+d’une fente
+
   dans la roche
    d’où jaillit un filet d’eau,
 Danilo s’applique à mouiller sa pierre à aiguiser. Pour y remplir un seau,
