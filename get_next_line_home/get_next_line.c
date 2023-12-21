@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:16:58 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/21 15:48:54 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:01:05 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,29 +44,29 @@ char	*ft_read_line(char *line_read, char *stock, int fd)
 	int		byte_read;
 	char	*line;
 
-    line = 0;
+	line = 0;
 	byte_read = read(fd, stock, BUFFER_SIZE);
 	stock[byte_read] = '\0';
 	if (byte_read > BUFFER_SIZE || byte_read < 0)
 		return (NULL);
 	if (line_break(stock) >= 0)
 	{
-		line = ft_strjoin(line, fill_eol(stock, line_break(stock)));
+		line = ft_strjoin(line, fill_str(stock, line_break(stock)));
 		if (!line)
 			return (NULL);
-		line_read = fill_str(stock, line_break(stock));
+		line_read = line;
+		stock = fill_eol(stock, line_break(stock));
 	}
 	else
 	{
-		while (line_break(line) < 0)
+		while (line_break(stock) < 0)
 		{
 			line = ft_strjoin(line, stock);
-			line_read = ft_strjoin(line_read, line);
 			read(fd, stock, BUFFER_SIZE);
 		}
-		line = ft_strjoin(line, fill_eol(stock, line_break(stock)));
-		line_read = ft_strjoin(line_read, stock);
-		free(line);
+		line = ft_strjoin(line, fill_str(stock, line_break(stock)));
+		stock = fill_eol(stock, line_break(stock));
+		line_read = line;
 	}
 	return (line_read);
 }
@@ -80,8 +80,8 @@ char	*fill_str(char *str, size_t index)
 	if (index <= 0)
 		return (NULL);
 	i = 0;
-	len = (size_t)ft_strlen(str) - index;
-	s = calloc(sizeof(char), len + 1);
+	len = (size_t)ft_strlen(str) - ((size_t)ft_strlen(str) - index);
+	s = calloc(sizeof(char), (len + 1));
 	while (str[i] && i < index)
 	{
 		s[i] = str[i];

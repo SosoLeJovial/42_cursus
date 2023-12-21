@@ -1,8 +1,7 @@
 Accroupi pres
 d’une fente
-
-  dans la roche
-   d’où jaillit un filet d’eau,
+dans la roche
+d ou jaillit un filet d eau 
 Danilo s’applique à mouiller sa pierre à aiguiser. Pour y remplir un seau,
 il faut s’armer d’une timbale et d’un peu de patience car l’eau ensuite se perd
 dans les cailloux. Patience dont il ne manque pas. C’est ici qu’il vient aiguiser
