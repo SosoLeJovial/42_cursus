@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:16:58 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/21 19:01:05 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:24:24 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	*ft_read_line(char *line_read, char *stock, int fd)
 	char	*line;
 
 	line = 0;
+	if (stock)
+		line = ft_strjoin(line, stock);
 	byte_read = read(fd, stock, BUFFER_SIZE);
 	stock[byte_read] = '\0';
 	if (byte_read > BUFFER_SIZE || byte_read < 0)

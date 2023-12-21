@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:41:28 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/21 19:05:29 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:18:06 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,12 @@ int	line_break(char *line)
 {
 	int	i;
 
-	if (!line)
-		return (-1);
 	i = 0;
 	while (line[i])
 	{
 		if (line[i] == '\n')
 		{
-			return (i);
+			return (i + 1);
 		}
 		i++;
 	}
@@ -89,20 +87,17 @@ char	*fill_eol(char *str, size_t index)
 	return (s);
 }
 
-// int	main(void)
-// {
-// 	char	*gnl;
-// 	int		fd;
+int	main(void)
+{
+	char	*gnl;
+	int		fd;
 
-// 	fd = open("text.md", O_RDWR);
-// 	gnl = get_next_line(fd);
-// 	printf("|%s|\n", gnl);
-// 	while (gnl != NULL)
-// 	{
-// 		gnl = get_next_line(fd);
-// 		printf("|%s|\n", gnl);
-// 	}
-// 	free(gnl);
-// 	close(fd);
-// 	return (0);
-// }
+	fd = open("text.md", O_RDWR);
+	gnl = get_next_line(fd);
+	printf("%s", gnl);
+	gnl = get_next_line(fd);
+	printf("%s", gnl);
+	free(gnl);
+	close(fd);
+	return (0);
+}
