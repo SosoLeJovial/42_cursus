@@ -1,4 +1,4 @@
-Accroupi près
+Accroupi pres
 d’une fente
 
   dans la roche

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:41:28 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/15 04:07:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/21 15:37:53 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_strlen(char *str)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i])
 		i++;
@@ -33,7 +35,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	sizetotal = ft_strlen(s1) + ft_strlen(s2);
 	res = malloc(sizeof(char) * (sizetotal + 1));
 	if (!res || !s1 || !s2)
-		return (free(s1) ,NULL);
+		return (NULL);
 	while (s1[i] != 0)
 	{
 		res[i] = s1[i];
@@ -47,19 +49,21 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	res[sizetotal] = 0;
-	return (free(s1),res);
+	return (res);
 }
 
 int	line_break(char *line)
 {
 	int	i;
 
+	if (!line)
+		return (-1);
 	i = 0;
-	while (*line)
+	while (line[i])
 	{
-		if (*line++ == '\n')
+		if (line[i] == '\n')
 		{
-			return (i + 1);
+			return (i);
 		}
 		i++;
 	}
