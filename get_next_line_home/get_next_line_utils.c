@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:41:28 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/21 20:18:06 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/28 23:44:49 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	res[sizetotal] = 0;
-	return (free(s1), res);
+	return (free(s1), free(s2), res);
 }
 
 int	line_break(char *line)
@@ -66,14 +66,14 @@ int	line_break(char *line)
 	return (-1);
 }
 
-char	*fill_eol(char *str, size_t index)
+char	*fill_eol(char *str, char *target, size_t index)
 {
 	char	*s;
 	size_t	len;
 	size_t	i;
 
 	len = ft_strlen(str) - index;
-	s = calloc(sizeof(char), len + 1);
+	s = malloc(sizeof(char) * (len + 1));
 	if (!s)
 		return (NULL);
 	i = 0;
@@ -84,20 +84,43 @@ char	*fill_eol(char *str, size_t index)
 		index++;
 	}
 	s[i] = '\0';
-	return (s);
+	if (!target)
+		return (s);
+	else
+	{
+		free(target);
+		return (s);
+	}
 }
 
-int	main(void)
+char	*fill_stock_eol(char *stock, size_t index)
 {
-	char	*gnl;
-	int		fd;
+	size_t	i;
+	size_t	len;
 
-	fd = open("text.md", O_RDWR);
-	gnl = get_next_line(fd);
-	printf("%s", gnl);
-	gnl = get_next_line(fd);
-	printf("%s", gnl);
-	free(gnl);
-	close(fd);
-	return (0);
+	len = ft_strlen(stock) - index;
+	if (!stock)
+		return (NULL);
+	i = 0;
+	while (stock[index] && i < len)
+	{
+		stock[i] = stock[index];
+		i++;
+		index++;
+	}
+	stock[i] = '\0';
+	return (stock);
 }
+
+// int	main(void)
+// {
+// 	char	*gnl;
+// 	int		fd;
+
+// 	fd = open("text.md", O_RDWR);
+// 	gnl = get_next_line(fd);
+// 	printf("%s", gnl);
+// 	free(gnl);
+// 	close(fd);
+// 	return (0);
+// }

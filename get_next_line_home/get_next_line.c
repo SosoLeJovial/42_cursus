@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:16:58 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/21 19:24:24 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/28 23:40:20 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,51 +24,32 @@ char	*get_next_line(int fd)
 	return (line_return);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	char	*ptr;
-	size_t	n;
-
-	ptr = (char *) malloc(nmemb * size);
-	if (!ptr)
-		return (NULL);
-	n = nmemb * size;
-	ptr[n - 1] = '\0';
-	while (n--)
-		*ptr++ = 0;
-	return (ptr);
-}
-
 char	*ft_read_line(char *line_read, char *stock, int fd)
 {
 	int		byte_read;
-	char	*line;
 
-	line = 0;
 	if (stock)
-		line = ft_strjoin(line, stock);
+		line_read = fill_eol(stock, line_read, line_break(stock));
 	byte_read = read(fd, stock, BUFFER_SIZE);
 	stock[byte_read] = '\0';
 	if (byte_read > BUFFER_SIZE || byte_read < 0)
 		return (NULL);
 	if (line_break(stock) >= 0)
 	{
-		line = ft_strjoin(line, fill_str(stock, line_break(stock)));
-		if (!line)
+		line_read = ft_strjoin(line_read, fill_str(stock, line_break(stock)));
+		if (!line_read)
 			return (NULL);
-		line_read = line;
-		stock = fill_eol(stock, line_break(stock));
+		stock = fill_stock_eol(stock, line_break(stock));
 	}
 	else
 	{
 		while (line_break(stock) < 0)
 		{
-			line = ft_strjoin(line, stock);
+			line_read = ft_strjoin(line_read, stock);
 			read(fd, stock, BUFFER_SIZE);
 		}
-		line = ft_strjoin(line, fill_str(stock, line_break(stock)));
-		stock = fill_eol(stock, line_break(stock));
-		line_read = line;
+		line_read = ft_strjoin(line_read, fill_str(stock, line_break(stock)));
+		stock = fill_stock_eol(stock, line_break(stock));
 	}
 	return (line_read);
 }
@@ -83,7 +64,7 @@ char	*fill_str(char *str, size_t index)
 		return (NULL);
 	i = 0;
 	len = (size_t)ft_strlen(str) - ((size_t)ft_strlen(str) - index);
-	s = calloc(sizeof(char), (len + 1));
+	s = malloc(sizeof(char) * (len + 1));
 	while (str[i] && i < index)
 	{
 		s[i] = str[i];

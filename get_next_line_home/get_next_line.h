@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:13:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/21 19:33:39 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/28 23:44:06 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 char	*get_next_line(int fd);
 int		ft_strlen(char *len);
 int		line_break(char *stock);
-void	*ft_calloc(size_t nmemb, size_t size);
+char	*fill_stock_eol(char *stock, size_t index);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_read_line(char *line_read, char *stock, int fd);
 char	*fill_str(char *str, size_t index);
-char	*fill_eol(char *str, size_t index);
+char	*fill_eol(char *str, char *target, size_t index);
 #endif
