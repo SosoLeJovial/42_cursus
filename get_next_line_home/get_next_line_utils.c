@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:41:28 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/30 19:32:54 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/30 20:36:22 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	res[sizetotal] = 0;
-	return (free(s1), free(s2), res);
+	return (free(s1), res);
 }
 
 int	line_break(char *line)
@@ -117,7 +117,7 @@ int	main(void)
 	char	*gnl;
 	int		fd;
 
-	fd = open("test.md", O_RDWR);
+	fd = open("text.md", O_RDWR);
 	gnl = get_next_line(fd);
 	printf("%s", gnl);
 	gnl = get_next_line(fd);
