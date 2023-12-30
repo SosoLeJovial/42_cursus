@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:41:28 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/28 23:44:49 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:32:54 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,15 +112,19 @@ char	*fill_stock_eol(char *stock, size_t index)
 	return (stock);
 }
 
-// int	main(void)
-// {
-// 	char	*gnl;
-// 	int		fd;
+int	main(void)
+{
+	char	*gnl;
+	int		fd;
 
-// 	fd = open("text.md", O_RDWR);
-// 	gnl = get_next_line(fd);
-// 	printf("%s", gnl);
-// 	free(gnl);
-// 	close(fd);
-// 	return (0);
-// }
+	fd = open("test.md", O_RDWR);
+	gnl = get_next_line(fd);
+	printf("%s", gnl);
+	gnl = get_next_line(fd);
+	printf("%s", gnl);
+    gnl = get_next_line(fd);
+	printf("%s", gnl);
+	free(gnl);
+	close(fd);
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:16:58 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/28 23:40:20 by tsofien-         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:28:09 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*get_next_line(int fd)
 	static char	stock[BUFFER_SIZE + 1] = "\0";
 	char		*line_return;
 
-	if (fd < 0)
+	if (fd < 0 || !fd)
 		return (NULL);
 	line_return = 0;
 	line_return = ft_read_line(line_return, stock, fd);
@@ -29,10 +29,10 @@ char	*ft_read_line(char *line_read, char *stock, int fd)
 	int		byte_read;
 
 	if (stock)
-		line_read = fill_eol(stock, line_read, line_break(stock));
+		line_read = fill_eol(stock, 0, line_break(stock));
 	byte_read = read(fd, stock, BUFFER_SIZE);
 	stock[byte_read] = '\0';
-	if (byte_read > BUFFER_SIZE || byte_read < 0)
+	if (byte_read <= 0)
 		return (NULL);
 	if (line_break(stock) >= 0)
 	{
@@ -46,7 +46,8 @@ char	*ft_read_line(char *line_read, char *stock, int fd)
 		while (line_break(stock) < 0)
 		{
 			line_read = ft_strjoin(line_read, stock);
-			read(fd, stock, BUFFER_SIZE);
+			if (read(fd, stock, BUFFER_SIZE) == 0)
+			break ;
 		}
 		line_read = ft_strjoin(line_read, fill_str(stock, line_break(stock)));
 		stock = fill_stock_eol(stock, line_break(stock));
