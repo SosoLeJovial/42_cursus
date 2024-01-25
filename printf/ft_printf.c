@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 04:24:03 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/24 14:14:25 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:27:20 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ int	ft_printf(char *format, ...)
 	{
 		if (*format == '%')
 		{
+			printed = 0;
 			printed = *ft_check_percent(format, count, args);
-			if (printed > 0)
-				*count += printed;
-			else
+			if (printed < 0)
 				return (0);
 			format++;
 		}
@@ -84,7 +83,6 @@ int	ft_putnbr_sz(int nbr, char *base)
 
 	count = 0;
 	base_len = ft_strlen(base);
-
 	if (nbr < 0)
 	{
 		ft_putchar_sz('-');
@@ -99,3 +97,8 @@ int	ft_putnbr_sz(int nbr, char *base)
 		count += ft_putchar_sz(base[nbr]);
 	return (count);
 }
+// int main(void)
+// {
+// 	printf("%d", ft_printf("%% %% %%\n"));
+// 	return (0);
+// }
