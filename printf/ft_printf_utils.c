@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 12:31:57 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/27 05:12:50 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/28 06:18:57 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ char	*ft_base(char format)
 		return (base = "0123456789");
 }
 
-int	ft_putnbr_hex(unsigned long nbr)
+int	ft_putnbr_ul(unsigned long nbr, char *base)
 {
 	int		count;
-	char	*base;
+	int		base_len;
 
 	count = 0;
-	base = "0123456789abcdef";
-	if (nbr >= 16)
+	base_len = ft_strlen(base);
+	if (nbr >= base_len)
 	{
-		count += ft_putnbr_hex(nbr / 16);
-		count += ft_putchar_sz(base[nbr % 16]);
+		count += ft_putnbr_ul(nbr / base_len, base);
+		count += ft_putchar_sz(base[nbr % base_len]);
 	}
 	else
 		count += ft_putchar_sz(base[nbr]);

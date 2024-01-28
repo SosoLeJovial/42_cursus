@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 04:24:03 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/28 05:11:14 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/28 06:19:17 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ int	ft_printf(char *format, ...)
 	return (count);
 }
 
-int	ft_pointer(void *ptr)
+int	ft_pointer(void *ptr, char format)
 {
 	int	ct;
 
 	ct = 0;
-	if (!ptr)
+	if (ptr == NULL)
 		return (write(1, "(nil)", 5));
 	else
 	{
 		ft_putstr_sz("0x");
 		ct += 2;
-		ct += ft_putnbr_hex((unsigned long) ptr);
+		ct += ft_putnbr_ul((unsigned long) ptr, ft_base(format));
 	}
 	return (ct);
 }
@@ -65,7 +65,7 @@ int	ft_check_percent(char *format, va_list args)
 	else if (*format == 's')
 		result = putstr_checker(va_arg(args, char *));
 	else if (*format == 'p')
-		result = ft_pointer(va_arg(args, void *));
+		result = ft_pointer(va_arg(args, void *), *format);
 	else if (*format == 'd' || *format == 'i' || *format == 'u')
 		result = ft_putnbr_sz(va_arg(args, int), ft_base(*format));
 	else if (*format == 'x' || *format == 'X')
@@ -115,9 +115,13 @@ int	ft_putnbr_sz(int nbr, char *base)
 	return (count);
 }
 
-// int main(void)
-// {
-// 	printf("%d\n" ,printf("%%"));
-// 	printf("%d\n" ,ft_printf("%%"));
-// 	return (0);
-// }
+int main(void)
+ {
+    int i = 42;
+    char str[4] = "skr";
+    unsigned ud = -670;
+
+     printf("R    %d\n", printf("\t%%\t %i %s\t%u %x %X %p\n", i, str, ud, ud, ud, str));
+     printf("M    %d\n", ft_printf("\t%%\t %i %s\t%u %x %X %p\n", i, str, ud, ud, ud, str));
+     return (0);
+ }
