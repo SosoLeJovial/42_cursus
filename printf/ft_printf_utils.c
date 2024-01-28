@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 12:31:57 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/28 06:18:57 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/28 06:38:16 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,44 @@ char	*ft_base(char format)
 {
 	char	*base;
 
-	if (format == 'x')
+	if (format == 'x' || format == 'p')
 		return (base = "0123456789abcdef");
 	if (format == 'X')
 		return (base = "0123456789ABCDEF");
-	if (format == 'p')
-		return (base = "0123456789abcdef");
 	else
 		return (base = "0123456789");
 }
 
 int	ft_putnbr_ul(unsigned long nbr, char *base)
 {
-	int		count;
-	int		base_len;
+	int					count;
+	unsigned long		base_len;
 
 	count = 0;
-	base_len = ft_strlen(base);
+	base_len = (unsigned long)ft_strlen(base);
+	if (nbr < base_len)
+		count += ft_putchar_sz(base[nbr]);
 	if (nbr >= base_len)
 	{
 		count += ft_putnbr_ul(nbr / base_len, base);
-		count += ft_putchar_sz(base[nbr % base_len]);
+		count += ft_putnbr_ul(nbr % base_len, base);
 	}
-	else
+	return (count);
+}
+
+int	ft_putnbr_test(unsigned long nbr, char *base)
+{
+	int					count;
+	unsigned long		base_len;
+
+	count = 0;
+	base_len = (unsigned long)ft_strlen(base);
+	if (nbr < base_len)
 		count += ft_putchar_sz(base[nbr]);
+	if (nbr >= base_len)
+	{
+		count += ft_putnbr_test(nbr / base_len, base);
+		count += ft_putnbr_test(nbr % base_len, base);
+	}
 	return (count);
 }

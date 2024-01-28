@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 04:24:03 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/28 06:19:17 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/28 06:39:10 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ int	ft_check_percent(char *format, va_list args)
 		result = putstr_checker(va_arg(args, char *));
 	else if (*format == 'p')
 		result = ft_pointer(va_arg(args, void *), *format);
-	else if (*format == 'd' || *format == 'i' || *format == 'u')
+	else if (*format == 'd' || *format == 'i')
 		result = ft_putnbr_sz(va_arg(args, int), ft_base(*format));
+	else if (*format == 'u')
+		result = ft_putnbr_test(va_arg(args, unsigned long), ft_base(*format));
 	else if (*format == 'x' || *format == 'X')
-		result = ft_putnbr_sz(va_arg(args, unsigned int), ft_base(*format));
+		result = ft_putnbr_test(va_arg(args, unsigned long), ft_base(*format));
 	else if (*format == '%')
 		result = ft_putchar_sz('%');
 	else
