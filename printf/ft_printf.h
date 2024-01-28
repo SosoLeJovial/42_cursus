@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 22:32:07 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/27 05:09:44 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/28 06:38:49 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # include <stdlib.h>
 
 int		ft_printf(char *format, ...);
-int		ft_pointer(void *ptr);
-int		ft_putnbr_hex(unsigned long nbr);
+int		ft_pointer(void *ptr, char format);
+int		ft_putnbr_ul(unsigned long nbr, char *base);
+int		ft_putnbr_test(unsigned long nbr, char *base);
 int		ft_check_percent(char *format, va_list args);
 int		ft_strlen(char *str);
 int		ft_putchar_sz(int c);
