@@ -1,18 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/30 18:54:40 by tsofien-          #+#    #+#              #
-#    Updated: 2024/01/28 05:46:10 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/01/29 03:36:05 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c ft_printf_utils.c
+SRCS = ft_printf.c ft_printf_utils.c ft_printf_putnbr.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -24,11 +24,11 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS) Makefile
+$(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
-%.o: %.c ft_printf.h Makefile
+%.o: %.c ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 	
 

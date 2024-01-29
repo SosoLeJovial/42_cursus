@@ -6,18 +6,20 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 04:24:03 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/28 06:39:10 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/29 04:42:32 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "./ft_printf.h"
 
-int	ft_printf(char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	int			count;
 	int			printed;
 	va_list		args;
 
+    if (!format)
+        return (0);
 	va_start(args, format);
 	count = 0;
 	while (*format)
@@ -41,7 +43,7 @@ int	ft_printf(char *format, ...)
 
 int	ft_pointer(void *ptr, char format)
 {
-	int	ct;
+	int ct;
 
 	ct = 0;
 	if (ptr == NULL)
@@ -55,7 +57,7 @@ int	ft_pointer(void *ptr, char format)
 	return (ct);
 }
 
-int	ft_check_percent(char *format, va_list args)
+int	ft_check_percent(const char *format, va_list args)
 {
 	int	result;
 
@@ -69,9 +71,9 @@ int	ft_check_percent(char *format, va_list args)
 	else if (*format == 'd' || *format == 'i')
 		result = ft_putnbr_sz(va_arg(args, int), ft_base(*format));
 	else if (*format == 'u')
-		result = ft_putnbr_test(va_arg(args, unsigned long), ft_base(*format));
+		result = ft_putnbr_test(va_arg(args, long), ft_base(*format));
 	else if (*format == 'x' || *format == 'X')
-		result = ft_putnbr_test(va_arg(args, unsigned long), ft_base(*format));
+		result = ft_putnbr_test(va_arg(args, long), ft_base(*format));
 	else if (*format == '%')
 		result = ft_putchar_sz('%');
 	else
@@ -82,7 +84,7 @@ int	ft_check_percent(char *format, va_list args)
 		return (result);
 }
 
-int	putstr_checker(char *str)
+int	putstr_checker(const char *str)
 {
 	if (!str)
 		return (write(1, "(null)", 6));
@@ -116,14 +118,3 @@ int	ft_putnbr_sz(int nbr, char *base)
 		count += ft_putchar_sz(base[nbr]);
 	return (count);
 }
-
-int main(void)
- {
-    int i = 42;
-    char str[4] = "skr";
-    unsigned ud = -670;
-
-     printf("R    %d\n", printf("\t%%\t %i %s\t%u %x %X %p\n", i, str, ud, ud, ud, str));
-     printf("M    %d\n", ft_printf("\t%%\t %i %s\t%u %x %X %p\n", i, str, ud, ud, ud, str));
-     return (0);
- }

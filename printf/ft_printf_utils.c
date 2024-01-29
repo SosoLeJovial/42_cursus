@@ -6,13 +6,13 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 12:31:57 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/28 06:38:16 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/29 04:19:10 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "./ft_printf.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ int	ft_putchar_sz(int c)
 	return (write(1, &c, 1));
 }
 
-int	ft_putstr_sz(char *str)
+int	ft_putstr_sz(const char *str)
 {
 	int	i;
 
@@ -39,46 +39,10 @@ int	ft_putstr_sz(char *str)
 
 char	*ft_base(char format)
 {
-	char	*base;
-
 	if (format == 'x' || format == 'p')
-		return (base = "0123456789abcdef");
+		return ("0123456789abcdef");
 	if (format == 'X')
-		return (base = "0123456789ABCDEF");
+		return ("0123456789ABCDEF");
 	else
-		return (base = "0123456789");
-}
-
-int	ft_putnbr_ul(unsigned long nbr, char *base)
-{
-	int					count;
-	unsigned long		base_len;
-
-	count = 0;
-	base_len = (unsigned long)ft_strlen(base);
-	if (nbr < base_len)
-		count += ft_putchar_sz(base[nbr]);
-	if (nbr >= base_len)
-	{
-		count += ft_putnbr_ul(nbr / base_len, base);
-		count += ft_putnbr_ul(nbr % base_len, base);
-	}
-	return (count);
-}
-
-int	ft_putnbr_test(unsigned long nbr, char *base)
-{
-	int					count;
-	unsigned long		base_len;
-
-	count = 0;
-	base_len = (unsigned long)ft_strlen(base);
-	if (nbr < base_len)
-		count += ft_putchar_sz(base[nbr]);
-	if (nbr >= base_len)
-	{
-		count += ft_putnbr_test(nbr / base_len, base);
-		count += ft_putnbr_test(nbr % base_len, base);
-	}
-	return (count);
+		return ("0123456789");
 }
