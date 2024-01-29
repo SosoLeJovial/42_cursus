@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 12:31:57 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/29 04:19:10 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:47:04 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,4 @@ int	ft_putstr_sz(const char *str)
 	return (write(1, str, i));
 }
 
-char	*ft_base(char format)
-{
-	if (format == 'x' || format == 'p')
-		return ("0123456789abcdef");
-	if (format == 'X')
-		return ("0123456789ABCDEF");
-	else
-		return ("0123456789");
-}
+

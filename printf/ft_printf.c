@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 04:24:03 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/29 04:42:32 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:39:06 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	ft_printf(const char *format, ...)
 	int			printed;
 	va_list		args;
 
-    if (!format)
-        return (0);
+	if (!format)
+		return (0);
 	va_start(args, format);
 	count = 0;
 	while (*format)
@@ -41,9 +41,9 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-int	ft_pointer(void *ptr, char format)
+int	ft_pointer(void *ptr)
 {
-	int ct;
+	int	ct;
 
 	ct = 0;
 	if (ptr == NULL)
@@ -52,7 +52,7 @@ int	ft_pointer(void *ptr, char format)
 	{
 		ft_putstr_sz("0x");
 		ct += 2;
-		ct += ft_putnbr_ul((unsigned long) ptr, ft_base(format));
+		ct += ft_putnbr_ul((unsigned long) ptr, "0123456789abcdef");
 	}
 	return (ct);
 }
@@ -67,13 +67,15 @@ int	ft_check_percent(const char *format, va_list args)
 	else if (*format == 's')
 		result = putstr_checker(va_arg(args, char *));
 	else if (*format == 'p')
-		result = ft_pointer(va_arg(args, void *), *format);
+		result = ft_pointer(va_arg(args, void *));
 	else if (*format == 'd' || *format == 'i')
-		result = ft_putnbr_sz(va_arg(args, int), ft_base(*format));
+		result = ft_putnbr_sz(va_arg(args, int));
 	else if (*format == 'u')
-		result = ft_putnbr_test(va_arg(args, long), ft_base(*format));
-	else if (*format == 'x' || *format == 'X')
-		result = ft_putnbr_test(va_arg(args, long), ft_base(*format));
+		result = ft_putnbr_ul(va_arg(args, long), "0123456789");
+	else if (*format == 'x')
+		result = ft_putnbr_ul(va_arg(args, long), "0123456789abcdef");
+	else if (*format == 'X')
+		result = ft_putnbr_ul(va_arg(args, long), "0123456789ABCDEF");
 	else if (*format == '%')
 		result = ft_putchar_sz('%');
 	else
@@ -92,29 +94,21 @@ int	putstr_checker(const char *str)
 		return (ft_putstr_sz(str));
 }
 
-int	ft_putnbr_sz(int nbr, char *base)
+int	ft_putnbr_sz(int n)
 {
-	int	count;
-	int	base_len;
+	const char	sign = (n < 0);
+	char		s[12] = {0};
+	short		i;
 
-	count = 0;
-	base_len = ft_strlen(base);
-	if (nbr == -2147483648)
+	i = 11;
+	s[i] = '0';
+	while (n)
 	{
-		count += ft_putchar_sz('2');
-		nbr = 147483648;
+		s[i--] = n % 10 + '0';
+		n /= 10;
 	}
-	if (nbr < 0)
-	{
-		count += ft_putchar_sz('-');
-		nbr = -nbr;
-	}
-	if (nbr >= base_len)
-	{
-		count += ft_putnbr_sz(nbr / base_len, base);
-		count += ft_putnbr_sz(nbr % base_len, base);
-	}
-	else
-		count += ft_putchar_sz(base[nbr]);
-	return (count);
+	if (sign)
+		s[i--] = '-';
+	return (write(1, s + i, 12 - i));
 }
+
