@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 04:24:03 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/29 21:39:06 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:20:32 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_pointer(void *ptr)
 
 	ct = 0;
 	if (ptr == NULL)
-		return (write(1, "(nil)", 5));
+		return (write(1, "(null)", 6));
 	else
 	{
 		ft_putstr_sz("0x");
@@ -67,15 +67,15 @@ int	ft_check_percent(const char *format, va_list args)
 	else if (*format == 's')
 		result = putstr_checker(va_arg(args, char *));
 	else if (*format == 'p')
-		result = ft_pointer(va_arg(args, void *));
+		result = ft_pointer(va_arg(args, void *)) - 1;
 	else if (*format == 'd' || *format == 'i')
 		result = ft_putnbr_sz(va_arg(args, int));
 	else if (*format == 'u')
-		result = ft_putnbr_ul(va_arg(args, long), "0123456789");
+		result = ft_putnbr_ul(va_arg(args, long), "0123456789") - 1;
 	else if (*format == 'x')
-		result = ft_putnbr_ul(va_arg(args, long), "0123456789abcdef");
+		result = ft_putnbr_ul(va_arg(args, long), "0123456789abcdef") - 1;
 	else if (*format == 'X')
-		result = ft_putnbr_ul(va_arg(args, long), "0123456789ABCDEF");
+		result = ft_putnbr_ul(va_arg(args, long), "0123456789ABCDEF") - 1;
 	else if (*format == '%')
 		result = ft_putchar_sz('%');
 	else
@@ -86,29 +86,15 @@ int	ft_check_percent(const char *format, va_list args)
 		return (result);
 }
 
-int	putstr_checker(const char *str)
+int main(void)
 {
-	if (!str)
-		return (write(1, "(null)", 6));
-	else
-		return (ft_putstr_sz(str));
+    int i = 42;
+    char str[4] = "skr";
+    unsigned int ud = -670;
+
+    printf("R    %d\n", printf("\t%%\t %i %s\t%u %x %X %p\n", i, str, ud, ud, ud, str));
+    printf("M    %d\n", ft_printf("\t%%\t %i %s\t%u %x %X %p\n", i, str, ud, ud, ud, str));
+	// printf("R    %d\n", printf("%p\n", str));
+	// printf("M    %d\n", ft_printf("%p\n", str));
+    return (0);
 }
-
-int	ft_putnbr_sz(int n)
-{
-	const char	sign = (n < 0);
-	char		s[12] = {0};
-	short		i;
-
-	i = 11;
-	s[i] = '0';
-	while (n)
-	{
-		s[i--] = n % 10 + '0';
-		n /= 10;
-	}
-	if (sign)
-		s[i--] = '-';
-	return (write(1, s + i, 12 - i));
-}
-

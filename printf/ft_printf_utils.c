@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 12:31:57 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/29 19:47:04 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:19:50 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,10 @@ int	ft_putstr_sz(const char *str)
 	return (write(1, str, i));
 }
 
-
+int	putstr_checker(const char *str)
+{
+	if (!str)
+		return (write(1, "(null)", 6));
+	else
+		return (ft_putstr_sz(str));
+}
