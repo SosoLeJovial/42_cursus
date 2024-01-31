@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:58:27 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/31 03:43:54 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:22:42 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,43 @@
 
 char	*get_next_line(int fd)
 {
-	static char	saved_buffer[BUFFER_SIZE + 1] = "\0";
+	static char	buffer[BUFFER_SIZE + 1] = "\0";
 	char		*line_final;
-	// ssize_t		reader;
-
+	ssize_t		reader;
 
 	if (fd < 0 || !fd)
 		return (NULL);
-	if (saved_buffer)
-		return (saved_buffer);
-	else
-		line_final = 0;
+	reader = 1;
+	line_final = NULL;
+	while (!ft_strchr(buffer, '\n') && reader != 0)
+	{
+		reader = read(fd, buffer, BUFFER_SIZE);
+		if (reader == -1)
+			return (NULL);
+		buffer[reader] = '\0';
+		line_final = ft_strjoin(line_final, buffer);
+	}
+	if (ft_strchr(buffer, '\n'))
+		ft_strcpy(buffer, ft_strchr(buffer, '\n') + 1);
 	return (line_final);
 }
 
+// int	main(void)
+// {
+// 	int fd;
+// 	char *line;
+// 	int i;
+
+// 	fd = open("bible.txt", O_RDONLY);
+// 	i = 0;
+// 	while (i < 5)
+// 	{
+// 		line = get_next_line(fd);
+// 		printf("line = %s\n", line);
+// 		free(line);
+// 		i++;
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
 

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:58:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/30 21:29:17 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:14:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,64 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	*ft_memmove(void *dest, const void *src, size_t len)
+char	*ft_strchr(const char *str, int c)
 {
-	long	i;
+	char	*s;
 
-	if (!dest && !src)
+	s = (char *)str;
+	while (*s)
+	{
+		if (*s == (char)c)
+			return (s);
+		s++;
+	}
+	if (*s == (char)c)
+		return (s);
+	return (NULL);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	i;
+	size_t	c;
+	char	*str;
+
+	if (!s1)
+	{
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
+	if (!s1 || !s2)
 		return (NULL);
-	if (dest < src)
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	c = 0;
+	if (s1)
+		while (s1[++i] != '\0')
+			str[i] = s1[i];
+	while (s2[c] != '\0')
+		str[i++] = s2[c++];
+	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	free(s1);
+	return (str);
+}
+
+char	*ft_strcpy(char *dest, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src && src[i])
 	{
-		i = 0;
-		while ((size_t)i < len)
-		{
-			*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
-			i++;
-		}
-		return (dest);
+		dest[i] = src[i];
+		i++;
 	}
-	else
+	while (dest && dest[i])
 	{
-		i = len - 1;
-		while (i >= 0)
-		{
-			*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
-			i--;
-		}
-		return (dest);
+		dest[i] = '\0';
+		i++;
 	}
+	return (dest);
 }

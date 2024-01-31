@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:58:07 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/24 15:56:10 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:05:16 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <stdio.h>
 
 char	*get_next_line(int fd);
-int		ft_strlen(char *len);
-void	*ft_memmove(void *dest, const void *src, size_t len);
+int		ft_strlen(char *str);
+char	*ft_strchr(const char *str, int c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strcpy(char *dest, char *src);
 #endif
