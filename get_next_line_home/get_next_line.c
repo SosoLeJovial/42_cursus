@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:16:58 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/30 20:35:44 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/31 01:48:32 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*get_next_line(int fd)
 	static char	stock[BUFFER_SIZE + 1] = "\0";
 	char		*line_return;
 
-	if (fd < 0 || !fd)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	line_return = 0;
 	line_return = ft_read_line(line_return, stock, fd);

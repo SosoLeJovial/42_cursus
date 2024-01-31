@@ -6,14 +6,14 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:13:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/20 04:54:06 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/31 01:44:45 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 6400000000
+#  define BUFFER_SIZE 15 
 # endif
 
 # include <stdlib.h>

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:58:27 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/12/30 21:36:39 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/31 03:43:54 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,4 @@ char	*get_next_line(int fd)
 	return (line_final);
 }
 
-int	main(void)
-{
-	char	*gnl;
-	int		fd;
 
-	fd = open("text.md", O_RDWR);
-	gnl = get_next_line(fd);
-	printf("%s", gnl);
-	gnl = get_next_line(fd);
-	printf("%s", gnl);
-	gnl = get_next_line(fd);
-	printf("%s", gnl);
-	free(gnl);
-	close(fd);
-	return (0);
-}

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:41:28 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/20 04:50:38 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/01/31 01:41:23 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,8 @@ int	main(void)
 	int		fd;
 
 	fd = open("text.md", O_RDWR);
-    while (1)
-    {
-        get_next_line(fd);
-    }
-	free(gnl);
+        gnl = get_next_line(fd);
+	    free(gnl);
 	close(fd);
 	return (0);
 }
