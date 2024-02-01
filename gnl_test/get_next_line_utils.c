@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:58:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/01/31 17:14:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:36:01 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strlen(char *str)
 	int	i;
 
 	i = 0;
-	while (str && str[i])
+	while (str && str[i] != '\0')
 		i++;
 	return (i);
 }
@@ -83,3 +83,51 @@ char	*ft_strcpy(char *dest, char *src)
 	}
 	return (dest);
 }
+
+char	*ft_save(char *buffer, char *line_final)
+{
+	char	*line;
+
+	// look for what is inside buffer, take until \n and strjoin line_final and the part of buffer
+	if (!ft_strchr(buffer, '\n'))
+		return (ft_strjoin(line_final, buffer));
+	line = ft_line_break(buffer);
+	line_final = ft_strjoin(line_final, line);
+	free(line);
+	return (line_final);
+}
+
+char	*ft_line_break(char *buffer)
+{
+	char 	*new_line;
+	int		i;
+	int		len;
+
+	i = 0;
+	while (buffer && buffer[i])
+	{
+		if (buffer[i] == '\n')
+			break ;
+		i++;
+	}
+	new_line = malloc((i + 1) * sizeof(char));
+	if (!new_line)
+		return (NULL);
+	len = i + 1;
+	i = 0;
+	while (i < len)
+	{
+		new_line[i] = buffer[i];
+		i++;
+	}
+	return (new_line);
+}
+
+// int	main(void)
+// {
+// 	char	*str;
+
+// 	str = "Coucou \n il y'a du monde";
+// 	printf("string : %s", ft_line_break(str));
+// 	return (0);
+// }
