@@ -6,15 +6,15 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:27:20 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/13 11:41:13 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:45:27 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (s[i] != '\0')
