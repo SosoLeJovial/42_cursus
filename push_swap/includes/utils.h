@@ -1,15 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rr.c                                               :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 09:19:28 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/23 00:29:07 by tsofien-         ###   ########.fr       */
+/*   Created: 2024/02/23 00:19:05 by tsofien-          #+#    #+#             */
+/*   Updated: 2024/02/23 00:19:56 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/operations.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-// rr : ra et rb en même temps.
+int	ft_atoi(const char *nptr);
+#endif

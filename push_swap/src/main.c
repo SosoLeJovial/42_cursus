@@ -6,11 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 10:34:56 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/04 10:35:46 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/02/23 00:17:22 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int argc, char **argv)
+int     main(int argc, char **argv)
 {
 
 	return (0);
