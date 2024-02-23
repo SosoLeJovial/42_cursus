@@ -6,16 +6,20 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 11:39:56 by tsofien-          #+#    #+#              #
-#    Updated: 2024/02/04 08:38:50 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/02/23 15:28:34 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = push_swap.a
 
-SRCS = push_swap.c push_swap_utils.c push_swap_sort.c push_swap_sort_utils.c \
+SRCS_DIR = src/operations src/utils src/stack src/tester src/sort
 
-OBJS = $(SRCS:.c=.o)
+SRCS = $(foreach SRCS_DIR, $(SRCS_DIR), $(wildcard $(SRCS_DIR)/*.c))
+
+OBJ_DIR = ./obj
+
+OBJS := $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 CC = gcc
 
@@ -29,17 +33,23 @@ $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
-%.o: %.c ft_printf.h
+%.o: %.c ./includes/push_swap.h
 	$(CC) $(CFLAGS) -c $< -o $@
 	
+
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@ -I./includes
 
 clean:
 	$(RM) $(OBJS) $(OBJSB)
 
 fclean: clean
-	$(RM) $(NAME) libftprintf.a
+	$(RM) $(NAME) push_swap.a
 
 
 re: fclean all
 
-.PHONY: all clean fclean re
+
+	
+.PHONY: all clean fclean re 

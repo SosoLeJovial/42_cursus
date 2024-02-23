@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:30:01 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/23 00:32:07 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:33:20 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ typedef struct pile
 t_pile	*ft_lstnew(int value);
 void	ft_lstadd_front(t_pile **lst, t_pile *new);
 void	ft_lstadd_back(t_pile **lst, t_pile *new);
+void	ft_lstclear(t_pile **lst, void (*del)(void*));
 #endif
