@@ -6,15 +6,18 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 10:34:56 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/23 16:00:54 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:39:03 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/utils.h"
+#include "../includes/tester.h"
+#include "../includes/stack.h"
 
 int	main(int argc, char **argv)
 {
 	int		i;
+	int		error;
 	int		content;
 	t_pile	*first_node;
 	t_pile	**tmp;
@@ -26,14 +29,21 @@ int	main(int argc, char **argv)
 		return (0);
 	content = ft_atoi(argv[i++]);
 	first_node = ft_lstnew(content);
-	*tmp = first_node;
-	while (argv[i])
+	if (!first_node)
+		return (1);
+	tmp = &first_node;
+	while (i < argc)
 	{
 		content = ft_atoi(argv[i++]);
 		new = ft_lstnew(content);
-		ft_lstadd_back(tmp, new);
-		*tmp = new;
+		if (!new)
+			printf("memory allocation fail\n");
+		error = ft_lstadd_back(tmp, new);
+		if (error == -1)
+			printf("fail add back\n");
+		tmp = &new;
 	}
+	printf("argc :%d\n", argc);
 	display_stack(first_node);
 	return (0);
 }

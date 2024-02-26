@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 23:47:07 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/23 15:33:40 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:52:26 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,28 @@ t_pile	*ft_lstnew(int value)
 	return (lst);
 }
 
-void	ft_lstadd_front(t_pile **lst, t_pile *new)
+int	ft_lstadd_front(t_pile **lst, t_pile *new)
 {
 	if (lst)
 	{
 		new->next = *lst;
 		*lst = new;
+		return (0);
 	}
 	else
-	{
-		return (NULL);
-	}
+		return (-1);
 }
 
-void	ft_lstadd_back(t_pile **lst, t_pile *new)
+int	ft_lstadd_back(t_pile **lst, t_pile *new)
 {
 	t_pile	*tmp;
 
 	if (!lst)
-		return (NULL);
+		return (-1);
 	if (!*lst)
 	{
 		*lst = new;
-		return (NULL);
+		return (-1);
 	}
 	if (new)
 	{
@@ -57,10 +56,13 @@ void	ft_lstadd_back(t_pile **lst, t_pile *new)
 			tmp = tmp->next;
 		}
 		tmp->next = new;
+		new->prev = tmp;
+		return (0);
 	}
+	return (-1);
 }
 
-void	ft_lstclear(t_pile **lst, void (*del)(void*))
+void	ft_lstclear(t_pile **lst, void (*del)(int))
 {
 	t_pile	*tmp;
 
