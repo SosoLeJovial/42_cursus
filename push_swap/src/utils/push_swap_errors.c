@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   push_swap_errors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 00:30:01 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/26 18:47:19 by tsofien-         ###   ########.fr       */
+/*   Created: 2024/02/04 13:24:35 by tsofien-          #+#    #+#             */
+/*   Updated: 2024/02/26 18:56:38 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
+#include "../includes/push_swap.h"
 
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct pile
+int	ft_sanitize(int number)
 {
-	struct pile		*prev;
-	int				value;
-	size_t			index;
-	struct pile		*next;
-}	t_pile;
+	int	result;
 
-t_pile	*ft_lstnew(int value);
-int		ft_lstadd_front(t_pile **lst, t_pile *new);
-int		ft_lstadd_back(t_pile **lst, t_pile *new);
-void	ft_lstclear(t_pile **lst, void (*del)(int));
-#endif
+	result = -1;
+	if (ft_isdigit(number) == 0 && ft_isint(number) == 1)
+		result = 1;
+	else
+		return (0);
+	return (result);
+}
+
+int	ft_isint(int number)
+{
+	int result;
+
+	result = -1;
+	if ((-2147483647) < number && number < 2147483647)
+		result = 1;
+	else
+		result = 0;
+	return (result);
+}
