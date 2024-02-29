@@ -5,21 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/03 11:39:56 by tsofien-          #+#    #+#              #
-#    Updated: 2024/02/23 15:28:34 by tsofien-         ###   ########.fr        #
+#    Created: 2024/02/29 14:09:14 by tsofien-          #+#    #+#              #
+#    Updated: 2024/02/29 14:23:02 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-NAME = push_swap.a
+NAME = push_swap
 
 SRCS_DIR = src/operations src/utils src/stack src/tester src/sort
 
-SRCS = $(foreach SRCS_DIR, $(SRCS_DIR), $(wildcard $(SRCS_DIR)/*.c))
+SRCS = main.c $(foreach dir, $(SRCS_DIR), $(wildcard $(dir)/*.c))
 
 OBJ_DIR = ./obj
 
-OBJS := $(SRCS:%.c=$(OBJ_DIR)/%.o)
+OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 CC = gcc
 
@@ -30,26 +29,19 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
-
-%.o: %.c ./includes/push_swap.h
-	$(CC) $(CFLAGS) -c $< -o $@
-	
+	$(CC) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@ -I./includes
+	$(CC) $(CFLAGS) -I./includes -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(OBJSB)
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME) push_swap.a
-
+	$(RM) $(NAME)
 
 re: fclean all
 
+.PHONY: all clean fclean re
 
-	
-.PHONY: all clean fclean re 

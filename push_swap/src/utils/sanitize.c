@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_errors.c                                 :+:      :+:    :+:   */
+/*   sanitize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 13:24:35 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/26 18:56:38 by tsofien-         ###   ########.fr       */
+/*   Created: 2024/02/29 15:58:30 by tsofien-          #+#    #+#             */
+/*   Updated: 2024/02/29 16:14:21 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/utils.h"
 
-int	ft_sanitize(int number)
+int	ft_sanistize_args(int argc, char **argv)
 {
-	int	result;
+	int	i;
+	int check_error;
+	int content;
 
-	result = -1;
-	if (ft_isdigit(number) == 0 && ft_isint(number) == 1)
-		result = 1;
-	else
-		return (0);
-	return (result);
-}
-
-int	ft_isint(int number)
-{
-	int result;
-
-	result = -1;
-	if ((-2147483647) < number && number < 2147483647)
-		result = 1;
-	else
-		result = 0;
-	return (result);
+	content = 0;
+	check_error = 1;
+	i = 1;
+	while (i < argc)
+	{
+		content = ft_atoi(argv[i++]);
+		if (ft_sanitize(content) < 0)
+			return (check_error * -1);
+	}
+	return (check_error);
 }

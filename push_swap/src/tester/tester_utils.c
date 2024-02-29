@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:05:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/26 15:47:16 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:50:04 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	display_stack(t_pile *stack)
 		tmp = tmp->next;
 		node++;
 	}
+	free(tmp);
 }

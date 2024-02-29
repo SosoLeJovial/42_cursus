@@ -6,21 +6,19 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 10:34:56 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/26 18:55:35 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:27:56 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.h"
-#include "../includes/tester.h"
-#include "../includes/stack.h"
+#include "./includes/push_swap.h"
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	int		i;
-	int		error;
-	int		content;
-	t_pile	*first_node;
-	t_pile	*new;
+	int i;
+	int error;
+	int content;
+	t_pile *first_node;
+	t_pile *new;
 
 	i = 1;
 	if (argc < 1)
@@ -40,5 +38,6 @@ int	main(int argc, char **argv)
 			printf("fail add back\n");
 	}
 	display_stack(first_node);
+	ft_lstclear(&first_node, NULL);
 	return (0);
 }
