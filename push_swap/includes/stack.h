@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:30:01 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/26 18:47:19 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:51:25 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 typedef struct pile
 {
-	struct pile		*prev;
 	int				value;
 	size_t			index;
+	struct pile		*prev;
 	struct pile		*next;
 }	t_pile;
 
