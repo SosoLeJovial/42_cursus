@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:18:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/02/29 16:21:09 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/17 21:32:07 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int ft_atoi(const char *nptr)
 {
 	int i;
 	int s;
-	long res;
+	int res;
 
 	i = 0;
 	s = 1;
 	res = 0;
 	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t' ||
-		   nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
+		nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
@@ -33,7 +33,7 @@ int ft_atoi(const char *nptr)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		if (res != ((res * 10) + nptr[i] - '0') / 10)
-			return ((s + 1) / 2 / -1);
+			return (2147483648);
 		res = (res * 10) + (nptr[i] - '0');
 		i++;
 	}
@@ -50,22 +50,32 @@ int	ft_sanitize(int number)
 {
 	int	result;
 
-	result = -1;
-	if (ft_isdigit(number) == 0 && ft_isint(number) == 1)
-		result = 1;
+	result = 0;
+	if (ft_isint(number) != 0)
+		return (result += 1);
 	else
-		return (0);
-	return (result);
+		return (result);
 }
 
 int	ft_isint(int number)
 {
 	int result;
 
-	result = -1;
+	result = 0;
 	if ((-2147483647) < number && number < 2147483647)
-		result = 1;
+		return (result);
 	else
-		result = 0;
-	return (result);
+		return (result += 1);
+}
+
+void ft_free_args(char **tab)
+{
+	int	i;
+
+	i = 1;
+	while (tab[i])
+		i++;
+	while (i > 0)
+		free(tab[--i]);
+	free(tab);
 }
