@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:19:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/17 21:30:29 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/18 22:22:45 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-int		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 int		ft_isdigit(int c);
-int		ft_isint(int number);
-int		ft_sanitize(int number);
+int		ft_isint(long number);
 int		ft_check_args(int argc, char **argv, char ***list_args);
-int		ft_sanitize_args(int argc, char **argv, char **list_args);
+char	**ft_sanitize_args(int argc, char **argv, int *error);
 char	**ft_split(char const *s, char c);
-void	ft_free_args(char **tab);
+int		ft_checker_digit(char **argv);
+void	*ft_free_args(char **tab);
+int		strcontaindigit(char *str);
+int		strcontainonedigit(char *nptr);
 #endif

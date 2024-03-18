@@ -6,39 +6,12 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:18:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/17 21:32:07 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/18 22:22:06 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/utils.h"
 
-int ft_atoi(const char *nptr)
-{
-	int i;
-	int s;
-	int res;
-
-	i = 0;
-	s = 1;
-	res = 0;
-	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t' ||
-		nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			s = -1;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		if (res != ((res * 10) + nptr[i] - '0') / 10)
-			return (2147483648);
-		res = (res * 10) + (nptr[i] - '0');
-		i++;
-	}
-	return (res * s);
-}
 int ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
@@ -46,18 +19,7 @@ int ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_sanitize(int number)
-{
-	int	result;
-
-	result = 0;
-	if (ft_isint(number) != 0)
-		return (result += 1);
-	else
-		return (result);
-}
-
-int	ft_isint(int number)
+int	ft_isint(long number)
 {
 	int result;
 
@@ -68,14 +30,62 @@ int	ft_isint(int number)
 		return (result += 1);
 }
 
-void ft_free_args(char **tab)
+int strcontaindigit(char *str)
+{
+	int	i;
+	int ct;
+
+	i = 0;
+	ct = 0;
+	while(str[i])
+	{
+		if (ft_isdigit(str[i++]))
+			ct++;
+	}
+	return(ct);
+}
+
+int strcontainonedigit(char *nptr)
 {
 	int	i;
 
-	i = 1;
-	while (tab[i])
+	i = 0;
+	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t' ||
+		nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
 		i++;
-	while (i > 0)
-		free(tab[--i]);
-	free(tab);
+	if (nptr[i] == '-' || nptr[i] == '+')
+		i++;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+		i++;
+	while (nptr[i])
+	{
+		if (nptr[i] >= '0' && nptr[i] <= '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int ft_checker_digit(char **argv)
+{
+	int	i;
+	int	j;
+
+	j = 1;
+	while (argv[j])
+	{
+		i = -1;
+		if (!*argv[j] || !strcontaindigit(argv[j]) || !strcontainonedigit(argv[j]))
+			return (1);
+		while (argv[j][++i] && argv[j][i] != '\0')
+			{
+					if (!ft_isdigit(argv[j][i]) && argv[j][i] != 32 && argv[j][i] != '-' && argv[j][i] != '+')
+							return (1);
+					if (argv[j][i] == '-' && !ft_isdigit(argv[j][i + 1]))
+							return (1);
+			}
+			
+		j++;
+	}
+	return (0);
 }
