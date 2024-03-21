@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:58:30 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/18 22:22:17 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/21 10:45:49 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 int	ft_check_args(int argc, char **argv, char ***list_args)
 {
-	if (ft_checker_digit(argv) != 0)
-		return (1);
 	if (argc < 2)
 		return (1);
 	if (argc == 2)
 	{
+		if (ft_checker_digit(argv) != 0)
+			return (1);
 		*list_args = ft_split(argv[1], 32);
-		if (!list_args || !list_args[1])
+		if (!list_args)
 			return (1);
 	}
 	if (argc > 2)
 	{
+		if (ft_checker_digit(argv) != 0)
+			return (1);
 		*list_args = argv;
 		return (-1);
 	}

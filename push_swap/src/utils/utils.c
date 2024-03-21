@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:18:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/18 22:22:06 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/21 10:39:46 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,13 @@ int strcontainonedigit(char *nptr)
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
 		i++;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-		i++;
 	while (nptr[i])
 	{
 		if (nptr[i] >= '0' && nptr[i] <= '9')
-			return (0);
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 int ft_checker_digit(char **argv)
