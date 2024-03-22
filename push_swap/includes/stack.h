@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:30:01 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/22 19:11:15 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:04:49 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ typedef struct pile
 	struct pile		*next;
 }	t_pile;
 
-int		ft_stack_init(char **list_arg, int *error, t_pile *stack_a);
+int		ft_stack_init(char **list_arg, int *error, t_pile **stack_a);
+int		ft_isduplicate(t_pile *stack, int *error);
+int		push_swap(t_pile *stack_a, t_pile *stack_b, int *error, char **list_args);
 t_pile	*ft_lstnew(int value);
 int		ft_lstadd_front(t_pile **lst, t_pile *new);
 int		ft_lstadd_back(t_pile **lst, t_pile *new);

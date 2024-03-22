@@ -6,19 +6,19 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:05:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/21 11:31:53 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:08:11 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/tester.h"
 
-void	display_stack(t_pile *stack)
+void	display_stack(t_pile **stack)
 {
 	t_pile	*tmp;
 	int		node;
 
-	node = 1;
-	tmp = stack;
+	node = 0;
+	tmp = *stack;
 	while (tmp)
 	{
 		printf("|------------------------------|\n");
