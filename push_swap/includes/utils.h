@@ -6,14 +6,13 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:19:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/18 22:22:45 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/23 01:35:35 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 # include <stdlib.h>
-# include <stdio.h>
 
 long	ft_atoi(const char *nptr);
 int		ft_isdigit(int c);

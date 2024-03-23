@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:13:18 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/22 20:05:51 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/23 01:50:42 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@
 # include "stack.h"
 # include <stdio.h>
 
-void	display_stack(t_pile **stack);
+void	display_stack(t_pile *stack, char *stack_name);
 #endif
