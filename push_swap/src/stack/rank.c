@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 02:02:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 02:16:23 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:05:45 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void add_index(t_pile **stack)
 {
-	t_pile	*tmp;
+	t_pile		*tmp;
 	size_t		i;
 
 	i = 0;
@@ -26,6 +26,7 @@ void add_index(t_pile **stack)
 		i++;
 	}
 }
+
 void rank(t_pile **stack)
 {
 	t_pile	*tmp;
@@ -48,6 +49,7 @@ void rank(t_pile **stack)
 		tmp = tmp->next;
 	}
 }
+
 void rank_stack(t_pile **stack)
 {
 	add_index(stack);

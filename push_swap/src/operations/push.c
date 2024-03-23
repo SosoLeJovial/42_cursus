@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pa.c                                               :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 09:17:50 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 01:33:54 by tsofien-         ###   ########.fr       */
+/*   Created: 2024/03/23 16:20:37 by tsofien-          #+#    #+#             */
+/*   Updated: 2024/03/23 16:20:38 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,18 @@ void which_push(char c, t_pile **stack_a, t_pile **stack_b)
 	if (c == 'a')
 	{
 		if (*stack_b)
+		{
 			push(stack_b, stack_a);
+			write(1, "pa\n", 3);
+		}
 	}
 	else if (c == 'b')
 	{
 		if (*stack_a)
+		{
 			push(stack_a, stack_b);
+			write(1, "pb\n", 3);
+		}
 	}
 }
 

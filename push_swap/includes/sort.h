@@ -13,4 +13,6 @@
 #ifndef SORT_H
 # define SORT_H
 
+
+void    which_sort(size_t stack_length, t_pile **stack_a, t_pile **stack_b);
 #endif

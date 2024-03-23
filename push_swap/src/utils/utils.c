@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:18:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/21 10:39:46 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:00:31 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int strcontaindigit(char *str)
 
 	i = 0;
 	ct = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (ft_isdigit(str[i++]))
 			ct++;
 	}
-	return(ct);
+	return (ct);
 }
 
 int strcontainonedigit(char *nptr)

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:51:31 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 02:02:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:24:50 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int ft_stack_init(char **list_arg, int *error, t_pile **stack_a, char **argv)
 	int		i;
 
 	i = 1;
-	if(!list_arg)
+	if (!list_arg)
 		return(*error += 1);
 	if (list_arg != argv)
 		i -= 1;
@@ -54,10 +54,7 @@ int	ft_isduplicate(t_pile *stack, int *error)
 		while (tmp)
 		{
 			if (content == tmp->value)
-			{
-				printf("hahaha duplicate found \n");
 				return (*error += 1);
-			}
 			tmp = tmp->next;
 		}
 		tmp_node = tmp_node->next;
