@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 23:47:07 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 02:06:08 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:46:56 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,19 @@ void	ft_lstclear(t_pile **lst, void (*del)(int))
 			*lst = tmp;
 		}
 	}
+}
+
+size_t	ft_lst_lengt(t_pile *lst)
+{
+	size_t		i;
+	t_pile	*tmp;
+
+	i = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
 }

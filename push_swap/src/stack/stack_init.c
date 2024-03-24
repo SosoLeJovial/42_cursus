@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:51:31 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 17:24:50 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/24 00:11:06 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,17 @@ int	ft_isduplicate(t_pile *stack, int *error)
 		tmp_node = tmp_node->next;
 	}
 	return (*error);
+}
+int stack_is_sorted(t_pile *stack)
+{
+	t_pile	*tmp;
+
+	tmp = stack;
+	while (tmp->next)
+	{
+		if (tmp->value > tmp->next->value)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }

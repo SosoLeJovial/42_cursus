@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:19:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 01:35:35 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/23 23:53:32 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ int		ft_checker_digit(char **argv);
 void	*ft_free_args(char **tab);
 int		strcontaindigit(char *str);
 int		strcontainonedigit(char *nptr);
+int		check_argv_terminator(char **av);
 #endif

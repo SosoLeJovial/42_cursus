@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:30:01 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 02:16:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/24 00:06:44 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ int		ft_isduplicate(t_pile *stack, int *error);
 void	add_index(t_pile **stack);
 void	rank(t_pile **stack);
 void	rank_stack(t_pile **stack);
-int		push_swap(t_pile *stack_a, t_pile *stack_b, int *error, char **list_args, char **argv);
+int		push_swap(t_pile *stack_a, t_pile *stack_b, char **list_args, char **argv);
 t_pile	*ft_lstnew(int value);
 int		ft_lstadd_front(t_pile **lst, t_pile *new);
 int		ft_lstadd_back(t_pile **lst, t_pile *new);
 void	ft_lstclear(t_pile **lst, void (*del)(int));
+size_t	ft_lst_lengt(t_pile *lst);
+int		stack_is_sorted(t_pile *stack);
 #endif
