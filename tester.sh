@@ -19,6 +19,7 @@ test_random()
   if [ "$OUTPUT" = "OK" ];
   then echo_success "OK" | tr -d '\n'
   else echo_error "KO" | tr -d '\n'; fi
+  echo "$ARG\n"
   echo " $NUM ($($PUSH_SWAP "$ARG" | wc -l) moves)" | tr -d '\n'
   echo
 }
@@ -53,10 +54,15 @@ test_random 2
 test_random 3
 test_random 4
 test_random 5
+test_random 5
+test_random 5
+test_random 5
+test_random 5
 test_random 10
 test_random 50
 test_random 100
 test_random 500
+
 
 echo
 echo "Fixed args"

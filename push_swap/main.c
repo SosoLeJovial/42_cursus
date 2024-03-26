@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 10:34:56 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 01:15:21 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:36:02 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 	error = 0;
 	list_args = NULL;
 	list_args = ft_sanitize_args(argc, argv, &error);
-	if (list_args)
+	if (list_args && error == 0)
 		error = push_swap(stack_a, stack_b, list_args, argv);
 	if (list_args != argv && list_args)
 		ft_free_args(list_args);

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:19:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 23:53:32 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:55:10 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define UTILS_H
 # include <stdlib.h>
 
-long	ft_atoi(const char *nptr);
+long	ft_atoi(const char *str);
 int		ft_isdigit(int c);
 int		ft_isint(long number);
 int		ft_check_args(int argc, char **argv, char ***list_args);

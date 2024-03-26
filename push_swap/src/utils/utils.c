@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:18:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 15:31:49 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:56:02 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,9 @@ int	ft_isdigit(int c)
 
 int	ft_isint(long number)
 {
-	int	result;
-
-	result = 0;
-	if ((-2147483647) < number && number < 2147483647)
-		return (result);
-	else
-		return (result += 1);
+	if ((number < -2147483647) || (number > 2147483647))
+		return (1);
+	return (0);
 }
 
 int	strcontaindigit(char *str)
@@ -45,46 +41,42 @@ int	strcontaindigit(char *str)
 	return (ct);
 }
 
-int	strcontainonedigit(char *nptr)
+int	strcontainonedigit(char *c)
 {
 	int		i;
-	char	c;
 
 	i = 0;
-	c = nptr[i];
-	while (c == ' ' || c == '\n' || c == '\t' || \
-		c == '\v' || c == '\f' || c == '\r')
+	while (c[i] == ' ' || c[i] == '\n' || c[i] == '\t' || \
+		c[i] == '\v' || c[i] == '\f' || c[i] == '\r')
 		i++;
-	if (c == '-' || c == '+')
+	if (c[i] == '-' || c[i] == '+')
 		i++;
-	while (c)
+	while (c[i])
 	{
-		if (c >= '0' && c <= '9')
+		if (c[i] >= '0' && c[i] <= '9')
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	ft_checker_digit(char **argv)
+int	ft_checker_digit(char **s)
 {
 	int		i;
 	int		j;
-	char	*str;
 
 	j = 1;
-	str = argv[j];
-	while (str)
+	while (s[j])
 	{
 		i = -1;
-		if (!*str || !strcontaindigit(str) || !strcontainonedigit(str))
+		if (!*s[j] || !strcontaindigit(s[j]) || !strcontainonedigit(s[j]))
 			return (1);
-		while (str[++i] && str[i] != '\0')
+		while (s[j][++i] && s[j][i] != '\0')
 		{
-			if (!ft_isdigit(str[i]) && str[i] != 32 \
-			&& str[i] != '-' && str[i] != '+')
+			if (!ft_isdigit(s[j][i]) && s[j][i] != 32 \
+			&& s[j][i] != '-' && s[j][i] != '+')
 				return (1);
-			if (str[i] == '-' && !ft_isdigit(str[i + 1]))
+			if (s[j][i] == '-' && !ft_isdigit(s[j][i + 1]))
 				return (1);
 		}
 		j++;

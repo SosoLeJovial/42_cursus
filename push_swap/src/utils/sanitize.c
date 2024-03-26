@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:58:30 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 15:49:41 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:39:45 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_check_args(int argc, char **argv, char ***list_args)
 {
 	if (argc < 2)
-		return (1);
+		return (-1);
 	if (argc == 2)
 	{
 		if (ft_checker_digit(argv) != 0)
@@ -56,7 +56,7 @@ char	**ft_sanitize_args(int argc, char **argv, int *check_error)
 	while (list_args[i])
 	{
 		content = ft_atoi(list_args[i++]);
-		if (ft_isint(content) != 0)
+		if (ft_isint(content))
 			*check_error += 1;
 	}
 	return (list_args);
@@ -74,7 +74,7 @@ void	*ft_free_args(char **tab)
 	return (NULL);
 }
 
-long	ft_atoi(const char *s)
+long	ft_atoi(const char *str)
 {
 	int		i;
 	int		s;
@@ -83,20 +83,20 @@ long	ft_atoi(const char *s)
 	i = 0;
 	s = 1;
 	res = 0;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t' || \
-		s[i] == '\v' || s[i] == '\f' || s[i] == '\r')
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || \
+		str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
 		i++;
-	if (s[i] == '-' || s[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (s[i] == '-')
+		if (str[i] == '-')
 			s = -1;
 		i++;
 	}
-	while (s[i] >= '0' && s[i] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (res < (-2147483647) || res > 2147483647)
 			return (4000000000);
-		res = (res * 10) + (s[i] - '0');
+		res = (res * 10) + (str[i] - '0');
 		i++;
 	}
 	return (res * s);
@@ -106,17 +106,16 @@ int	check_argv_terminator(char **av)
 {
 	int		i;
 	int		j;
-	char	c;
 
 	i = 1;
 	j = 0;
 	while (av[i])
 	{
 		j = 0;
-		c = av[i][j];
-		while (c)
+		while (av[i][j])
 		{
-			if (!ft_isdigit(c) && (c != '-' && ft_isdigit(av[i][j + 1])))
+			if (!ft_isdigit(av[i][j]) && \
+			(av[i][j] != '-' && ft_isdigit(av[i][j + 1])))
 				return (1);
 			j++;
 		}

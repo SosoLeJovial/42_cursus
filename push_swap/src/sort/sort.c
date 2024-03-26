@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:25:41 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 16:05:15 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:19:14 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,10 @@ void	sort_three(t_pile **stack)
 void	sort_five(t_pile **stack_a, t_pile **stack_b)
 {
 	push_small_b(stack_a, stack_b);
-	add_index(stack_a);
 	push_small_b(stack_a, stack_b);
 	sort_three(stack_a);
 	which_push('a', stack_a, stack_b);
 	which_push('a', stack_a, stack_b);
+	if ((*stack_a)->value > (*stack_a)->next->value)
+		which_swap('a', stack_a, NULL);
 }

@@ -6,13 +6,13 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/29 14:09:14 by tsofien-          #+#    #+#              #
-#    Updated: 2024/03/17 19:02:34 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/03/26 19:48:37 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS_DIR = src/operations src/utils src/stack src/tester src/sort
+SRCS_DIR = src/operations src/utils src/stack src/sort
 
 SRCS = main.c $(foreach dir, $(SRCS_DIR), $(wildcard $(dir)/*.c))
 

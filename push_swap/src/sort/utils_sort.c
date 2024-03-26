@@ -6,55 +6,48 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:25:49 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 15:57:28 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:00:06 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
 
-void	push_small_b(t_pile **a, t_pile **b)
+static size_t	index_node(int node_value, t_pile **a)
 {
-	int		node_value;
 	t_pile	*tmp;
 
 	tmp = *a;
-	node_value = find_smallest(a);
-	while (tmp)
-	{
-		if (tmp->value == node_value)
-		{
-			which_index(tmp, a, b);
-			break ;
-		}
+	while (tmp->value != node_value)
 		tmp = tmp->next;
-	}
+	return (tmp->index);
 }
 
-void	which_index(t_pile *tmp, t_pile **a, t_pile **b)
+void	push_small_b(t_pile **a, t_pile **b)
 {
-	if (tmp->index == 0)
-		which_push('b', a, b);
-	else if (tmp->index == 1)
+	int		node_value;
+	size_t	node_index;
+	size_t	stack_length;
+	t_pile	*tmp;
+
+	tmp = *a;
+	stack_length = ft_lst_lengt(tmp);
+	node_value = find_smallest(a);
+	node_index = index_node(node_value, a);
+	while (tmp->value != node_value)
 	{
-		which_swap('a', a, b);
-		which_push('b', a, b);
+		if (stack_length == 4)
+			if (node_index < 3)
+				which_rotate('a', a, NULL);
+			else
+				which_reverse_rotate('a', a, NULL);
+		else 
+			if (node_index < 2)
+				which_rotate('a', a, NULL);
+			else
+				which_reverse_rotate('a', a, NULL);
+		tmp = *a;
 	}
-	else if (tmp->index == 2)
-	{
-		which_rotate('a', a, b);
-		which_rotate('a', a, b);
-		which_push('b', a, b);
-	}
-	else if (tmp->index == 3)
-	{
-		which_reverse_rotate('a', a, b);
-		which_push('b', a, b);
-	}
-	else if (tmp->index == 4)
-	{
-		which_reverse_rotate('a', a, b);
-		which_push('b', a, b);
-	}
+	which_push('b', a, b);
 }
 
 int	find_smallest(t_pile **stack)
