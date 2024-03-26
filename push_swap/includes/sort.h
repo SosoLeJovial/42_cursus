@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:27:11 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/24 19:24:36 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/25 23:32:05 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	sort_five(t_pile **stack_a, t_pile **stack_b);
 void	which_index(t_pile *tmp, t_pile **a, t_pile **b);
 void	push_small_b(t_pile **a, t_pile **b);
 int		find_smallest(t_pile **stack);
+void	radix_sort(t_pile **stack_a, t_pile **stack_b);
 #endif

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 10:34:56 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/24 19:22:27 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 01:15:21 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int push_swap(t_pile *stack_a, t_pile *stack_b, char **list_args, char ** argv)
 	add_index(&stack_a);
 	rank_stack(&stack_a);
 	which_sort(ft_lst_lengt(stack_a) , &stack_a, &stack_b);
-	display_stack(stack_a, "stack_a");
-	// display_stack(stack_b, "stack_b");
+	ft_lstclear(&stack_a);
+	ft_lstclear(&stack_b);
 	return (error);
 }

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:58:30 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 23:53:12 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:52:30 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int check_argv_terminator(char **av)
 		j = 0;
 		while (av[i][j])
 		{
-			if (!ft_isdigit(av[i][j]))
+			if (!ft_isdigit(av[i][j]) && (av[i][j] != '-' && ft_isdigit(av[i][j + 1])))
 				return (1);
 			j++;
 		}

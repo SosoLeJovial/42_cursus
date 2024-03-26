@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 23:47:07 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 21:46:56 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 01:14:40 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,15 @@ int	ft_lstadd_back(t_pile **lst, t_pile *new)
 	return (-1);
 }
 
-void	ft_lstclear(t_pile **lst, void (*del)(int))
+void	ft_lstclear(t_pile **lst)
 {
 	t_pile	*tmp;
 
-	if (lst && del)
+	if (lst)
 	{
 		while ((*lst))
 		{
 			tmp = (*lst)->next;
-			del((*lst)->value);
 			free((*lst));
 			*lst = tmp;
 		}
