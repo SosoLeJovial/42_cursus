@@ -6,13 +6,13 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:22:17 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/24 00:02:44 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:06:21 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/operations.h"
 
-void which_swap(char c, t_pile **stack_a, t_pile **stack_b)
+void	which_swap(char c, t_pile **stack_a, t_pile **stack_b)
 {
 	if (c == 'a')
 	{
@@ -32,7 +32,7 @@ void which_swap(char c, t_pile **stack_a, t_pile **stack_b)
 	}
 }
 
-void swap(t_pile **stack)
+void	swap(t_pile **stack)
 {
 	t_pile	*tmp;
 
@@ -46,4 +46,3 @@ void swap(t_pile **stack)
 	if (tmp->next)
 		tmp->next->prev = tmp;
 }
-

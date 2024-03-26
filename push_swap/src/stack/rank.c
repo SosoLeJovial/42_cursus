@@ -6,13 +6,13 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 02:02:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 16:05:45 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:53:05 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/stack.h"
 
-void add_index(t_pile **stack)
+void	add_index(t_pile **stack)
 {
 	t_pile		*tmp;
 	size_t		i;
@@ -27,7 +27,7 @@ void add_index(t_pile **stack)
 	}
 }
 
-void rank(t_pile **stack)
+void	rank(t_pile **stack)
 {
 	t_pile	*tmp;
 	t_pile	*tmp2;
@@ -50,7 +50,7 @@ void rank(t_pile **stack)
 	}
 }
 
-void rank_stack(t_pile **stack)
+void	rank_stack(t_pile **stack)
 {
 	add_index(stack);
 	rank(stack);

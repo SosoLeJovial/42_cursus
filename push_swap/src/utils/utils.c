@@ -6,13 +6,13 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:18:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/23 16:00:31 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:31:49 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/utils.h"
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
@@ -21,7 +21,7 @@ int ft_isdigit(int c)
 
 int	ft_isint(long number)
 {
-	int result;
+	int	result;
 
 	result = 0;
 	if ((-2147483647) < number && number < 2147483647)
@@ -30,10 +30,10 @@ int	ft_isint(long number)
 		return (result += 1);
 }
 
-int strcontaindigit(char *str)
+int	strcontaindigit(char *str)
 {
 	int	i;
-	int ct;
+	int	ct;
 
 	i = 0;
 	ct = 0;
@@ -45,44 +45,48 @@ int strcontaindigit(char *str)
 	return (ct);
 }
 
-int strcontainonedigit(char *nptr)
+int	strcontainonedigit(char *nptr)
 {
-	int	i;
+	int		i;
+	char	c;
 
 	i = 0;
-	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t' ||
-		nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
+	c = nptr[i];
+	while (c == ' ' || c == '\n' || c == '\t' || \
+		c == '\v' || c == '\f' || c == '\r')
 		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (c == '-' || c == '+')
 		i++;
-	while (nptr[i])
+	while (c)
 	{
-		if (nptr[i] >= '0' && nptr[i] <= '9')
+		if (c >= '0' && c <= '9')
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int ft_checker_digit(char **argv)
+int	ft_checker_digit(char **argv)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*str;
 
 	j = 1;
-	while (argv[j])
+	str = argv[j];
+	while (str)
 	{
 		i = -1;
-		if (!*argv[j] || !strcontaindigit(argv[j]) || !strcontainonedigit(argv[j]))
+		if (!*str || !strcontaindigit(str) || !strcontainonedigit(str))
 			return (1);
-		while (argv[j][++i] && argv[j][i] != '\0')
-			{
-					if (!ft_isdigit(argv[j][i]) && argv[j][i] != 32 && argv[j][i] != '-' && argv[j][i] != '+')
-							return (1);
-					if (argv[j][i] == '-' && !ft_isdigit(argv[j][i + 1]))
-							return (1);
-			}
-			
+		while (str[++i] && str[i] != '\0')
+		{
+			if (!ft_isdigit(str[i]) && str[i] != 32 \
+			&& str[i] != '-' && str[i] != '+')
+				return (1);
+			if (str[i] == '-' && !ft_isdigit(str[i + 1]))
+				return (1);
+		}
 		j++;
 	}
 	return (0);

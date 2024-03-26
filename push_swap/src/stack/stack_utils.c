@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 23:47:07 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 01:14:40 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:54:46 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_lstclear(t_pile **lst)
 size_t	ft_lst_lengt(t_pile *lst)
 {
 	size_t		i;
-	t_pile	*tmp;
+	t_pile		*tmp;
 
 	i = 0;
 	tmp = lst;

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:22:01 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 00:30:17 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:06:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	which_rotate(char c, t_pile **stack_a, t_pile **stack_b)
 		if (*stack_a)
 		{
 			rotate(stack_a);
-            write(1, "ra\n", 3);
+			write(1, "ra\n", 3);
 		}
 	}
 	else if (c == 'b')
@@ -27,7 +27,7 @@ void	which_rotate(char c, t_pile **stack_a, t_pile **stack_b)
 		if (*stack_b)
 		{
 			rotate(stack_b);
-            write(1, "rb\n", 3);
+			write(1, "rb\n", 3);
 		}
 	}
 }

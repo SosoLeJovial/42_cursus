@@ -6,13 +6,13 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:51:31 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/24 00:11:06 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:54:25 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int ft_stack_init(char **list_arg, int *error, t_pile **stack_a, char **argv)
+int	ft_stack_init(char **list_arg, int *error, t_pile **stack_a, char **argv)
 {
 	t_pile	*new;
 	int		content;
@@ -20,7 +20,7 @@ int ft_stack_init(char **list_arg, int *error, t_pile **stack_a, char **argv)
 
 	i = 1;
 	if (!list_arg)
-		return(*error += 1);
+		return (*error += 1);
 	if (list_arg != argv)
 		i -= 1;
 	content = ft_atoi(list_arg[i++]);
@@ -61,7 +61,8 @@ int	ft_isduplicate(t_pile *stack, int *error)
 	}
 	return (*error);
 }
-int stack_is_sorted(t_pile *stack)
+
+int	stack_is_sorted(t_pile *stack)
 {
 	t_pile	*tmp;
 
