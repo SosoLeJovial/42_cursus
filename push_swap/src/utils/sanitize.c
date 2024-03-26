@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:58:30 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/25 19:52:30 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/26 01:42:01 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ long ft_atoi(const char *nptr)
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		if (res != ((res * 10) + nptr[i] - '0') / 10)
-			return (2147483648);
+		if (res < (-2147483647) || res > 2147483647)
+			return (4000000000);
 		res = (res * 10) + (nptr[i] - '0');
 		i++;
 	}
