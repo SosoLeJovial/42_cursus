@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:25:49 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 18:00:06 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:42:36 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,24 @@ static size_t	index_node(int node_value, t_pile **a)
 	return (tmp->index);
 }
 
+static void	which_move(t_pile **a, size_t node_index, int stack_length)
+{
+	if (stack_length == 4)
+	{
+		if (node_index < 3)
+			which_rotate('a', a, NULL);
+		else
+			which_reverse_rotate('a', a, NULL);
+	}
+	else
+	{
+		if (node_index < 2)
+			which_rotate('a', a, NULL);
+		else
+			which_reverse_rotate('a', a, NULL);
+	}
+}
+
 void	push_small_b(t_pile **a, t_pile **b)
 {
 	int		node_value;
@@ -35,16 +53,7 @@ void	push_small_b(t_pile **a, t_pile **b)
 	node_index = index_node(node_value, a);
 	while (tmp->value != node_value)
 	{
-		if (stack_length == 4)
-			if (node_index < 3)
-				which_rotate('a', a, NULL);
-			else
-				which_reverse_rotate('a', a, NULL);
-		else 
-			if (node_index < 2)
-				which_rotate('a', a, NULL);
-			else
-				which_reverse_rotate('a', a, NULL);
+		which_move(a, node_index, stack_length);
 		tmp = *a;
 	}
 	which_push('b', a, b);

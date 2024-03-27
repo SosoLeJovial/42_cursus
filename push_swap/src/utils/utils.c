@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:18:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 19:56:02 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:40:05 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_isdigit(int c)
 
 int	ft_isint(long number)
 {
-	if ((number < -2147483647) || (number > 2147483647))
+	if ((number < -2147483648) || (number > 2147483647))
 		return (1);
 	return (0);
 }

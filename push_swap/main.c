@@ -6,13 +6,14 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 10:34:56 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 21:36:02 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:00:41 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
+#include "./includes/tester.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	char	**list_args;
 	int		error;
@@ -23,6 +24,8 @@ int main(int argc, char **argv)
 	stack_b = NULL;
 	error = 0;
 	list_args = NULL;
+	if (argc < 2)
+		return (0);
 	list_args = ft_sanitize_args(argc, argv, &error);
 	if (list_args && error == 0)
 		error = push_swap(stack_a, stack_b, list_args, argv);
@@ -33,20 +36,24 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-int push_swap(t_pile *stack_a, t_pile *stack_b, char **list_args, char ** argv)
+int	push_swap(t_pile *stack_a, t_pile *stack_b, char **list_args, char **argv)
 {
 	int	error;
 
+	error = 0;
 	error = ft_stack_init(list_args, &error, &stack_a, argv);
 	if (error == 0)
+	{
 		if (ft_isduplicate(stack_a, &error))
-			return (error);
+			return (clean_stack(stack_a, stack_b), error);
+	}
+	else
+		return (clean_stack(stack_a, stack_b), error);
 	if (stack_is_sorted(stack_a))
-		return (0);
+		return (clean_stack(stack_a, stack_b), 0);
 	add_index(&stack_a);
 	rank_stack(&stack_a);
-	which_sort(ft_lst_lengt(stack_a) , &stack_a, &stack_b);
-	ft_lstclear(&stack_a);
-	ft_lstclear(&stack_b);
+	which_sort(ft_lst_lengt(stack_a), &stack_a, &stack_b);
+	clean_stack(stack_a, stack_b);
 	return (error);
 }

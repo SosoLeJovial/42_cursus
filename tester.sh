@@ -19,8 +19,8 @@ test_random()
   if [ "$OUTPUT" = "OK" ];
   then echo_success "OK" | tr -d '\n'
   else echo_error "KO" | tr -d '\n'; fi
-  echo "$ARG\n"
   echo " $NUM ($($PUSH_SWAP "$ARG" | wc -l) moves)" | tr -d '\n'
+  if [ "$NUM" -le 5 ]; then echo " $ARG"; fi 
   echo
 }
 
@@ -42,6 +42,17 @@ test_expect_error()
   ARG=$@
   OUTPUT=$($PUSH_SWAP $ARG 2>&1 | grep "Error" | tr -d '\n')
   if [ "$OUTPUT" = "Error" ];
+  then echo_success "OK" | tr -d '\n'
+  else echo_error "KO" | tr -d '\n'; fi
+  echo " $NAME"
+}
+
+test_expect_no_args()
+{
+  NAME=$1; shift
+  ARG=$@
+  OUTPUT=$($PUSH_SWAP $ARG 2>&1 | grep "Error" | tr -d '\n')
+  if [ "$OUTPUT" = "" ];
   then echo_success "OK" | tr -d '\n'
   else echo_error "KO" | tr -d '\n'; fi
   echo " $NAME"
@@ -73,7 +84,7 @@ test_manual "sorted" 1 2 3 4 5
 
 echo
 echo "Error handling"
-test_expect_error "no args"
+test_expect_no_args "no args"
 test_expect_error "empty" ""
 test_expect_error "non integer 1" 1 "2a 5" 4 5
 test_expect_error "non integer 2" 1 "2 a5" 4 5

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:30:01 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 16:46:30 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:56:07 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ int		ft_lstadd_back(t_pile **lst, t_pile *new);
 void	ft_lstclear(t_pile **lst);
 size_t	ft_lst_lengt(t_pile *lst);
 int		stack_is_sorted(t_pile *stack);
+void	clean_stack(t_pile *stack_a, t_pile *stack_b);
 #endif

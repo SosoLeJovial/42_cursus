@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:58:30 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 21:39:45 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:01:07 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int	ft_check_args(int argc, char **argv, char ***list_args)
 {
-	if (argc < 2)
-		return (-1);
 	if (argc == 2)
 	{
 		if (ft_checker_digit(argv) != 0)
 			return (1);
 		*list_args = ft_split(argv[1], 32);
-		if (!list_args)
+		if (!*list_args)
 			return (1);
 	}
 	if (argc > 2)
@@ -56,8 +54,11 @@ char	**ft_sanitize_args(int argc, char **argv, int *check_error)
 	while (list_args[i])
 	{
 		content = ft_atoi(list_args[i++]);
-		if (ft_isint(content))
+		if (content == 4000000000)
+		{
 			*check_error += 1;
+			break ;
+		}
 	}
 	return (list_args);
 }
@@ -94,9 +95,9 @@ long	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (res < (-2147483647) || res > 2147483647)
-			return (4000000000);
 		res = (res * 10) + (str[i] - '0');
+		if ((res > 2147483648 && s == -1) || (res > 2147483647 && s == 1))
+			return (4000000000);
 		i++;
 	}
 	return (res * s);
