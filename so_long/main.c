@@ -6,16 +6,13 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/27 21:25:31 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:39:09 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/so_long.h"
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <math.h>
+
 
 // open, close, read, write,
 // malloc, free, perror,
