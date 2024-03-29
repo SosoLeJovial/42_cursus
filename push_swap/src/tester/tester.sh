@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+#set -e
 
 DIR=$(dirname "$0")
 PUSH_SWAP="${1:-$DIR/push_swap/push_swap}"
@@ -20,7 +20,6 @@ test_random()
   then echo_success "OK" | tr -d '\n'
   else echo_error "KO" | tr -d '\n'; fi
   echo " $NUM ($($PUSH_SWAP "$ARG" | wc -l) moves)" | tr -d '\n'
-  if [ "$NUM" -le 5 ]; then echo " $ARG"; fi 
   echo
 }
 
@@ -47,15 +46,16 @@ test_expect_error()
   echo " $NAME"
 }
 
-test_expect_no_args()
+test_no_args()
 {
-  NAME=$1; shift
-  ARG=$@
-  OUTPUT=$($PUSH_SWAP $ARG 2>&1 | grep "Error" | tr -d '\n')
-  if [ "$OUTPUT" = "" ];
-  then echo_success "OK" | tr -d '\n'
-  else echo_error "KO" | tr -d '\n'; fi
-  echo " $NAME"
+  OUTPUT=$($PUSH_SWAP | wc -l)
+  if [ "$OUTPUT" -eq 0 ]; then echo_success "OK"; else echo_error "KO"; fi
+}
+
+test_expect_nothing()
+{
+  OUTPUT=$($PUSH_SWAP $@ | wc -l)
+  if [ "$OUTPUT" -eq 0 ]; then echo_success "OK"; else echo_error "KO"; fi
 }
 
 echo
@@ -63,6 +63,14 @@ echo "Random args"
 test_random 1
 test_random 2
 test_random 3
+test_random 3
+test_random 3
+test_random 3
+test_random 3
+test_random 4
+test_random 4
+test_random 4
+test_random 4
 test_random 4
 test_random 5
 test_random 5
@@ -72,8 +80,15 @@ test_random 5
 test_random 10
 test_random 50
 test_random 100
+test_random 100
+test_random 100
+test_random 100
+test_random 100
 test_random 500
-
+test_random 500
+test_random 500
+test_random 500
+test_random 500
 
 echo
 echo "Fixed args"
@@ -84,8 +99,6 @@ test_manual "sorted" 1 2 3 4 5
 
 echo
 echo "Error handling"
-test_expect_no_args "no args"
-test_expect_error "empty" ""
 test_expect_error "non integer 1" 1 "2a 5" 4 5
 test_expect_error "non integer 2" 1 "2 a5" 4 5
 test_expect_error "non integer 3" 1 "2 a 5" 4 5
@@ -99,3 +112,13 @@ test_manual "= INT_MIN" 1 2 -2147483648 "4 5"
 test_expect_error "< INT_MIN" 1 2 -2147483649 "4 5"
 test_expect_error "duplicates 1" 1 "2 5" 4 5
 test_expect_error "duplicates 2" 1 2 5 "4 5"
+
+echo
+echo "No args"
+test_no_args
+
+echo
+echo "Empty arg"
+test_expect_nothing "" "" "" ""
+test_expect_nothing "" ""
+test_expect_nothing ""
