@@ -6,12 +6,12 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/06 18:13:36 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:35:53 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG
-# define SO_LONG
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -22,24 +22,25 @@
 
 /**
  * Main MLX handle, carries important data in regards to the program.
- * @param window The window itself.
- * @param context Abstracted opengl data.
- * @param width The width of the window.
- * @param height The height of the window.
- * @param delta_time The time difference between the previous frame and the current frame.
+ * @param mlx_ptr MLX pointer
+ * @param win_ptr MLX window pointer
+ * @param textures MLX image pointers
+ * @param map Map pointer (contains map details - preferably kept on the stack)
  */
-typedef struct mlx
+typedef struct data
 {
-	void*		window;
-	void*		context;
-	int32_t		width;
-	int32_t		height;
-	double		delta_time;
-}	mlx_t;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*textures[5];
+	char		**map;
+}	t_data;
 
 /*Parsing - utils*/
 char	*ft_strjoin(char *s1, char *s2);
-int		ft_map_valid(const char *path, int flags);
+void	*ft_calloc(size_t nmemb, size_t size);
+size_t	ft_strlen(const char *s);
+void	ft_bzero(void *s, size_t n);
+int		ft_map_valid(const char *path);
 int		ft_check_char(int fd);
 
 #endif
