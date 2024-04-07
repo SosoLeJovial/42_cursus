@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/06 19:48:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/07 11:47:24 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (1);
 	error = ft_map_valid(av[1]);
-	printf("%d", error);
+	printf("this is error %d", error);
 	return (0);
 }
 

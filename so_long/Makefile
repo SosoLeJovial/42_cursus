@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 20:58:45 by tsofien-          #+#    #+#              #
-#    Updated: 2024/04/06 19:49:06 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/04/07 11:39:27 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,27 +24,38 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g3
-
-MLX_FLAGS = -L./libmlx -lmlx -lXext -lX11
+LIBFT_FLAGS = -L./libft -lft
+MLX_FLAGS = -L./mlx -lmlx -lXext -lX11
 
 RM = rm -f
 
-all: $(NAME)
+LIBMLX = mlx/libmlx.a
+LIBFT = libft/libft.a
+
+all: $(NAME) $(LIBMLX) $(LIBFT)
 
 $(NAME): $(OBJS) $(INC)
-	$(CC) $(OBJS) -o $(NAME) 
+	$(CC) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS) -o $(NAME) 
+
+$(LIBMLX):
+	make -C ./mlx
+
+$(LIBFT):
+	make -C ./libft
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I./includes -c $< -o $@
+	$(CC) $(CFLAGS) -I./includes -I/libft -I/mlx -c $< -o $@
 
 clean:
 	$(RM) -r $(OBJ_DIR)
-	make -C ./libmlx clean
+	make -C ./mlx clean
+	make -C ./libft clean
 
 fclean: clean
 	$(RM) $(NAME)
-	make -C ./libmlx fclean
+	make -C ./mlx fclean
+	make -C ./libft fclean
 
 re: fclean all
 

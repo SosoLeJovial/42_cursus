@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/06 19:35:53 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/06 23:15:52 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <errno.h>
 # include <math.h>
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
 # define WIDTH 256
 # define HEIGHT 256
 
@@ -36,10 +38,6 @@ typedef struct data
 }	t_data;
 
 /*Parsing - utils*/
-char	*ft_strjoin(char *s1, char *s2);
-void	*ft_calloc(size_t nmemb, size_t size);
-size_t	ft_strlen(const char *s);
-void	ft_bzero(void *s, size_t n);
 int		ft_map_valid(const char *path);
 int		ft_check_char(int fd);
 
