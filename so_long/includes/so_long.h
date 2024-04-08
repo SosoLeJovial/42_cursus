@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/08 03:22:07 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:49:33 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 # define WIDTH 256
 # define HEIGHT 256
 
+typedef struct map
+{
+	char	**map;
+	size_t	exit_count;
+	size_t	player_count;
+	size_t	consumale_count;
+} t_map;
 /**
  * Main MLX handle, carries important data in regards to the program.
  * @param mlx_ptr MLX pointer
@@ -39,8 +46,9 @@ typedef struct data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*textures[5];
-	char		**map;
+	t_map		*map;
 }	t_data;
+
 
 /*Parsing*/
 char	**ft_map_valid(char *path, int *error);
@@ -51,7 +59,9 @@ char	**ft_mapping(char *path, int line_map);
 int		ft_map_init(char ***map, int size);
 void	*ft_freemap(char **map, int i);
 int		checker_wall(char *map);
-int		check_valid_line(char *line_map);
+int		check_valid_line(char **map, int size);
+int		check_line_length(char **s, int size);
+
 
 /*Utils*/
 char	*get_next_line(int fd);

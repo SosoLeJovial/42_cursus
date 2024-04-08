@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/08 03:13:40 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:56:30 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,19 @@ char	**ft_mapping(char *path, int line_map)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!(line[0] == '\n') && !(line[1] == '\0'))
-			map[++i] = line;
-		else
+		if (line[0] == '\n' && line[1] == '\0')
+		{
 			free(line);
+			return (NULL);
+		}
+		else
+			map[++i] = line;
 		line = get_next_line(fd);
 	}
 	close(fd);
 	return (map);
 }
+
 
 int	ft_map_empty(char *path)
 {
