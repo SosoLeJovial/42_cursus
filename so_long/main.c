@@ -6,14 +6,12 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/07 11:47:24 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/08 02:56:51 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/so_long.h"
 // #include "./libmlx/mlx.h"
-
-#include <stdio.h>
 // open, close, read, write,
 // malloc, free, perror,
 // strerror, exit
@@ -28,12 +26,36 @@
 
 int	main(int ac, char **av)
 {
+	char	*path;
+	char **map;
+	int line_map;
 	int error;
+	int i;
 
+	error = 0;
 	if (ac != 2)
 		return (1);
-	error = ft_map_valid(av[1]);
-	printf("this is error %d", error);
+	path = av[1];
+	line_map = ft_line_map(path);
+	map = ft_map_valid(path, &error);
+	if (error != 0)
+		write(1, "error\n", 6);
+	if (map)
+	{
+		i = -1;
+		while (++i < line_map)
+			printf("%s" ,map[i]);
+		ft_freemap(map, line_map);
+	}
+	// if (map)
+	// 	ft_freemap(map, line_map);
+	// line = get_next_line(fd);
+	// while (line)
+	// {
+	// 	printf("%s", line);
+	// 	free(line);
+	// 	line = get_next_line(fd);
+	// }
 	return (0);
 }
 

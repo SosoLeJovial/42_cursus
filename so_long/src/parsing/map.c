@@ -6,65 +6,72 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/07 12:30:17 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/08 03:13:40 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-#include <fcntl.h>
 // 0 pour un emplacement vide,
 // 1 pour un mur,
 // C pour un item à collecter (C pour collectible),
 // E pour une sortie (E pour exit),
 // P pour la position de départ du personnage.
 
-int ft_map_valid(const char *path)
+char	**ft_map_valid(char *path, int *error)
 {
-	int fd;
+	char	**map;
+	int		line_map;
 
+	line_map = ft_line_map(path);
+	map = NULL;
+	if (ft_map_empty(path))
+		return (0);
+	map = ft_mapping(path, line_map);
+	if (!map)
+	{
+		*error = 1;
+		return (0);
+	}
+	if (!ft_check_char(map, line_map))
+		*error = 1;
+	return (map);
+}
+
+char	**ft_mapping(char *path, int line_map)
+{
+	char	**map;
+	char	*line;
+	int		fd;
+	int		i;
+
+	if (!(ft_map_init(&map, line_map)))
+		return(NULL);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (0);
-	if (!ft_check_char(fd))
-		return (close(fd), 0);
-	close(fd);
-	return (1);
-}
-int ft_check_char(int fd)
-{
-	int		byte_read;
-	char	buf[2];
-	char	**map_line;
-
-	byte_read = 1;
-	map_line = NULL;
-	while(byte_read != 0)
+		return (NULL);
+	i = -1;
+	line = get_next_line(fd);
+	while (line)
 	{
-		byte_read = read(fd, buf, 1);
-		if (byte_read == -1)
-			break ;
-		if (!(buf[0] == '0') || !(buf[0] == '1') || !(buf[0] == 'C') || !(buf[0] == 'E') || !(buf[0] == 'P') || !(buf[0] == '\n'))
-			return (0);
-		*map_line = ft_strjoin(*map_line, buf);
-		if (!*map_line)
-			return (0);
+		if (!(line[0] == '\n') && !(line[1] == '\0'))
+			map[++i] = line;
+		else
+			free(line);
+		line = get_next_line(fd);
 	}
-	return (1);
+	close(fd);
+	return (map);
 }
-int ft_line_map(int fd)
+
+int	ft_map_empty(char *path)
 {
-	int line;
 	char buf[2];
-	int byte_read;
-	int i;
+	int fd;
 
-	line = 0;
-	byte_read = 1;
-	while(byte_read != 0)
-	{
-		byte_read = read (fd, buf, 1);
-		if (buf[0] == '\n')
-			line++;
-	}
-	close(fd);
+	fd =  open(path, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	if (read(fd, buf, 1) == 0)
+		return (close(fd), 1);
+	return (close(fd), 0);
 }

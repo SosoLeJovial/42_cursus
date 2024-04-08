@@ -6,19 +6,24 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/06 23:15:52 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/08 03:22:07 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
+# include <fcntl.h>
+# include <stdio.h> // a retirer !!
 # include <math.h>
 # include "../libft/libft.h"
-# include "../mlx/mlx.h"
+# include "../libmlx/mlx.h"
 # define WIDTH 256
 # define HEIGHT 256
 
@@ -37,8 +42,25 @@ typedef struct data
 	char		**map;
 }	t_data;
 
-/*Parsing - utils*/
-int		ft_map_valid(const char *path);
-int		ft_check_char(int fd);
+/*Parsing*/
+char	**ft_map_valid(char *path, int *error);
+int		ft_check_char(char **s, int line_map);
+int		ft_map_empty(char *path);
+int		ft_line_map(char *path);
+char	**ft_mapping(char *path, int line_map);
+int		ft_map_init(char ***map, int size);
+void	*ft_freemap(char **map, int i);
+int		checker_wall(char *map);
+int		check_valid_line(char *line_map);
 
+/*Utils*/
+char	*get_next_line(int fd);
+char	*ft_save(char *buffer, char *line_final);
+char	*ft_line_break(char *buffer);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+void	ft_bzero_gnl(void *s, size_t n);
+void	*ft_calloc_gnl(size_t nmemb, size_t size);
+size_t	ft_strlcpy_gnl(char *dst, char *src, size_t dstsize);
+char	*ft_strchr_gnl(char *s, char c);
+size_t	ft_strlen_gnl(char *str);
 #endif
