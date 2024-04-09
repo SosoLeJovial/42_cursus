@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:03:37 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/08 19:54:20 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:05:06 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,10 @@ int	check_line_length(char **s, int size)
 			return (0);
 	}
 	j = 0;
-	while(s[i][j++])
-		if ((j - 1) != length || j != length)
-			// return (0);
-	printf("length line %d\n", length);
-	printf("j : %d\n", j);
+	while(s[i][j])
+		j++;
+	if (j != length)
+		return (0);
 	return (1);
 }
 
