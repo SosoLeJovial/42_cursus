@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/09 16:32:53 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:54:02 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ t_data_map *init_struct_map(char **new_map)
 	new->exit_count = 0;
 	new->player_count = 0;
 	new->consumable_count = 0;
+	new->size_map = 0;
 	return (new);
 }

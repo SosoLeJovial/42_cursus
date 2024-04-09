@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/09 16:32:59 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:19:54 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 typedef struct data_map
 {
 	char	**map;
+	size_t	size_map;
 	size_t	exit_count;
 	size_t	player_count;
 	size_t	consumable_count;

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/09 16:33:12 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:24:00 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 
 int	main(int ac, char **av)
 {
-	char	*path;
+	char			*path;
 	t_data_map		*map;
-	int line_map;
-	int error;
-	int i;
+	int 			line_map;
+	int 			error;
+	int 			i;
 
 	error = 0;
 	if (ac != 2)
