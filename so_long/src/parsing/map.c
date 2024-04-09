@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/08 19:56:30 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:32:53 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,47 @@ int	ft_map_empty(char *path)
 	if (read(fd, buf, 1) == 0)
 		return (close(fd), 1);
 	return (close(fd), 0);
+}
+
+void *count_necessary_elements(t_data_map *maps,int size, int *error)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = -1;
+		while (maps->map[i][++j])
+		{
+			if (maps->map[i][j] == 'P')
+				maps->player_count += 1;
+			if (maps->map[i][j] == 'E')
+				maps->exit_count += 1;
+			if (maps->map[i][j] == 'C')
+				maps->consumable_count += 1;
+		}
+		i++;
+	}
+	if (maps->player_count !=  1 || maps->exit_count != 1)
+		*error = 1;
+	if  (maps->consumable_count < 1)
+		*error = 1;
+	return (NULL);
+}
+
+t_data_map *init_struct_map(char **new_map)
+{
+	t_data_map	*new;
+
+	if (!new_map)
+		return (0);
+	new = malloc(sizeof(t_data_map));
+	if (!new)
+		return (0);
+	new->map = new_map;
+	new->exit_count = 0;
+	new->player_count = 0;
+	new->consumable_count = 0;
+	return (new);
 }
