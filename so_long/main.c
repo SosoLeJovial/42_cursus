@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/09 20:24:00 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:05:06 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int ac, char **av)
 	printf("exit :%ld\n", map->exit_count);
 	printf("consumable_count :%ld\n", map->consumable_count);
 	if (error != 0)
-		write(1, "error\n", 6);
+		perror("Error\n");
 	if (map->map)
 	{
 		i = -1;

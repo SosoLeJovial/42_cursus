@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/09 20:19:54 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:34:56 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ void	*ft_freemap(char **map, int i);
 int		checker_wall(char *map);
 int		check_valid_line(char **map, int size);
 int		check_line_length(char **s, int size);
+void	contamination(t_data_map **s, int *virus);
+void	expand_virus(t_data_map *maps, int *error);
+void 	checker_path(int *error, char *path, int size);
+
 
 
 /*Utils*/
@@ -76,7 +80,7 @@ char	*ft_line_break(char *buffer);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 void	ft_bzero_gnl(void *s, size_t n);
 void	*ft_calloc_gnl(size_t nmemb, size_t size);
-size_t	ft_strlcpy_gnl(char *dst, char *src, size_t dstsize);
 char	*ft_strchr_gnl(char *s, char c);
+size_t	ft_strlcpy_gnl(char *dst, char *src, size_t dstsize);
 size_t	ft_strlen_gnl(char *str);
 #endif
