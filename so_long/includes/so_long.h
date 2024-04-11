@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/10 19:34:56 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/10 23:10:23 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ typedef struct data_map
 {
 	char	**map;
 	size_t	size_map;
+	size_t	consumable_count;
 	size_t	exit_count;
 	size_t	player_count;
-	size_t	consumable_count;
+	size_t	player_x;
+	size_t	player_y;
 } t_data_map;
 
 t_data_map	*init_struct_map(char **new_map);
@@ -67,10 +69,10 @@ void	*ft_freemap(char **map, int i);
 int		checker_wall(char *map);
 int		check_valid_line(char **map, int size);
 int		check_line_length(char **s, int size);
-void	contamination(t_data_map **s, int *virus);
+int		contamination(t_data_map **s, int x, int y, int size);
 void	expand_virus(t_data_map *maps, int *error);
 void 	checker_path(int *error, char *path, int size);
-
+int		find_player_position(t_data_map *map);
 
 
 /*Utils*/

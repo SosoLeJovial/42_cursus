@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:37:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/10 20:32:28 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/11 00:55:29 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,106 +14,88 @@
 
 void checker_path(int *error, char *path, int size)
 {
-	t_data_map		*duplicate;
+	t_data_map		*cpy;
 	size_t 			i;
 
-	duplicate = init_struct_map(ft_map_valid(path, error));
-	if (!duplicate)
+	cpy = init_struct_map(ft_map_valid(path, error));
+	if (!cpy)
 		*error = 1;
-	duplicate->size_map = size;
-	expand_virus(duplicate, error);
+	cpy->size_map = size;
+	expand_virus(cpy, error);
 	if (*error != 0)
 	{
 		i = 0;
-		while (i < duplicate->size_map)
-			printf("%s", duplicate->map[i++]);
+		while (i < cpy->size_map)
+			printf("%s", cpy->map[i++]);
 	}
-	ft_freemap(duplicate->map, duplicate->size_map);
-	free(duplicate);
+	ft_freemap(cpy->map, cpy->size_map);
+	free(cpy);
 }
 
 void	expand_virus(t_data_map *maps, int *error)
 {
-	int 	virus;
-	int 	count_elements;
-	size_t	i;
+	int	x;
+	int	y;
+	int size;
+	int		valid;
 
-	virus = 1;
-	while (virus != 0 || count_elements != 0)
+
+	x = maps->player_x;
+	y = maps->player_y;
+	size = maps->size_map;
+	maps->map[x][y] = 'V';
+	valid = contamination(&maps, x, y, size);
+	if (!valid)
 	{
-		i = 0;
-		virus = 0;
-			// Contamine la map, check dans ligne s'il y a un virus
-			contamination(&maps, &virus, &i);
-			if (maps->player_count == 0 && maps->exit_count == 0 && maps->consumable_count == 0)
-				count_elements = 0;
-			i++;
+		*error = 1;
+		perror("Error, map is not playable !\n");
 	}
-	if (maps->player_count != 0 || maps->exit_count != 0 || maps->consumable_count != 0)
-		*error = 1;
-	if (virus != 0)
-		*error = 1;
+	// afficher la map
+	
 }
 
-void	contamination(t_data_map **s, int *virus, int *l)
+int	contamination(t_data_map **s, int x, int y, int size)
 {
-	int	j;
-	int i;
-
-	i = *l;
-	j = 0;
-	while (s->maps[i][j])
+	if (x < 0 || y < 0 || x >= size || y >= size)
+		return (0);
+	if ((*s)->map[x][y] == 'C')
+		(*s)->consumable_count--;
+	if ((*s)->map[x][y] == 'E')
+		(*s)->exit_count--;
+	if ((*s)->exit_count == 0 && (*s)->consumable_count == 0)
+		return (1);
+	if ((*s)->map[x][y] == '0')
 	{
-		if (s->maps[i][j] == 'V')
-			// contamine N, S, O, E si != 1
-		else
+		(*s)->map[x][y] = 'V';
+		contamination(s, x - 1, y, size);
+		contamination(s, x + 1, y, size);
+		contamination(s, x, y - 1, size);
+		contamination(s, x, y + 1, size);
+	}
+	return (0);
+}
+
+
+int find_player_position(t_data_map *map)
+{
+	size_t i;
+	size_t j;
+
+	i = 0;
+	while (i < map->size_map)
+	{
+		j = 0;
+		while (map->map[i][j])
 		{
-			if (s->maps[i][j] == 'P')
+			if (map->map[i][j] == 'P')
 			{
-				s->player_count--;
-				s->maps[i][j] = 'V';
+				map->player_x = j;
+				map->player_y = i;
+				return (1);
 			}
-			if (s->maps[i][j] == 'E')
-			{
-				s->exit_count--;
-				s->maps[i][j] = 'V';
-			}
+			j++;
 		}
-		j++;
+		i++;
 	}
-}
-
-void propagation_NSOE(t_data_map **s, int i, int j)
-{
-	if (s->maps[i - 1][j] != '1' && s->maps[i - 1][j] != 'V')
-	{
-		check_case(&s, s->maps[i - 1][j]);
-		s->maps[i - 1][j] = 'V';
-	}
-	if (s->maps[i + 1][j] != '1' && s->maps[i + 1][j] != 'V')
-	{
-		check_case(&s, s->maps[i + 1][j]);
-		s->maps[i + 1][j] = 'V';
-	}
-	if (s->maps[i][j - 1] != '1' && s->maps[i][j - 1] != 'V')
-	{
-		check_case(&s, s->maps[i][j - 1]);
-		s->maps[i][j - 1] = 'V';
-	}
-	if (s->maps[i][j + 1] != '1' && s->maps[i][j + 1] != 'V')
-	{
-		check_case(&s, s->maps[i][j + 1]);
-		s->maps[i][j + 1] = 'V';
-	}
-}
-
-
-static void check_case(t_data_map ***maps, char c)
-{
-	if (c == 'P')
-		(*maps)->player_count--;
-	if (c == 'E')
-		(*maps)->exit_count--;
-	if (c == 'C')
-		(*maps)->consumable_count--;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/09 18:54:02 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:43:36 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,22 @@ char	**ft_map_valid(char *path, int *error)
 	line_map = ft_line_map(path);
 	map = NULL;
 	if (ft_map_empty(path))
+	{
+		perror("la map est vide\n");
 		return (0);
+	}
 	map = ft_mapping(path, line_map);
 	if (!map)
 	{
+		perror("ft_mapping fail\n");
 		*error = 1;
 		return (0);
 	}
 	if (!ft_check_char(map, line_map))
+	{
+		perror("checker char fail\n");
 		*error = 1;
+	}
 	return (map);
 }
 
@@ -104,6 +111,8 @@ void *count_necessary_elements(t_data_map *maps,int size, int *error)
 		*error = 1;
 	if  (maps->consumable_count < 1)
 		*error = 1;
+	if (!find_player_position(maps))
+		*error = 1;
 	return (NULL);
 }
 
@@ -112,14 +121,22 @@ t_data_map *init_struct_map(char **new_map)
 	t_data_map	*new;
 
 	if (!new_map)
+	{
+		perror("fail init\n");
 		return (0);
+	}
 	new = malloc(sizeof(t_data_map));
 	if (!new)
+	{
+		perror("fail init\n");
 		return (0);
+	}
 	new->map = new_map;
+	new->size_map = 0;
+	new->consumable_count = 0;
 	new->exit_count = 0;
 	new->player_count = 0;
-	new->consumable_count = 0;
-	new->size_map = 0;
+	new->player_x = 0;
+	new->player_y = 0;
 	return (new);
 }
