@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/11 14:43:36 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:39:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void *count_necessary_elements(t_data_map *maps,int size, int *error)
 		*error = 1;
 	if (!find_player_position(maps))
 		*error = 1;
+	printf("error value %d\n", *error);
 	return (NULL);
 }
 
