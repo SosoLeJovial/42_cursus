@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/10 23:10:23 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:43:05 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct data_map
 	size_t	player_y;
 } t_data_map;
 
-t_data_map	*init_struct_map(char **new_map);
+t_data_map	*init_struct_map(char **new_map, int size);
 void		*count_necessary_elements(t_data_map *maps,int size, int *error);
 
 

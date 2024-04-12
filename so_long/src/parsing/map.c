@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/12 14:39:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:43:34 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,14 @@ void *count_necessary_elements(t_data_map *maps,int size, int *error)
 		*error = 1;
 	if  (maps->consumable_count < 1)
 		*error = 1;
+	printf("error value %d\n", *error);
 	if (!find_player_position(maps))
 		*error = 1;
-	printf("error value %d\n", *error);
+	printf("position player_x : %ld\nposition player_y : %ld\n", maps->player_x, maps->player_y);
 	return (NULL);
 }
 
-t_data_map *init_struct_map(char **new_map)
+t_data_map *init_struct_map(char **new_map, int size)
 {
 	t_data_map	*new;
 
@@ -133,7 +134,7 @@ t_data_map *init_struct_map(char **new_map)
 		return (0);
 	}
 	new->map = new_map;
-	new->size_map = 0;
+	new->size_map = size;
 	new->consumable_count = 0;
 	new->exit_count = 0;
 	new->player_count = 0;

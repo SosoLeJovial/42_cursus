@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:37:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/11 00:55:29 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:45:13 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ void checker_path(int *error, char *path, int size)
 	t_data_map		*cpy;
 	size_t 			i;
 
-	cpy = init_struct_map(ft_map_valid(path, error));
+	cpy = init_struct_map(ft_map_valid(path, error), size);
 	if (!cpy)
 		*error = 1;
-	cpy->size_map = size;
 	expand_virus(cpy, error);
 	if (*error != 0)
 	{
@@ -50,8 +49,6 @@ void	expand_virus(t_data_map *maps, int *error)
 		*error = 1;
 		perror("Error, map is not playable !\n");
 	}
-	// afficher la map
-	
 }
 
 int	contamination(t_data_map **s, int x, int y, int size)
@@ -93,6 +90,7 @@ int find_player_position(t_data_map *map)
 				map->player_y = i;
 				return (1);
 			}
+			printf("%c", map->map[i][j]);
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/12 14:31:11 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:50:04 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,12 @@ int	main(int ac, char **av)
 		return (1);
 	path = av[1];
 	line_map = ft_line_map(path);
-	map = init_struct_map(ft_map_valid(path, &error));
+	map = init_struct_map(ft_map_valid(path, &error), line_map);
 	if (!map)
+	{
 		perror("allocation init fail\n");
+		return (0);
+	}
 	count_necessary_elements(map, line_map, &error);
 	printf("player : %ld\n", map->player_count);
 	printf("exit :%ld\n", map->exit_count);
