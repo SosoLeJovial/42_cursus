@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/12 19:54:26 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/12 23:40:03 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ int	main(int ac, char **av)
 	}
 	count_necessary_elements(map, ft_line_map(av[1]), &error);
 	if (error != 0)
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
+	if (checker_path(av[1], ft_line_map(av[1])))
+		write(2, "Error\n", 6);
 	ft_freemap(map->map, ft_line_map(av[1]));
 	free(map);
 	return (0);

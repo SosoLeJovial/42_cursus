@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/12 19:19:48 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/12 23:39:25 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ char	**ft_map_valid(char *path, int *error)
 		return (0);
 	map = ft_mapping(path, line_map);
 	if (!map)
+	{
 		*error = 1;
+		return (0);
+	}
 	if (!ft_check_char(map, line_map))
 		*error = 1;
 	return (map);
@@ -39,7 +42,7 @@ char	**ft_mapping(char *path, int line_map)
 	if (!(ft_map_init(&map, line_map)))
 		return(NULL);
 	fd = open(path, O_RDONLY);
-	if (fd < 0)
+	if (fd < 0 )
 		return (NULL);
 	i = -1;
 	line = get_next_line(fd);
@@ -107,7 +110,7 @@ t_data_map *init_struct_map(char **new_map, int size)
 
 	if (!new_map)
 	{
-		perror("fail init\n");
+		perror("Error");
 		return (0);
 	}
 	new = malloc(sizeof(t_data_map));
