@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 20:58:45 by tsofien-          #+#    #+#              #
-#    Updated: 2024/04/07 18:19:12 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/04/12 17:13:01 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 LIBFT_FLAGS = -L./libft -lft
 MLX_FLAGS = -L./libmlx -lXext -lX11
 

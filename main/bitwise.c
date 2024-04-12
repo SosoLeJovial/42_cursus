@@ -4,22 +4,30 @@
 // print_bits
 void	binary_print(unsigned char octet)
 {
-	char	binary[9];
 	int		i;
-
+	unsigned char bit;
 	i = 8;
-	binary[8] = '\0';
-	while (--i >= 0)
-		binary[7 - i] = (octet & (1 << i)) ? '1' : '0';
-	while (binary[++i])
-		write(1, &binary[i], 1);
+	while (i--)
+	{
+		bit = (octet >> i & 1) + '0';
+		write(1, &bit, 1);
+	}
+	write(1 ,"\n", 1);
 }
 
-int main(void)
+unsigned char reverse_bits(unsigned char octet)
+{
+	return ((octet >> 4) | (octet << 4));
+}
+
+int main(int ac, char **av)
 {
 	unsigned char octet;
 
-	octet = 5;
+	if (ac != 2)
+		return (0);
+	octet = av[1][0];
+	binary_print(octet);
 	binary_print(octet);
 	return (0);
 }

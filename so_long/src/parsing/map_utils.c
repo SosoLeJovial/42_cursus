@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:37:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/12 16:45:13 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:21:12 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int find_player_position(t_data_map *map)
 				map->player_y = i;
 				return (1);
 			}
-			printf("%c", map->map[i][j]);
 			j++;
 		}
 		i++;

@@ -6,16 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/12 16:43:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:19:48 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-// 0 pour un emplacement vide,
-// 1 pour un mur,
-// C pour un item à collecter (C pour collectible),
-// E pour une sortie (E pour exit),
-// P pour la position de départ du personnage.
 
 char	**ft_map_valid(char *path, int *error)
 {
@@ -25,22 +20,12 @@ char	**ft_map_valid(char *path, int *error)
 	line_map = ft_line_map(path);
 	map = NULL;
 	if (ft_map_empty(path))
-	{
-		perror("la map est vide\n");
 		return (0);
-	}
 	map = ft_mapping(path, line_map);
 	if (!map)
-	{
-		perror("ft_mapping fail\n");
 		*error = 1;
-		return (0);
-	}
 	if (!ft_check_char(map, line_map))
-	{
-		perror("checker char fail\n");
 		*error = 1;
-	}
 	return (map);
 }
 
@@ -63,7 +48,7 @@ char	**ft_mapping(char *path, int line_map)
 		if (line[0] == '\n' && line[1] == '\0')
 		{
 			free(line);
-			return (NULL);
+			return (ft_freemap(map, ++i), NULL);
 		}
 		else
 			map[++i] = line;
@@ -80,7 +65,7 @@ int	ft_map_empty(char *path)
 	int fd;
 
 	fd =  open(path, O_RDONLY);
-	if (fd < 0)
+	if (fd < 0 || !fd)
 		return (0);
 	if (read(fd, buf, 1) == 0)
 		return (close(fd), 1);
@@ -111,10 +96,8 @@ void *count_necessary_elements(t_data_map *maps,int size, int *error)
 		*error = 1;
 	if  (maps->consumable_count < 1)
 		*error = 1;
-	printf("error value %d\n", *error);
 	if (!find_player_position(maps))
 		*error = 1;
-	printf("position player_x : %ld\nposition player_y : %ld\n", maps->player_x, maps->player_y);
 	return (NULL);
 }
 

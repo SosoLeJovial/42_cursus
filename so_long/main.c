@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/12 16:50:04 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:54:26 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,25 @@
 
 int	main(int ac, char **av)
 {
-	char			*path;
 	t_data_map		*map;
-	int 			line_map;
 	int 			error;
-	int 			i;
 
 	error = 0;
-	if (ac != 2)
-		return (1);
-	path = av[1];
-	line_map = ft_line_map(path);
-	map = init_struct_map(ft_map_valid(path, &error), line_map);
-	if (!map)
+	if (ac != 2 || !ft_strnstr(av[1], ".ber", ft_strlen(av[1])))
 	{
-		perror("allocation init fail\n");
+		write(2, "Invalid input! make help\n", 25);
 		return (0);
 	}
-	count_necessary_elements(map, line_map, &error);
-	printf("player : %ld\n", map->player_count);
-	printf("exit :%ld\n", map->exit_count);
-	printf("consumable_count :%ld\n", map->consumable_count);
-	if (error != 0)
-		perror("Error\n");
-	if (map->map)
+	map = init_struct_map(ft_map_valid(av[1], &error), ft_line_map(av[1]));
+	if (!map)
 	{
-		i = -1;
-		while (++i < line_map)
-			printf("%s", map->map[i]);
-		ft_freemap(map->map, line_map);
+		write(2, "Map is invalid\n", 15);
+		return (free(map), 0);
 	}
+	count_necessary_elements(map, ft_line_map(av[1]), &error);
+	if (error != 0)
+		write(1, "Error\n", 6);
+	ft_freemap(map->map, ft_line_map(av[1]));
 	free(map);
 	return (0);
 }
