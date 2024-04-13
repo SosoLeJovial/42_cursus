@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:03:25 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/08 02:58:02 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 19:57:45 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ int	ft_map_init(char ***map, int size)
 
 void	*ft_freemap(char **map, int i)
 {
-	while (--i != -1)
-		free(map[i]);
-	free(map);
+	if (map)
+	{
+		while (--i != -1)
+			free(map[i]);
+		free(map);
+	}
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:03:41 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 15:41:45 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 19:51:15 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,9 @@ void free_data(t_data *data)
 	data->win_ptr = NULL;
 	data->map = NULL;
 	free(data);
+}
+
+void	display_error(int fd, char *msg)
+{
+	write(fd, msg, ft_strlen(msg));
 }

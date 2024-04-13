@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 15:48:36 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 20:03:22 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,13 @@ char	**ft_map_valid(char *path, int *error)
 		return (0);
 	}
 	if (!ft_check_char(map, line_map))
+	{
 		*error = 1; 
+		return (ft_freemap(map, line_map));
+	}
+	if (*error == 0)	
+		if (checker_path(path, line_map))
+			display_error(2, "Error, no exit path !\n");
 	return (map);
 }
 
@@ -109,10 +115,7 @@ t_data_map *init_struct_map(char **new_map, int size)
 	t_data_map	*new;
 
 	if (!new_map)
-	{
-		perror("Error");
 		return (0);
-	}
 	new = malloc(sizeof(t_data_map));
 	if (!new)
 	{

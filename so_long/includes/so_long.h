@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 15:37:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 19:49:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,5 @@ char	*ft_strchr_gnl(char *s, char c);
 size_t	ft_strlcpy_gnl(char *dst, char *src, size_t dstsize);
 size_t	ft_strlen_gnl(char *str);
 void	free_data(t_data *data);
+void	display_error(int fd, char *msg);
 #endif

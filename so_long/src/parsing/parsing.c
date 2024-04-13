@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:03:37 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/12 19:27:06 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 19:44:39 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_line_length(char **s, int size)
 	while(s[i][j])
 		j++;
 	length = j;
-	while (++i < size - 2)
+	while (s[i][j] && ++i < size - 2)
 	{
 		j = 0;
 		while (s[i][j])

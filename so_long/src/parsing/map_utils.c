@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:37:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 15:09:25 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 19:41:56 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,17 @@ void	expand_virus(t_data_map *maps, int *error)
 	size_t	x;
 	size_t	y;
 	int		valid;
-	int		i;
 
-	find_player_position(maps);
+	if (!find_player_position(maps))
+	{
+		*error = 1;
+		return ;
+	}
 	x = maps->player_x;
 	y = maps->player_y;
-	printf("Player position x: %ld y: %ld\n", x, y);
 	valid = contamination(maps, (int)x, (int)y);
 	if (!valid)
-	{
-		printf("Error map not valid\n");
 		*error = 1;
-	}
-	printf("Exit count: %ld\n, conso : %ld\n", maps->exit_count, maps->consumable_count);
-	i = 0;
-	while ((size_t)i < maps->size_map)
-	{
-		printf("%s", maps->map[i]);
-		i++;
-	}
-	printf("\n");
 }
 
 int	contamination(t_data_map *s, int x, int y)
