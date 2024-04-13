@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:37:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 00:02:04 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 03:31:05 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int checker_path(char *path, int size)
 {
 	t_data_map		*cpy;
-	size_t 			i;
 	int 			error;
 
 	error = 0;
@@ -23,14 +22,7 @@ int checker_path(char *path, int size)
 	if (!cpy)
 		return (1);
 	count_necessary_elements(cpy, size, &error);
-	printf("consumable count: %ld\n exit count: %ld\n", cpy->consumable_count, cpy->exit_count);
 	expand_virus(cpy, &error);
-	if (error != 0)
-	{
-		i = 0;
-		while (i < cpy->size_map)
-			printf("%s", cpy->map[i++]);
-	}
 	ft_freemap(cpy->map, cpy->size_map);
 	free(cpy);
 	return (error);
@@ -40,38 +32,47 @@ void	expand_virus(t_data_map *maps, int *error)
 {
 	int	x;
 	int	y;
-	int size;
 	int		valid;
 
 
-	x = maps->player_x;
-	y = maps->player_y;
-	size = maps->size_map;
+	x = player_x;
+	y = player_y;
 	maps->map[x][y] = 'V';
-	valid = contamination(&maps, x, y, size);
-	if (!valid)
+	valid = contamination(maps, x, y, maps->size_map);
+	if (valid == 0)
 	{
-		printf("Error pas de chemin valid\n");
+		printf("Error map not valid\n");
 		*error = 1;
 	}
+	printf("Exit count: %ld\n, conso : %ld\n", maps->exit_count, maps->consumable_count);
 }
 
-int	contamination(t_data_map **s, int x, int y, int size)
+int	contamination(t_data_map *s, int x, int y)
 {
-	if (x < 0 || y < 0 || x >= size || y >= size)
+	int		virus;
+
+	virus = 0;
+	if (x < 0 || y < 0 || x >= s->size_map || y >= s->size_map)
 		return (0);
-	if ((*s)->exit_count == 0 && (*s)->consumable_count == 0)
+	if (s->exit_count == 0 && s->consumable_count == 0)
 		return (1);
-	if ((*s)->map[x][y] != '1' || (*s)->map[x][y] != 'V')
-		(*s)->map[x][y] = 'V'; 
-	if ((*s)->map[x][y] == 'C')
-		(*s)->consumable_count--;
-	if ((*s)->map[x][y] == 'E')
-		(*s)->exit_count--;
-	contamination(s, x - 1, y, size);
-	contamination(s, x + 1, y, size);
-	contamination(s, x, y - 1, size);
-	contamination(s, x, y + 1, size);
+	if (s->map[x][y] == 'C')
+		s->consumable_count--;
+	if (s->map[x][y] == 'E')
+		s->exit_count--;
+	if (s->map[x][y] != '1' || s->map[x][y] != 'V')
+	{
+
+		s->map[x][y] = 'V';
+		if (contamination(s, x + 1, y) == 0)
+			return (0);
+		if (contamination(s, x - 1, y) == 0)
+			return (0);
+		if (contamination(s, x, y + 1) == 0)
+			return (0);
+		if (contamination(s, x, y - 1) == 0)
+			return (0);
+	}
 	return (0);
 }
 
