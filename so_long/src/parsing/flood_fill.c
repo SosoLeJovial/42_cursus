@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:37:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 19:41:56 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 22:07:40 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int checker_path(char *path, int size)
 	int 			error;
 
 	error = 0;
-	cpy = init_struct_map(ft_map_valid(path, &error), size);
+	cpy = init_struct_map(ft_mapping(path, size), size);
 	if (!cpy)
 		return (1);
 	count_necessary_elements(cpy, size, &error);
@@ -70,30 +70,5 @@ int	contamination(t_data_map *s, int x, int y)
 	if (s->map[y][x] != '1' && s->map[y][x - 1] != 'V')
 		if (contamination(s, x - 1, y) > 0)
 			return (1);
-	return (0);
-}
-
-
-int find_player_position(t_data_map *map)
-{
-	size_t i;
-	size_t j;
-
-	i = 0;
-	while (i < map->size_map)
-	{
-		j = 0;
-		while (map->map[i][j])
-		{
-			if (map->map[i][j] == 'P')
-			{
-				map->player_x = j;
-				map->player_y = i;
-				return (1);
-			}
-			j++;
-		}
-		i++;
-	}
 	return (0);
 }

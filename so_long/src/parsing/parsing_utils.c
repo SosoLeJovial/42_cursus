@@ -6,32 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:03:25 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 19:57:45 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 22:07:51 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-int	ft_map_init(char ***map, int size)
-{
-	if (!size)
-		return (0);
-	*map = malloc(sizeof(char *) * (size + 1));
-	if (!(*map))
-		return (0);
-	return (1);
-}
-
-void	*ft_freemap(char **map, int i)
-{
-	if (map)
-	{
-		while (--i != -1)
-			free(map[i]);
-		free(map);
-	}
-	return (NULL);
-}
 
 int	ft_line_map(char *path)
 {
@@ -54,4 +33,57 @@ int	ft_line_map(char *path)
 	free(line);
 	close(fd);
 	return (line_number);
+}
+
+int find_player_position(t_data_map *map)
+{
+	size_t i;
+	size_t j;
+
+	i = 0;
+	while (i < map->size_map)
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] == 'P')
+			{
+				map->player_x = j;
+				map->player_y = i;
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void *count_necessary_elements(t_data_map *maps,int size, int *error)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = -1;
+		while (maps->map[i][++j])
+		{
+			if (maps->map[i][j] == 'P')
+				maps->player_count += 1;
+			if (maps->map[i][j] == 'E')
+				maps->exit_count += 1;
+			if (maps->map[i][j] == 'C')
+				maps->consumable_count += 1;
+		}
+		i++;
+	}
+	if (maps->player_count !=  1 || maps->exit_count != 1)
+		*error = 1;
+	if  (maps->consumable_count < 1)
+		*error = 1;
+	if (!find_player_position(maps))
+		*error = 1;
+	return (NULL);
 }
