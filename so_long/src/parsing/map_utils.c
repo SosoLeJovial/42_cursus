@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:37:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 03:31:05 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:09:25 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,49 +30,55 @@ int checker_path(char *path, int size)
 
 void	expand_virus(t_data_map *maps, int *error)
 {
-	int	x;
-	int	y;
+	size_t	x;
+	size_t	y;
 	int		valid;
+	int		i;
 
-
-	x = player_x;
-	y = player_y;
-	maps->map[x][y] = 'V';
-	valid = contamination(maps, x, y, maps->size_map);
-	if (valid == 0)
+	find_player_position(maps);
+	x = maps->player_x;
+	y = maps->player_y;
+	printf("Player position x: %ld y: %ld\n", x, y);
+	valid = contamination(maps, (int)x, (int)y);
+	if (!valid)
 	{
 		printf("Error map not valid\n");
 		*error = 1;
 	}
 	printf("Exit count: %ld\n, conso : %ld\n", maps->exit_count, maps->consumable_count);
+	i = 0;
+	while ((size_t)i < maps->size_map)
+	{
+		printf("%s", maps->map[i]);
+		i++;
+	}
+	printf("\n");
 }
 
 int	contamination(t_data_map *s, int x, int y)
 {
-	int		virus;
-
-	virus = 0;
-	if (x < 0 || y < 0 || x >= s->size_map || y >= s->size_map)
+	if (x < 0 || y < 0)
 		return (0);
 	if (s->exit_count == 0 && s->consumable_count == 0)
 		return (1);
-	if (s->map[x][y] == 'C')
+	if (s->map[y][x] == 'C')
 		s->consumable_count--;
-	if (s->map[x][y] == 'E')
+	if (s->map[y][x] == 'E')
 		s->exit_count--;
-	if (s->map[x][y] != '1' || s->map[x][y] != 'V')
-	{
-
-		s->map[x][y] = 'V';
-		if (contamination(s, x + 1, y) == 0)
-			return (0);
-		if (contamination(s, x - 1, y) == 0)
-			return (0);
-		if (contamination(s, x, y + 1) == 0)
-			return (0);
-		if (contamination(s, x, y - 1) == 0)
-			return (0);
-	}
+	if (s->map[y][x] != '1' && s->map[y][x] != 'V')
+		s->map[y][x] = 'V';
+	if (s->map[y + 1][x] != '1' && s->map[y + 1][x] != 'V')
+		if (contamination(s, x, y + 1) > 0)
+			return (1);
+	if (s->map[y - 1][x] != '1' && s->map[y - 1][x] != 'V')
+		if (contamination(s, x, y - 1) > 0)
+			return (1);
+	if (s->map[y][x] != '1' && s->map[y][x + 1] != 'V')
+		if (contamination(s, x + 1, y) > 0)
+			return (1);
+	if (s->map[y][x] != '1' && s->map[y][x - 1] != 'V')
+		if (contamination(s, x - 1, y) > 0)
+			return (1);
 	return (0);
 }
 

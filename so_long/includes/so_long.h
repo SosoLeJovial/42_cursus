@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 03:07:10 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:37:34 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	*ft_freemap(char **map, int i);
 int		checker_wall(char *map);
 int		check_valid_line(char **map, int size);
 int		check_line_length(char **s, int size);
-int		contamination(t_data_map *s, int x, int y, int size);
+int		contamination(t_data_map *s, int x, int y);
 void	expand_virus(t_data_map *maps, int *error);
 int 	checker_path(char *path, int size);
 int		find_player_position(t_data_map *map);
@@ -85,4 +85,5 @@ void	*ft_calloc_gnl(size_t nmemb, size_t size);
 char	*ft_strchr_gnl(char *s, char c);
 size_t	ft_strlcpy_gnl(char *dst, char *src, size_t dstsize);
 size_t	ft_strlen_gnl(char *str);
+void	free_data(t_data *data);
 #endif

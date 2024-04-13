@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:13:22 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/12 23:39:25 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:48:36 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**ft_map_valid(char *path, int *error)
 		return (0);
 	}
 	if (!ft_check_char(map, line_map))
-		*error = 1;
+		*error = 1; 
 	return (map);
 }
 
