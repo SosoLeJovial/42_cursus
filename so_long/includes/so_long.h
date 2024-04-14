@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 19:49:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/14 02:51:07 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # include <stdio.h> // a retirer !!
 # include <math.h>
 # include "../libft/libft.h"
-# include "../libmlx/mlx.h"
-# define WIDTH 256
-# define HEIGHT 256
+# include "../minilib/mlx.h"
+# define SOLONGHPATH "../../includes/so_long.h"
+# define WIDTH 1024
+# define HEIGHT 1024
 
 typedef struct data_map
 {
@@ -56,6 +57,9 @@ typedef struct data
 	void		*textures[5];
 	t_data_map	*map;
 }	t_data;
+
+/*Handling Window*/
+t_data		init_data(t_data *data, t_data_map *map);
 
 
 /*Parsing*/

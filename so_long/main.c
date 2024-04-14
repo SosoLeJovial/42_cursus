@@ -6,28 +6,16 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 21:54:47 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/14 03:05:45 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/so_long.h"
-// #include "./libmlx/mlx.h"
-// open, close, read, write,
-// malloc, free, perror,
-// strerror, exit
-// • Toutes les fonctions de la
-// bibliothèque mathématique
-// (option de compilation -lm,
-// man man 3 math)
-// • Toutes les fonctions de la
-// MiniLibX
-// • ft_printf et tout équivalent
-// que VOUS avez codé
 
 int	main(int ac, char **av)
 {
 	t_data_map		*map;
-	// void			*data;
+	t_data			data;
 	int 			error;
 
 	error = 0;
@@ -37,17 +25,8 @@ int	main(int ac, char **av)
 	if (!map)
 		return (0);
 	// MLX stfuff
-	// data = malloc(sizeof(t_data));
-	// data->mlx_ptr = mlx_init();
-	// if (!data->mlx_ptr)
-	// 	return(1);
-	// data->win_ptr = mlx_new_window(mlx_ptr, 400, 400, "ZEEUUUUUUUUBI");
-	// if (!data->win_ptr)
-	// 	return (free(mlx_ptr), 1);
-	// while (1);
-	// if (error == 0)	
-	// 	if (checker_path(av[1], ft_line_map(av[1])))
-	// 		display_error(2, "error, no exit path !\n");
+
+	data = init_data(&data, map);
 	// clean exit here
 	if (map)
 		ft_freemap(map->map, ft_line_map(av[1]));
@@ -55,6 +34,3 @@ int	main(int ac, char **av)
 		free(map);
 	return (0);
 }
-	// t_data	*data;
-
-

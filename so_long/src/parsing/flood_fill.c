@@ -6,11 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:37:05 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 22:07:40 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/14 01:15:23 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 int checker_path(char *path, int size)
 {

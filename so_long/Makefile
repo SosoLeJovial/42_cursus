@@ -6,13 +6,13 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 20:58:45 by tsofien-          #+#    #+#              #
-#    Updated: 2024/04/13 14:34:35 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/04/14 03:06:19 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS_DIR = src/utils src/parsing
+SRCS_DIR = src/utils src/parsing src/mlx_stuff
 
 SRCS = main.c $(foreach dir, $(SRCS_DIR), $(wildcard $(dir)/*.c))
 
@@ -23,40 +23,40 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 
 LIBFT_FLAGS = -L./libft -lft
-MLX_FLAGS = -L./libmlx -lXext -lX11
+MLX_FLAGS = -L./minilib -lmlx -lXext -lX11
 
 RM = rm -f
 
-LIBMLX = libmlx/libmlx.a
+LIBMLX = minilib/libmlx.a
 LIBFT = libft/libft.a
 
 all: $(NAME) $(LIBMLX) $(LIBFT)
 
-$(NAME): $(OBJS) $(INC)
-	$(CC) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS) -o $(NAME) 
+$(NAME): $(OBJS) $(LIBMLX) $(LIBFT)
+	$(CC) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS) -o $(NAME)
 
 $(LIBMLX):
-	make -C ./libmlx
+	make -C ./minilib
 
 $(LIBFT):
 	make -C ./libft
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I./includes -I/libft -I/mlx -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) -r $(OBJ_DIR)
-	make -C ./libmlx clean
+	make -C ./minilib clean
 	make -C ./libft clean
 
 fclean: clean
 	$(RM) $(NAME)
-	make -C ./libmlx fclean
+	make -C ./minilib clean
 	make -C ./libft fclean
 
-re: fclean all
+re: fclean all 
 
 .PHONY: all clean fclean re
