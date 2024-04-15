@@ -6,31 +6,33 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:16:37 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/15 18:06:11 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:30:50 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-#include <X11/X.h>
-#include <X11/keysym.h>
+#include "../../includes/ressources.h"
 
 t_data	init_data(t_data *data, t_data_map *map)
 {
 	void *mlx_ptr;
+	t_images *images;
 
 	data = malloc(sizeof(t_data));
-	// if (!data)
-	// 	return ;
 	data->map = map;
+	if (!data)
+		return (*data);
 	mlx_ptr = mlx_init();
 	data->mlx_ptr = mlx_ptr;
 	if (!data->mlx_ptr)
 		return(free(data), *data);
+	images = load_textures(data);
+	if (!images)
+		return (*data);
 	data->win_ptr = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "ZEEUUUUUUUUBI");
 	if (!data->win_ptr)
 		return (free(mlx_ptr), *data);
-
-	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, on_keypress, data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, images->walls->straight_wall, 1, 1);	
 	mlx_loop(data->mlx_ptr);
 	return (*data);
 }

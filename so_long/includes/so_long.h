@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/15 18:52:24 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:05:01 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
-# include "ressources.h"
 
 typedef struct data_map
 {

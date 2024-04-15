@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/14 03:05:45 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:29:07 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ int	main(int ac, char **av)
 	// MLX stfuff
 
 	data = init_data(&data, map);
+	if (!data.mlx_ptr)
+	{
+		printf("Error WTF\n");
+	}
 	// clean exit here
 	if (map)
 		ft_freemap(map->map, ft_line_map(av[1]));
