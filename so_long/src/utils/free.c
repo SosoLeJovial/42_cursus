@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:04:48 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 22:06:28 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:48:55 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void free_data(t_data *data)
 		free(data->mlx_ptr);
 	if (data->win_ptr)
 		free(data->win_ptr);
-	if (data->textures)
-		free(data->textures);
 	if (data->map)
 		free(data->map);
 	data->mlx_ptr = NULL;

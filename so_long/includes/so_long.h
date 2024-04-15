@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/14 02:51:07 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:52:24 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@
 # include <stdio.h> // a retirer !!
 # include <math.h>
 # include "../libft/libft.h"
-# include "../minilib/mlx.h"
-# define SOLONGHPATH "../../includes/so_long.h"
-# define WIDTH 1024
-# define HEIGHT 1024
+# include "../mlx/mlx.h"
+# include "ressources.h"
 
 typedef struct data_map
 {
@@ -60,7 +58,12 @@ typedef struct data
 
 /*Handling Window*/
 t_data		init_data(t_data *data, t_data_map *map);
+int			on_destroy(t_data *data);
+int			on_keypress(int keysym, t_data *data);
+int			key_hook(int keycode, t_data *vars);
 
+
+/* Gaming */
 
 /*Parsing*/
 char	**ft_map_valid(char *path, int *error);

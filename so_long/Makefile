@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 20:58:45 by tsofien-          #+#    #+#              #
-#    Updated: 2024/04/14 03:06:19 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/04/15 18:53:23 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,18 +18,17 @@ SRCS = main.c $(foreach dir, $(SRCS_DIR), $(wildcard $(dir)/*.c))
 
 OBJ_DIR = ./obj
 
-
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g3 
 LIBFT_FLAGS = -L./libft -lft
-MLX_FLAGS = -L./minilib -lmlx -lXext -lX11
+MLX_FLAGS = -L./mlx -lmlx -lXext -lX11
 
 RM = rm -f
 
-LIBMLX = minilib/libmlx.a
+LIBMLX = mlx/libmlx.a
 LIBFT = libft/libft.a
 
 all: $(NAME) $(LIBMLX) $(LIBFT)
@@ -38,7 +37,7 @@ $(NAME): $(OBJS) $(LIBMLX) $(LIBFT)
 	$(CC) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS) -o $(NAME)
 
 $(LIBMLX):
-	make -C ./minilib
+	make -C ./mlx
 
 $(LIBFT):
 	make -C ./libft
@@ -49,12 +48,12 @@ $(OBJ_DIR)/%.o: %.c
 
 clean:
 	$(RM) -r $(OBJ_DIR)
-	make -C ./minilib clean
+	make -C ./mlx clean
 	make -C ./libft clean
 
 fclean: clean
 	$(RM) $(NAME)
-	make -C ./minilib clean
+	make -C ./mlx clean
 	make -C ./libft fclean
 
 re: fclean all 
