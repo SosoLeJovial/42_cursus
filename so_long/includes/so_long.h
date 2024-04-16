@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 03:48:01 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:47:35 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # define KEY_S 115
 # define KEY_Q 113
 # define KEY_D 100
-# define KEY_ESC 65307
-# define KEY_UP 65362
-# define KEY_DOWN 65361
-# define KEY_LEFT 99
-# define KEY_RIGHT 65507
+# define ESC 65307
+# define UP 65362
+# define DOWN 65361
+# define LEFT 99
+# define RIGHT 65507
 
 
 # include <stdlib.h>
@@ -35,6 +35,8 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+# include <X11/keysym.h>
+# include <X11/X.h>
 # include "struct.h"
 # include "ressources.h"
 
@@ -46,15 +48,16 @@ t_data		*init_data(t_data *data, t_data_map *map);
 size_t		get_map_height(char **map, size_t size);
 size_t 		get_map_width(char **map);
 int			check_size_screen(t_data *data);
-void		draw_map(t_data *data);
+int			draw_map(t_data *data);
 
 /* Gaming */
 void	start_game(t_data *data);
 
 /* Hooks */
-int			on_keypress(int keysym, t_data *data);
-int			exit_hook(t_data *data);
+int			key_press(t_data *data, int keysym);
 int			move_player(int keysym, t_data *data);
+int			pos_player(t_data *data, int keysym);
+
 
 /*Parsing*/
 char	**ft_map_valid(char *path, int *error);

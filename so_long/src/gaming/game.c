@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 02:13:06 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 13:50:24 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:47:51 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,22 @@
 void	start_game(t_data *data)
 {
 	data->movement = 0;
-	draw_map(data);
-	mlx_key_hook(data->win_ptr, on_keypress, data);
-	// mlx_key_hook(data->mlx_ptr, move_player, data);
-	mlx_loop_hook(data->mlx_ptr, exit_hook, data);
+	mlx_loop_hook(data->win_ptr, &draw_map, data);
+	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, key_press, data);
 	mlx_loop(data->mlx_ptr);
+}
+
+int key_press(t_data *data, int keysym)
+{
+	printf("ça look");
+	if (keysym == ESC)
+	{
+		free_all(data);
+		exit(0);
+	}
+	// if (keysym == KEY_W)
+	// if (keysym == KEY_W)
+	// if (keysym == KEY_W)
+	// if (keysym == KEY_W)
+	return (0);
 }

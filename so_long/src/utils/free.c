@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:04:48 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 13:53:42 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:34:19 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	free_textures(t_data *data)
 
 void	free_all(t_data *data)
 {
-	if (data->map->map)
-		ft_freemap(data->map->map, data->map->size_map);
 	if (data->images)
 		free_textures(data);
+	if (data->map->map)
+		ft_freemap(data->map->map, data->map->size_map);
 	free_mlx(data);
 	free(data);
 }

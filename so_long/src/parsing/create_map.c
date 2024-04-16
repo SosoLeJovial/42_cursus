@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:00:51 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 00:16:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 18:31:51 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ t_data_map *init_struct_map(char **new_map, int size)
 		new->map_width = get_map_width(new_map) * TILE_WIDTH;
 	if (new_map)
 		new->map_height = get_map_height(new_map, new->size_map) * TILE_HEIGHT;
+	if (new)
+		find_player_position(new);
 	return (new);
 }
 

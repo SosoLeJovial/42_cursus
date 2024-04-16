@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:45:40 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 13:51:37 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:31:21 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,27 @@ t_images	*load_textures(t_data *data)
 	images = malloc(sizeof(t_images));
 	if (!images)
 		return (images);
-	images->player = NULL;
+	images->player = load_player(data, &width_image, &height_image);
 	images->walls = load_walls(data, &width_image, &height_image);
 	images->conso = load_conso(data, &width_image, &height_image);
 	if (!images->walls || !images->conso)
 		return (free(images), NULL);
 	return (images);
+}
+
+t_player	*load_player(t_data *data, int *width_image, int *height_image)
+{
+	t_player	*player;
+
+	player = malloc(sizeof(t_player));
+	if (!player)
+		return (NULL);
+	player->running = NULL;
+	player->look_right = mlx_xpm_file_to_image(data->mlx_ptr, CHARACTER_RIGHT, width_image, height_image);
+	player->look_left = mlx_xpm_file_to_image(data->mlx_ptr, CHARACTER_LEFT, width_image, height_image);
+	player->look_down = mlx_xpm_file_to_image(data->mlx_ptr, CHARACTER_DOWN, width_image, height_image);
+	player->look_up = mlx_xpm_file_to_image(data->mlx_ptr, CHARACTER_UP, width_image, height_image);
+	return (player);
 }
 
 t_walls	*load_walls(t_data *data, int *width_image, int *height_image)
