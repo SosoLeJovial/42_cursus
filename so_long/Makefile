@@ -6,13 +6,13 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 20:58:45 by tsofien-          #+#    #+#              #
-#    Updated: 2024/04/15 18:53:23 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/04/16 02:16:22 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS_DIR = src/utils src/parsing src/mlx_stuff
+SRCS_DIR = src/utils src/parsing src/mlx_stuff src/game
 
 SRCS = main.c $(foreach dir, $(SRCS_DIR), $(wildcard $(dir)/*.c))
 

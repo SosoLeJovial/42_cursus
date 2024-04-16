@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/15 20:05:01 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 02:15:13 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@
 #  define BUFFER_SIZE 42
 # endif
 
+# define KEY_W 122
+# define KEY_S 115
+# define KEY_Q 113
+# define KEY_D 100
+# define KEY_ESC 65307
+# define KEY_Q 113
+# define KEY_UP 65362
+# define KEY_DOWN 65361
+# define KEY_LEFT 99
+# define KEY_RIGHT 65507
+
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
@@ -24,45 +36,26 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
-
-typedef struct data_map
-{
-	char	**map;
-	size_t	size_map;
-	size_t	consumable_count;
-	size_t	exit_count;
-	size_t	player_count;
-	size_t	player_x;
-	size_t	player_y;
-} t_data_map;
+# include "struct.h"
+# include "ressources.h"
 
 t_data_map	*init_struct_map(char **new_map, int size);
 void		*count_necessary_elements(t_data_map *maps,int size, int *error);
 
 
-/**
- * Main MLX handle, carries important data in regards to the program.
- * @param mlx_ptr MLX pointer
- * @param win_ptr MLX window pointer
- * @param textures MLX image pointers
- * @param map Map pointer (contains map details - preferably kept on the stack)
- */
-typedef struct data
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	void		*textures[5];
-	t_data_map	*map;
-}	t_data;
-
 /*Handling Window*/
-t_data		init_data(t_data *data, t_data_map *map);
+t_data		*init_data(t_data *data, t_data_map *map);
 int			on_destroy(t_data *data);
 int			on_keypress(int keysym, t_data *data);
 int			key_hook(int keycode, t_data *vars);
+size_t		get_map_height(char **map, size_t size);
+size_t 		get_map_width(char **map);
+int			check_size_screen(t_data *data);
+void		draw_map(t_data *data);
 
 
 /* Gaming */
+void	start_game(t_data *data);
 
 /*Parsing*/
 char	**ft_map_valid(char *path, int *error);
@@ -93,4 +86,5 @@ size_t	ft_strlcpy_gnl(char *dst, char *src, size_t dstsize);
 size_t	ft_strlen_gnl(char *str);
 void	free_data(t_data *data);
 void	display_error(int fd, char *msg);
+void	free_mlx(t_data *data);
 #endif

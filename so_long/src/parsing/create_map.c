@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:00:51 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/13 22:03:13 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 00:16:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ t_data_map *init_struct_map(char **new_map, int size)
 		return (0);
 	new = malloc(sizeof(t_data_map));
 	if (!new)
-	{
-		perror("fail init\n");
 		return (0);
-	}
 	new->map = new_map;
 	new->size_map = size;
 	new->consumable_count = 0;
@@ -41,6 +38,10 @@ t_data_map *init_struct_map(char **new_map, int size)
 	new->player_count = 0;
 	new->player_x = 0;
 	new->player_y = 0;
+	if (new_map)
+		new->map_width = get_map_width(new_map) * TILE_WIDTH;
+	if (new_map)
+		new->map_height = get_map_height(new_map, new->size_map) * TILE_HEIGHT;
 	return (new);
 }
 
