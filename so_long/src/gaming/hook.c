@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 02:37:53 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 03:56:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:48:46 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int on_keypress(int keysym, t_data *data)
 	(void)data;
 	if (keysym == KEY_ESC)
 	{
-		data->should_exit = 1;
+		if (data->should_exit == 0)
+			data->should_exit = 1;
 		return (1);
 	}
 	return (0);

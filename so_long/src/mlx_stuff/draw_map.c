@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 00:31:19 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 01:02:07 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:38:06 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_map(t_data *data)
 	y = 0;
 	while (y < data->map->size_map)
 	{
-		while (x < ft_strlen(data->map->map[y]))
+		while (data->map->map[y][x])
 		{
 			if (data->map->map[y][x] == '1')
 				render_image(data, data->images->walls->straight_wall, x * TILE_WIDTH, y * TILE_HEIGHT);

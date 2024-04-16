@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:16:37 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 03:57:24 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:35:47 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_data	*init_data(t_data *data, t_data_map *map)
 	data->map = map;
 	data->images = NULL;
 	data->win_ptr = NULL;
-	data->should_exit = 2;
+	data->should_exit = 0;
 	mlx_ptr = mlx_init();
 	if (!mlx_ptr)
 		return(data);

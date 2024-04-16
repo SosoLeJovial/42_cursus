@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 21:55:43 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 03:52:39 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:45:20 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,6 @@ typedef struct data_map
 	size_t	map_height;
 } t_data_map;
 
-/**
- * Main MLX handle, carries important data in regards to the program.
- * @param mlx_ptr MLX pointer
- * @param win_ptr MLX window pointer
- * @param textures MLX image pointers
- * @param map Map pointer (contains map details - preferably kept on the stack)
- */
 typedef struct data
 {
 	void		*mlx_ptr;

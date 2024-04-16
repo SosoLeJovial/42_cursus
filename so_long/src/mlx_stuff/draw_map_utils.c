@@ -6,12 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:57:13 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 00:30:20 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:30:37 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-#include "../../includes/ressources.h"
 
 int	check_size_screen(t_data *data)
 {

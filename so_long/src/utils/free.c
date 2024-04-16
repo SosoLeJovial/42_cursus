@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:04:48 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 03:16:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:53:42 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,22 @@ void	*ft_freemap(char **map, int i)
 
 void	free_textures(t_data *data)
 {
-	free_player(data);
-	free_walls(data);
-	free_conso(data);
+	if (data->images->player)
+		free_player(data);
+	if (data->images->walls)
+		free_walls(data);
+	if (data->images->conso)
+		free_conso(data);
 	free(data->images);
+	data->images = NULL;
 }
 
 void	free_all(t_data *data)
 {
-	ft_freemap(data->map->map, data->map->size_map);
-	free_textures(data);
+	if (data->map->map)
+		ft_freemap(data->map->map, data->map->size_map);
+	if (data->images)
+		free_textures(data);
 	free_mlx(data);
 	free(data);
 }

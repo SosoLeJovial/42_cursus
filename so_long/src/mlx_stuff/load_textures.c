@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:45:40 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 03:12:09 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:51:37 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ t_conso	*load_conso(t_data *data, int *width_image, int *height_image)
 
 void	free_player(t_data *data)
 {
-	if (data->images->player)
-	{
 		if (data->images->player->look_right)
 			mlx_destroy_image(data->mlx_ptr, data->images->player->look_right);
 		if (data->images->player->look_left)
@@ -81,7 +79,6 @@ void	free_player(t_data *data)
 		if (data->images->player->running)
 			mlx_destroy_image(data->mlx_ptr, data->images->player->running);
 		free(data->images->player);
-	}
 }
 void	free_walls(t_data *data)
 {
