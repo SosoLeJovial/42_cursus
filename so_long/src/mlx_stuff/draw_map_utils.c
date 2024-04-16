@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:57:13 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 13:30:37 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 23:40:29 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_size_screen(t_data *data)
 	height = 1440;
 	if (data->map->map_width > width || data->map->map_width > height)
 	{
-		printf("Map is too big for the screen\n");
+		write(2 ,"Map is too big for the screen\n", 30);
 		return (0);
 	}
 	return (1);

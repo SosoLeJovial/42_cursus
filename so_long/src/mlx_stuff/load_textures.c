@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:45:40 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 16:31:21 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/17 00:40:12 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_walls	*load_walls(t_data *data, int *width_image, int *height_image)
 	t_walls	*walls;
 
 	if (!data->mlx_ptr)
-		printf("NULL MLX WTF\n");
+		return (NULL);
 	walls = malloc(sizeof(t_walls));
 	if (!walls)
 		return (NULL);

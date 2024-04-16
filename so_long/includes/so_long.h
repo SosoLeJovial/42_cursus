@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 19:47:35 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/17 01:00:15 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,17 @@ t_data		*init_data(t_data *data, t_data_map *map);
 size_t		get_map_height(char **map, size_t size);
 size_t 		get_map_width(char **map);
 int			check_size_screen(t_data *data);
-int			draw_map(t_data *data);
+void		draw_map(t_data *data);
 
 /* Gaming */
 void	start_game(t_data *data);
 
 /* Hooks */
-int			key_press(t_data *data, int keysym);
-int			move_player(int keysym, t_data *data);
 int			pos_player(t_data *data, int keysym);
+int			close_game(t_data *data);
+int			render_exit(t_data *data);
+
+
 
 
 /*Parsing*/

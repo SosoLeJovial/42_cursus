@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:38:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 13:53:59 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 23:44:51 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	main(int ac, char **av)
 	map = init_struct_map(ft_map_valid(av[1], &error), ft_line_map(av[1]));
 	if (!map)
 		return (0);
+	if(!error)
+		count_necessary_elements(map, map->size_map, &error);
 	data = init_data(data, map);
 	if (!data)
 		free_mlx(data);

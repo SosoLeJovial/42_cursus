@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 00:31:19 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 19:47:26 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/17 00:50:18 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // static	void render_walls(t_data *data, int x, int y);
 static	void render_image(t_data *data, void *img, int x, int y);
 
-int	draw_map(t_data *data)
+void	draw_map(t_data *data)
 {
 	size_t	x;
 	size_t	y;
@@ -33,7 +33,7 @@ int	draw_map(t_data *data)
 			if (data->map->map[y][x] == 'C')
 				render_image(data, data->images->conso->key, x * TILE_WIDTH, y * TILE_HEIGHT);
 			if (data->map->map[y][x] == 'E')
-				render_image(data, data->images->conso->door, x * TILE_WIDTH, y * TILE_HEIGHT);
+				render_image(data, data->images->walls->floor, x * TILE_WIDTH, y * TILE_HEIGHT);
 			if (data->map->map[y][x] == 'P')
 				render_image(data, data->images->player->look_right, x * TILE_WIDTH, y * TILE_HEIGHT);
 			x++;
@@ -41,7 +41,6 @@ int	draw_map(t_data *data)
 		x = 0;
 		y++;
 	}
-	return (0);
 }
 // static void render_walls(t_data *data, int x, int y)
 // {
