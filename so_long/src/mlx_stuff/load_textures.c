@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:45:40 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/15 23:39:23 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 03:12:09 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,4 @@ void	free_conso(t_data *data)
 			mlx_destroy_image(data->mlx_ptr, data->images->conso->key);
 		free(data->images->conso);
 	}
-}
-
-void free_textures(t_data *data)
-{
-	free_player(data);
-	free_walls(data);
-	free_conso(data);
-	free(data->images);
 }

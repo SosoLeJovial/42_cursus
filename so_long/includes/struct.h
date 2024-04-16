@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 21:55:43 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/15 22:02:08 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 03:52:39 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ typedef struct data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	void		*textures[5];
 	int			map_width;
 	int			map_height;
+	int			should_exit;
+	int			movement;
 	t_data_map	*map;
 	t_images	*images;
 }	t_data;

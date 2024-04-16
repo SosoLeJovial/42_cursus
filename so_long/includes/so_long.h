@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 02:15:13 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/16 03:48:01 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define KEY_Q 113
 # define KEY_D 100
 # define KEY_ESC 65307
-# define KEY_Q 113
 # define KEY_UP 65362
 # define KEY_DOWN 65361
 # define KEY_LEFT 99
@@ -42,20 +41,20 @@
 t_data_map	*init_struct_map(char **new_map, int size);
 void		*count_necessary_elements(t_data_map *maps,int size, int *error);
 
-
 /*Handling Window*/
 t_data		*init_data(t_data *data, t_data_map *map);
-int			on_destroy(t_data *data);
-int			on_keypress(int keysym, t_data *data);
-int			key_hook(int keycode, t_data *vars);
 size_t		get_map_height(char **map, size_t size);
 size_t 		get_map_width(char **map);
 int			check_size_screen(t_data *data);
 void		draw_map(t_data *data);
 
-
 /* Gaming */
 void	start_game(t_data *data);
+
+/* Hooks */
+int			on_keypress(int keysym, t_data *data);
+int			exit_hook(t_data *data);
+int			move_player(int keysym, t_data *data);
 
 /*Parsing*/
 char	**ft_map_valid(char *path, int *error);
@@ -73,7 +72,6 @@ void	expand_virus(t_data_map *maps, int *error);
 int 	checker_path(char *path, int size);
 int		find_player_position(t_data_map *map);
 
-
 /*Utils*/
 char	*get_next_line(int fd);
 char	*ft_save(char *buffer, char *line_final);
@@ -84,7 +82,7 @@ void	*ft_calloc_gnl(size_t nmemb, size_t size);
 char	*ft_strchr_gnl(char *s, char c);
 size_t	ft_strlcpy_gnl(char *dst, char *src, size_t dstsize);
 size_t	ft_strlen_gnl(char *str);
-void	free_data(t_data *data);
 void	display_error(int fd, char *msg);
+void	free_all(t_data *data);
 void	free_mlx(t_data *data);
 #endif
