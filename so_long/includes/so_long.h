@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/17 01:00:15 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/17 01:31:34 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ void	start_game(t_data *data);
 int			pos_player(t_data *data, int keysym);
 int			close_game(t_data *data);
 int			render_exit(t_data *data);
-
-
-
 
 /*Parsing*/
 char	**ft_map_valid(char *path, int *error);
