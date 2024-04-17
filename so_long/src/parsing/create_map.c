@@ -6,21 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:00:51 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/16 23:44:05 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/17 20:19:34 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-int	ft_map_init(char ***map, int size)
-{
-	if (!size)
-		return (0);
-	*map = malloc(sizeof(char *) * (size + 1));
-	if (!(*map))
-		return (0);
-	return (1);
-}
 
 t_data_map *init_struct_map(char **new_map, int size)
 {
@@ -45,6 +35,16 @@ t_data_map *init_struct_map(char **new_map, int size)
 	if (new)
 		find_player_position(new);
 	return (new);
+}
+
+int	ft_map_init(char ***map, int size)
+{
+	if (!size)
+		return (0);
+	*map = malloc(sizeof(char *) * (size + 1));
+	if (!(*map))
+		return (0);
+	return (1);
 }
 
 char	**ft_mapping(char *path, int line_map)

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/17 01:31:34 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:56:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include <stdio.h> // a retirer !!
 # include <math.h>
 # include "../libft/libft.h"
-# include "../mlx/mlx.h"
+# include "../minilib/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include "struct.h"

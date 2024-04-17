@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 20:58:45 by tsofien-          #+#    #+#              #
-#    Updated: 2024/04/16 02:17:49 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/04/17 13:57:19 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,11 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g3 
 LIBFT_FLAGS = -L./libft -lft
-MLX_FLAGS = -L./mlx -lmlx -lXext -lX11
+MLX_FLAGS = -L./minilib -lmlx -lXext -lX11
 
 RM = rm -f
 
-LIBMLX = mlx/libmlx.a
+LIBMLX = minilib/libmlx.a
 LIBFT = libft/libft.a
 
 all: $(NAME) $(LIBMLX) $(LIBFT)
@@ -37,7 +37,7 @@ $(NAME): $(OBJS) $(LIBMLX) $(LIBFT)
 	$(CC) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS) -o $(NAME)
 
 $(LIBMLX):
-	make -C ./mlx
+	make -C ./minilib
 
 $(LIBFT):
 	make -C ./libft
@@ -48,12 +48,12 @@ $(OBJ_DIR)/%.o: %.c
 
 clean:
 	$(RM) -r $(OBJ_DIR)
-	make -C ./mlx clean
+	make -C ./minilib clean
 	make -C ./libft clean
 
 fclean: clean
 	$(RM) $(NAME)
-	make -C ./mlx clean
+	make -C ./minilib clean
 	make -C ./libft fclean
 
 re: fclean all 

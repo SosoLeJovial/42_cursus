@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:16:37 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/17 11:01:42 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:51:35 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_data	*init_data(t_data *data, t_data_map *map)
 		return (data);
 	if (!check_size_screen(data))
 		return (data);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, map->map_width, map->map_height, "So_long");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->map->map_width, data->map->map_height, "So_long");
 	if (!data->win_ptr)
 		return (data);
 	return (data);
