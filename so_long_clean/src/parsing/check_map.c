@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 20:08:45 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/18 01:07:54 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/18 03:47:07 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ char	**ft_map_valid(char *path, t_data *data)
 		return (0);
 	if (!check_valid_line(map, size))
 		return (0);
-	if (!check_line_length(map, size))
+	if (!check_line_length(map, size, &(data->x_map)))
 		return (0);
 	return (map);
 }
 
-int	check_line_length(char **s, int size)
+int	check_line_length(char **s, int size, size_t *x)
 {
 	int		length;
 	int		i;
@@ -50,6 +50,7 @@ int	check_line_length(char **s, int size)
 	length = 0;
 	while (s[i][length])
 		length++;
+	*x = length - 1;
 	while (s[i][j] && ++i < size - 2)
 	{
 		j = 0;

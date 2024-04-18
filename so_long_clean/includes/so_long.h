@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 21:26:54 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/18 01:21:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/18 03:43:15 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,21 @@
 t_data	*ft_init_data(t_data *data, char *path);
 t_game	*ft_init_game(t_game *game);
 t_img	*ft_init_img(t_img *img);
+int		ft_init_mlx(t_data *data);
 int		ft_load_textures(t_data *d);
 
 /* Render */
 int		check_size_screen(t_data *data);
+int		close_game(t_data *data);
+int		pos_player(t_data *data, int keysym);
+int		render_exit(t_data *data);
+int		check_valid_move(t_data *data, int x, int y);
+int 	handle_input(int keysym, t_data *data);
+int		win_bg(t_data *data);
+void	draw_map(t_data *data);
+void	render_image(t_data *data, void *img, int x, int y);
+void	render_player(t_data *data, int x, int y, int keysym);
+void	start_game(t_data *data);
 
 /* Parsing */
 int		ft_map_init(char ***map, int size);
@@ -53,7 +64,7 @@ char	**ft_map_valid(char *path, t_data *data);
 char	**ft_mapping(char *path, int line_map);
 int		ft_line_map(char *path);
 int 	ft_check_char(char **s, int size, t_data *d);
-int		check_line_length(char **s, int size);
+int		check_line_length(char **s, int size, size_t *x);
 int		checker_wall(char *map);
 int		check_valid_line(char **map, int size);
 
@@ -66,5 +77,7 @@ int		contamination(t_data *s, int x, int y);
 int		ft_valid_ber(char *path);
 void	ft_msg(int fd, char *msg);
 void	free_data(t_data *data);
+void	free_img(t_data *d);
 void	*ft_freemap(char **map, int i);
+void	free_mlx(t_data *data);
 #endif

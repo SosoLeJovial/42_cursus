@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:30:17 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/17 00:52:07 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/18 02:07:46 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // hook pour update la position du player
 static int	check_valid_move(t_data *data, int x, int y);
 static void render_player(t_data *data, int x, int y, int keysym);
-
 
 int	pos_player(t_data *data, int keysym)
 {

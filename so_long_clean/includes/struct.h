@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 21:55:43 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/18 00:49:25 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/18 02:00:26 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_game
 	size_t	exit_y;
 	size_t	exit_x;
 	size_t	movement;
+	int		should_exit;
 }	t_game;
 
 typedef struct s_img

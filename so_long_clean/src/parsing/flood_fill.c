@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 23:27:57 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/18 01:04:04 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/18 03:02:09 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	expand_virus(t_data *d, int *error)
 {
 	int		valid;
 
-	d->map[player_y][player_x] = 'V';
 	valid = contamination(d, (int)d->game->player_x, (int)d->game->player_y);
 	if (!valid)
 		*error = 1;

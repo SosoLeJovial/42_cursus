@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:35:20 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/18 01:17:17 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/18 03:46:39 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_game	*ft_init_game(t_game *game)
 	game->exit_y = 0;
 	game->exit_x = 0;
 	game->movement = 0;
+	game->should_exit = 0;
 	return (game);
 }
 
@@ -77,14 +78,11 @@ int	ft_init_mlx(t_data *data)
 	if (!mlx_ptr)
 		return (free_data(data), 0);
 	data->mlx_ptr = mlx_ptr;
-	if (!data->mlx_ptr)
-		return (free_data(data), 0);
-	if (!load_textures(data))
+	if (!ft_load_textures(data))
 		return (free_data(data), 0);
 	if (!check_size_screen(data))
 		return (free_data(data), 0);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, \
-		data->x_map, data->y_map, "So_long: t_sofien-");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->x_map * TILE_WIDTH, data->y_map * TILE_HEIGHT, "So_long: t_sofien-");
 	if (!data->win_ptr)
 		return (free_data(data), 0);
 	return (1);

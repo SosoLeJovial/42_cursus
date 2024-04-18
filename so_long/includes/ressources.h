@@ -6,14 +6,14 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:50:11 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/18 00:40:37 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/18 02:40:32 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RESSOURCES_H
 # define RESSOURCES_H
-# define TILE_WIDTH 32
-# define TILE_HEIGHT 32
+# define TILE_WIDTH 16
+# define TILE_HEIGHT 16
 # define CORNER_WALL "src/assets/walls/CornerWall.xpm"
 # define FLOOR "src/assets/walls/Floor.xpm"
 # define SIDE_WALL "src/assets/walls/SideWall.xpm"
