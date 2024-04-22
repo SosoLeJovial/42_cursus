@@ -6,12 +6,22 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:26:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/22 16:28:53 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:37:51 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minitalk.h"
 
+/*
+	🔥 Etapes pour speedrun ce vieux projet: 🔥
+	
+	-> utiliser PID
+	-> Comprendre les signaux et les outils proposes par la library signal.h (blc)
+	-> Echanger un msg en byte envoye bit par bit |= 😉
+
+	💀 Erreur a eviter 💀
+	-> ne pas utiliser sleep / pause ou usleep (useless + caca ++)
+*/
 void receive_signal(int signal, siginfo_t *info  ,void *context)
 {
 	static t_msg	msg;
@@ -41,21 +51,13 @@ void receive_signal(int signal, siginfo_t *info  ,void *context)
 	printf("prout\n");
 }
 
-/*
-	🔥 Etapes pour speedrun ce vieux projet: 🔥
-	
-	-> utiliser PID
-	-> Comprendre les signaux et les outils proposes par la library signal.h (blc)
-	-> Echanger un msg en byte envoye bit par bit |= 😉
 
-	💀 Erreur a eviter 💀
-	-> ne pas utiliser sleep / pause ou usleep (useless + caca ++)
-*/
 
 int	main(void)
 {
 	struct sigaction	sa;
 
+	ft_memset(&sa, 0, sizeof(act));
 	sa.sa_sigaction = receive_signal();
 	sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&sa.sa_mask);
@@ -64,5 +66,6 @@ int	main(void)
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 		;
+	free(&sa);
 	return (0);
 }
