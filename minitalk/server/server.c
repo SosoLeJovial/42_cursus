@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:26:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/22 15:44:43 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:28:53 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void receive_signal(int signal, siginfo_t *info  ,void *context)
 {
 	static t_msg	msg;
-	unsigned char 	bytes;
+	unsigned char 	byte;
 	static char		*msg;
 	static int 		i = 0;
 
-	bytes <<= 1;
+	msg.bytes <<= 1;
 	if (signal == SIGUSR2)
 		bytes |= 1;
 	i++;
