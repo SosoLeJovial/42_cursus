@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:26:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/22 16:37:51 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/26 00:48:45 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ int	main(void)
 {
 	struct sigaction	sa;
 
-	ft_memset(&sa, 0, sizeof(act));
-	sa.sa_sigaction = receive_signal();
+	ft_memset(&sa, 0, sizeof(acct));
+	// sa.sa_sigaction = receive_signal();
 	sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&sa.sa_mask);
-	ft_printf("Server pid: %d\n", getpid());
+	printf("Server pid: %d\n", getpid());
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)

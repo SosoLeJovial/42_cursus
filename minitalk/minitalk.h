@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:26:28 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/22 15:37:20 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:20:23 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <signal.h>
 # include "lib/libft/libft.h"
+# include "lib/libft/printf/ft_printf.h"
 
 typedef struct s_msg
 {
