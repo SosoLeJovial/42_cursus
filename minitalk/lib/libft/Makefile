@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 20:10:49 by tsofien-          #+#    #+#              #
-#    Updated: 2024/04/22 13:36:33 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/04/29 20:27:43 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_strnstr.c \
 ft_strrchr.c ft_tolower.c ft_toupper.c ft_putendl_fd.c \
 ft_substr.c ft_strjoin.c ft_strtrim.c ft_itoa.c ft_strmapi.c ft_split.c \
 ft_putnbr_fd.c ft_striteri.c ft_putchar_fd.c \
-gnl.c gnl_utils.c \
+gnl.c gnl_utils.c ft_realloc.c\
 
 SRCSB = ft_lstnew_bonus.c ft_lstadd_front_bonus.c  ft_lstsize_bonus.c \
 ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
@@ -41,7 +41,7 @@ RM = rm -f
 all: $(NAME) $(FT_PRINTF)
 
 $(NAME): $(OBJS) $(FT_PRINTF)
-	ar rc $(NAME) $(OBJS)
+	ar rc $(NAME) $(OBJS) printf/*.o
 	ranlib $(NAME)
 
 $(FT_PRINTF):
