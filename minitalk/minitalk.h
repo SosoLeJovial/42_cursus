@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:26:28 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/29 21:00:02 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/01 11:16:37 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_msg
 	int				bit_count;
 }	t_msg;
 
-int	parser_pid(char *str);
+int		parser_pid(char *str);
+void	send_string(unsigned char *s, int pid);
+void	send_char(unsigned char c, int pid);
 
 #endif

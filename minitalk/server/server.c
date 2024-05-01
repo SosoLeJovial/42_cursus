@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:26:32 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/29 21:00:31 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/01 11:44:02 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,38 +26,25 @@ void receive_signal(int signal, siginfo_t *info  ,void *context)
 {
 	static t_msg data = {0, 0, NULL, 0};
 
-	
-	// static t_msg	msg;
-	// unsigned char 	byte;
-	// static char		*msg;
-	// static int 		i = 0;
-
-	// msg.bytes <<= 1;
-	// if (signal == SIGUSR2)
-	// 	bytes |= 1;
-	// i++;
-	// if (i == 8)
-	// {
-	// 	i = 0;
-		// tu as mis tous les caracters
-		// if (bytes == '\0')
-		// {
-			//ecris le message
-			//free
-			//kill(sigusr2)
-			// bytes = 0;
-			// len = 0;
-	// 	}
-	// }
+	data.byte <<= 1;
+	if (signal == SIGUSR2)
+		data.byte |= 1;
+	data.bit_count++;
+	if (data.bit_count == 8)
+	{
+		data.bit_count = 0;
+		if (data.byte == '\0')
+		{
+			// ecris le message
+			// free
+			kill(SIGUSR2);
+			data.byte = 0;
+			data.len = 0;
+		}
+	}
 	(void)context;
 	(void)info;
-	if (signal == SIGUSR1)
-		ft_printf("SIGUSR1 received %d\n", signal);
-	else
-		printf("SIGUSR2 received %d\n", signal);
 }
-
-
 
 int	main(void)
 {
@@ -71,7 +58,7 @@ int	main(void)
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
-		pause();
+		;
 	free(&sa);
 	return (0);
 }

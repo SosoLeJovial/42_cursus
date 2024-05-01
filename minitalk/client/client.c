@@ -6,11 +6,24 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:26:34 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/29 21:01:30 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/01 11:23:10 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minitalk.h"
+
+void	send_string(unsigned char *s, int pid)
+{
+	int i;
+
+	i = 0;
+	while(s[i])
+	{
+		send_char(s[i], pid);
+		i++;
+	}
+		send_char(s[i], pid);
+}
 
 /* Send */
 void	send_char(unsigned char c, int pid)
@@ -18,26 +31,17 @@ void	send_char(unsigned char c, int pid)
 	int	i;
 	int	bit;
 
-	i = 8;
-	while ()
-}
-
-/* Main */
-int	main(int ac, char **av)
-{
-	int					pid;
-	// struct sigaction	sa;
-
-	if (ac != 3 || !parser_pid(av[1]) || !av[2])
-		return (0);
-	pid = ft_atoi(av[1]);
-	printf("Server pid: %d\n", pid);
-	if (av[2][0] == '1')
-		kill(pid, SIGUSR1);
-	else
-		kill(pid, SIGUSR2);
-	printf("Hello Client !\n");
-	printf("Client pid: %d\n", getpid());
+	i = 7;
+	bit =  0;
+	while (i >= 0)
+	{
+		bit = (c >> i) &  1;
+		if (bit == 1)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		i--;
+	}
 }
 
 /* Parser */
@@ -52,4 +56,17 @@ int	parser_pid(char *str)
 		if (!ft_isdigit(str[i]))
 			return (0);
 	return (1);
+}
+
+/* Main */
+int	main(int ac, char **av)
+{
+	int					pid;
+	// struct sigaction	sa;
+
+	if (ac != 3 || !parser_pid(av[1]) || !av[2])
+		return (0);
+	pid = ft_atoi(av[1]);
+	send_string((unsigned char *)av[2], pid);
+	ft_printf("Hello Client !\n");
 }
