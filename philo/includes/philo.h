@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 20:16:24 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/01 23:23:22 by tsofien-         ###   ########.fr       */
+/*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
+/*   Updated: 2024/05/03 20:47:36 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
-
-void	*ft_realloc(void *ptr, size_t size)
+typedef enum e_var
 {
-	void	*new_data;
+	DATA = 1,
+	DATE = 0,
+}	t_var;
 
-	if (!size)
-		return (NULL);
-	if (!ptr)
-		return (malloc(size));
-	new_data = malloc(size);
-	if (!new_data)
-		return (NULL);
-	ft_memcpy(new_data, ptr, size - 1);
-	free(ptr);
-	return (new_data);
-}
+typedef struct s_data
+{
+
+} t_data;

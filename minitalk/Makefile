@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 16:26:38 by tsofien-          #+#    #+#              #
-#    Updated: 2024/04/29 20:08:10 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/05/01 20:14:44 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCC = client/client.c
 OBJS = $(SRCS:.c=.o)
 OBJC = $(SRCC:.c=.o)
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g3
 

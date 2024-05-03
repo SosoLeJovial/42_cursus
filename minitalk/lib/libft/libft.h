@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 19:48:56 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/04/29 20:22:37 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:54:07 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,5 @@ void	*ft_calloc_gnl(size_t nmemb, size_t size);
 char	*ft_strchr_gnl(char *s, char c);
 size_t	ft_strlcpy_gnl(char *dst, char *src, size_t dstsize);
 size_t	ft_strlen_gnl(char *str);
-void*	ft_realloc(void *ptr, size_t size);
+void	*ft_realloc(void *ptr, size_t size);
 #endif
