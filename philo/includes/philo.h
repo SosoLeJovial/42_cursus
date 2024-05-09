@@ -32,6 +32,8 @@ typedef struct s_env
 	char**	fork;
 } t_env;
 
+void*	routine(void*);
+
 /* Parsing */
 int	ft_isdigit(int c);
 int	ft_atoi(const char *nptr);

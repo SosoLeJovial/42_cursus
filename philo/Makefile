@@ -17,7 +17,7 @@
 
 NAME	= philo
 CC 		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -pthread
 DFLAGS	= -MMD -MF $(@:.o=.d)
 AUTHOR	= tsofien-
 
