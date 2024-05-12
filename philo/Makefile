@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2024/05/10 19:41:14 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/05/12 18:56:59 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 
 NAME	= philo
 CC 		= cc
-CFLAGS	= -Wall -Wextra -Werror -pthread -g -fsanitize=thread
+CFLAGS	= -Wall -Wextra -Werror -pthread -fsanitize=thread
 DFLAGS	= -MMD -MF $(@:.o=.d)
 AUTHOR	= tsofien-
 
@@ -33,7 +33,7 @@ SRCS_PATH		= ./src
 
 INCLUDE_PATH	= ./includes
 
-SRCS			= parsing.c utils.c
+SRCS			= parsing.c utils.c config.c
 
 MAIN			= philo.c
 
@@ -223,7 +223,7 @@ endif
 -include $(DEPS) $(DEPS_MAIN)
 $(NAME):	${OBJS} ${OBJ_MAIN}
 			@$(call display_progress_bar)
-			@$(call run_and_test,$(CC) $(CFLAGS) $(DFLAGS) -I$(INCLUDE_PATH) -o $@ ${OBJS} ${OBJ_MAIN} )
+			@$(call run_and_test,$(CC) $(CFLAGS) $(DFLAGS) -I$(INCLUDE_PATH) -o $@ ${OBJS} ${OBJ_MAIN})
 
 setup:
 	@$(call save_files_changed)

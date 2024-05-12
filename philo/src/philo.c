@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/10 19:39:01 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:35:31 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,53 +22,41 @@
 	😆 incredible description
 	Command for checking threads while executing : valgrind tool=helgrind
  */
-int sleep_time = 0;
+
+int 					mails = 1;
+pthread_mutex_t         mut;
 
 void*	routine()
 {
-	sleep_time++;
-	printf("sleep_tim : %d\n", sleep_time);
-	printf("Hello world! I am thread\n");
+	pthread_mutex_lock(&mut);
+	int i = -1;
+	while (++i < 1000000)
+		mails++;
+	printf("count mails in routine: %d\n", mails);
+	pthread_mutex_unlock(&mut);
 	return (NULL);
-}
-
-t_env	*init_table(t_env *table, char **av)
-{
-	int	i;
-
-	table = ft_calloc(sizeof(t_env), 1);
-	if (!table)
-		return (0);
-	table->nb_philo = ft_atoi(av[1]);
-	table->eat = (size_t)ft_atoi(av[2]);
-	table->die = (size_t)ft_atoi(av[3]);
-	table->sleep = (size_t)ft_atoi(av[4]);
-	printf("nb_philo = %d\n eat = %ld\n die = %ld\n sleep = %ld\n", table->nb_philo, table->eat, table->die, table->sleep);
-	table->philos = ft_calloc(sizeof(pthread_t), table->nb_philo);
-	i = 0;
-	while (i < table->nb_philo)
-	{
-		printf("philo n %d created :", i);
-		if (pthread_create(&table->philos[i], NULL, routine, NULL) != 0)
-			return (ft_msg(2, "fail creating thread \n"), NULL);
-		if (pthread_join(table->philos[i], NULL) != 0)
-			return (ft_msg(2, "fail creating thread \n"), NULL);
-		i++;
-	}
-	return (table);
 }
 
 int main(int ac, char**av)
 {
 	t_env	*table;
+	struct timeval tv;
 
+	printf("%d\n", getpid());
+	pthread_mutex_init(&mut, NULL);
+	gettimeofday(&tv, NULL);
+	int time_exact =  tv.tv_sec + tv.tv_usec * 1000000;
+	printf("time exact: %d\n", time_exact / 1000);
+    printf("Seconds since 1/1/1970: %lu\n",tv.tv_sec);
+    printf("Microseconds: %ld\n",tv.tv_usec);
 	table = NULL;
-	if (ac < 4 || !ft_check_args(ac, av))
+	if (ac < 5 || !ft_check_args(ac, av))
 		return (ft_msg(2, "Error args!\n"), 1);
 	table = init_table(table, av);
 	if (!table)
 		return (ft_msg(2, "bullshit\n"),1);
-	printf("Args okay\n");
-	// free(&table);
+	printf("Count mails: %d\n", mails);
+	free(table->philos);
+	free(table);
 	return (0);
 }
