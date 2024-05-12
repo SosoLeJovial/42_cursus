@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/09 13:09:07 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:49:46 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,29 @@ typedef enum STATE
 	SLEEPING = 2,
 }	STATE;
 
+
 typedef struct s_env
 {
-	int		nb_philo;
-	char**	fork;
+	int			nb_philo;
+	int			*id_philo;
+	int*		fork;
+	pthread_t 	*philos;
+	size_t		eat;
+	size_t		die;
+	size_t		sleep;
+
 } t_env;
 
-void*	routine(void*);
+void*	routine();
+t_env	*init_table(t_env *table, char **av);
+
+
 
 /* Parsing */
-int	ft_isdigit(int c);
-int	ft_atoi(const char *nptr);
-size_t	ft_strlen(const char *s);
-int	ft_check_args(int ac, char**av);
+int			ft_isdigit(int c);
+int			ft_atoi(const char *nptr);
+size_t		ft_strlen(const char *s);
+int			ft_check_args(int ac, char**av);
 
 
 /* Utils */

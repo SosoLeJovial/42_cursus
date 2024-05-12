@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:40 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/09 13:01:31 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:27:16 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	ft_check_args(int ac, char**av)
 				return (0);
 			j++;
 		}
+		if (ft_atoi(av[i]) < 0)
+			return (0);
 		i++;
 	}
 	return (1);
