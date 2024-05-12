@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:54:45 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/12 19:33:54 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/13 00:20:35 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ t_philo	*init_philo(t_philo *philo, t_fork *fork, size_t size)
 			return (ft_msg(2, "fail creating thread \n"), NULL);
 		philo[i].position = i + 1;
 		philo[i].left_f = &fork[i];
-		philo[i].right_f = &fork[(i + 1) % 5];
+		philo[i].right_f = &fork[(i + 1) % size];
 		i++;
 	}
 	i = 0;
-	while (i < 0)
+	while (i < size)
 	{
 		if (pthread_join(philo[i].philo, NULL) != 0)
 			return (ft_msg(2, "fail creating thread \n"), NULL);
