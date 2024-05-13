@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/12 19:30:28 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:37:47 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ typedef enum STATE
 
 typedef struct s_fork
 {
-	bool	taken;
-	int		position;
+	bool			taken;
+	int				position;
+	pthread_mutex_t	mut_fork;
 }	t_fork;
 
 typedef struct s_philo
@@ -47,7 +48,6 @@ typedef struct s_env
 	int			nb_philo;
 	t_fork		*fork;
 	t_philo		*philo;
-	pthread_t 	*philos;
 	size_t		eat;
 	size_t		die;
 	size_t		sleep;
@@ -58,8 +58,8 @@ void*	routine();
 
 /* Config */
 t_env	*init_table(t_env *table, char **av);
-t_fork	*init_fork(t_fork *fork, size_t size);
-t_philo	*init_philo(t_philo *philo, t_fork *fork, size_t size);
+t_fork	*init_fork(size_t size);
+t_philo	*init_philo(t_fork *fork, size_t size);
 
 /* Parsing */
 int			ft_isdigit(int c);
