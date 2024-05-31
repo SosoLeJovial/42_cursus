@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/13 21:15:17 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:59:35 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,23 @@
 	Command for checking threads while executing : valgrind tool=helgrind
  */
 
-void*	routine()
-{
-	/* while no one died or  */
-	/* Eating */
-	/* Sleeping */
-	/* Thinking */
-	return (NULL);
-}
-
 int main(int ac, char**av)
 {
 	t_env	*table;
 	struct timeval tv;
 	long long time_exact;
 
-	gettimeofday(&tv, NULL);
-	time_exact =  (long long)tv.tv_sec * 1000000LL + tv.tv_sec;
+	if (ac < 5 || !ft_check_args(ac, av))
+		return (ft_msg(2, "Error args!\n"), 1);
+	if (gettimeofday(&tv, NULL))
+		return (ft_msg(2, "Error time!\n"), 1);
+	time_exact = (long long)tv.tv_sec * 1000000LL + tv.tv_sec;
 	printf("time exact: %lld\n", time_exact);
     printf("Seconds since 1/1/1970: %lld\n", time_exact);
 	table = NULL;
-	if (ac < 5 || !ft_check_args(ac, av))
-		return (ft_msg(2, "Error args!\n"), 1);
 	table = init_table(table, av);
 	if (!table)
-		return (ft_msg(2, "bullshit\n"),1);
+		return (ft_msg(2, "bullshit\n"), 1);
 	free(table->philo);
 	free(table->fork);
 	free(table);

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:54:45 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/13 18:06:54 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/30 22:47:00 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ t_env	*init_table(t_env *table, char **av)
 	table = ft_calloc(sizeof(t_env), 1);
 	if (!table)
 		return (0);
+	pthread_mutex_init(&table->env, NULL);
 	table->nb_philo = ft_atoi(av[1]);
 	table->fork = init_fork(table->nb_philo);
 	if (!table->fork)
 		return (NULL);
-	table->philo = init_philo(table->fork, table->nb_philo);
-	if (!table->philo)
-		return (NULL);
 	table->eat = (size_t)ft_atoi(av[2]);
 	table->die = (size_t)ft_atoi(av[3]);
 	table->sleep = (size_t)ft_atoi(av[4]);
+	if (av[5])
+		table->iter = (size_t)ft_atoi(av[5]);
+	table->philo = init_philo(table->fork, table->nb_philo, table);
+	if (!table->philo)
+		return (NULL);
 	return (table);
 }
 
@@ -49,7 +52,7 @@ t_fork	*init_fork(size_t size)
 	return (fork);
 }
 
-t_philo	*init_philo(t_fork *fork, size_t size)
+t_philo	*init_philo(t_fork *fork, size_t size, t_env *env)
 {
 	size_t		i;
 	t_philo 	*philo;
@@ -60,7 +63,7 @@ t_philo	*init_philo(t_fork *fork, size_t size)
 	i = 0;
 	while (i < size)
 	{
-		if (pthread_create(&philo[i].philo, NULL, routine, NULL) != 0)
+		if (pthread_create(&philo[i].philo, NULL, routine, env) != 0)
 			return (ft_msg(2, "fail creating thread \n"), NULL);
 		philo[i].position = i + 1;
 		philo[i].left_f = &fork[i];
