@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:28:00 by tsofien-          #+#    #+#             */
-/*   Updated: 2023/11/27 16:07:18 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/21 01:21:16 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,50 +92,50 @@ char	**ft_split(char const *s, char c)
 	return (tab);
 }
 
-// int main(void)
-// {
-// 	char *s = "eh    oh   la ";
-// 	int	i = 0;
-// 	char c = ' ';
-// 	char ** result;
+int main(void)
+{
+	char *s = "eh    oh   la ";
+	int	i = 0;
+	char c = ' ';
+	char **result;
 
-// 	result = ft_split(s, c);
-// 	while(result[i])
-// 	{
-// 		printf("%s\n", result[i]);
-// 		free(result[i++]);
-// 	}
-// 	free(result[i]);
-// 	free(result);
-// 	return (0);
-// }
+	result = ft_split(s, c);
+	while(result[i])
+	{
+		printf("%s\n", result[i]);
+		free(result[i++]);
+	}
+	free(result[i]);
+	free(result);
+	return (0);
+}
 
-// static size_t	index_start(char const *s, char c)
-// {
-// 	size_t	i;
+static size_t	index_start(char const *s, char c)
+{
+	size_t	i;
 
-// 	i = 0;
-// 	while (s[i] == c)
-// 		i++;
-// 	return (i);
-// }
+	i = 0;
+	while (s[i] == c)
+		i++;
+	return (i);
+}
 
-// static size_t	index_end(char const *s, char c)
-// {
-// 	size_t	i;
+static size_t	index_end(char const *s, char c)
+{
+	size_t	i;
 
-// 	i = ft_strlen(s);
-// 	while (s[i] == c)
-// 		i--;
-// 	return (i);
-// }
+	i = ft_strlen(s);
+	while (s[i] == c)
+		i--;
+	return (i);
+}
 
-// static int	len_s(size_t start, size_t end, char const *s)
-// {
-// 	size_t	len_s;
-// 	size_t	len_total;
+static int	len_s(size_t start, size_t end, char const *s)
+{
+	size_t	len_s;
+	size_t	len_total;
 
-// 	len_s = (size_t) ft_strlen(s);
-// 	len_total = len_s - start - (len_s - end);
-// 	return (len_total);
-// }
+	len_s = (size_t) ft_strlen(s);
+	len_total = len_s - start - (len_s - end);
+	return (len_total);
+}

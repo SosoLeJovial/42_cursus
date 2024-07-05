@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 23:47:07 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/03/26 15:54:46 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:40:29 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	ft_lstadd_back(t_pile **lst, t_pile *new)
 		while (tmp->next != NULL)
 		{
 			tmp = tmp->next;
-		}
 		tmp->next = new;
+		}
 		new->prev = tmp;
 		return (0);
 	}
