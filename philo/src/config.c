@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:54:45 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/30 22:47:00 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:38:43 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ t_env	*init_table(t_env *table, char **av)
 	if (!table)
 		return (0);
 	pthread_mutex_init(&table->env, NULL);
+	pthread_mutex_init(&table->start_mutex, NULL);
+	table->start_flag = false;
+	table->start_time = 0;
 	table->nb_philo = ft_atoi(av[1]);
 	table->fork = init_fork(table->nb_philo);
 	if (!table->fork)
@@ -27,9 +30,6 @@ t_env	*init_table(t_env *table, char **av)
 	table->sleep = (size_t)ft_atoi(av[4]);
 	if (av[5])
 		table->iter = (size_t)ft_atoi(av[5]);
-	table->philo = init_philo(table->fork, table->nb_philo, table);
-	if (!table->philo)
-		return (NULL);
 	return (table);
 }
 
@@ -70,12 +70,19 @@ t_philo	*init_philo(t_fork *fork, size_t size, t_env *env)
 		philo[i].right_f = &fork[(i + 1) % size];
 		i++;
 	}
+	return (philo);
+}
+
+bool	join_thread(t_philo *philo, size_t size)
+{
+	size_t		i;
+
 	i = 0;
 	while (i < size)
 	{
 		if (pthread_join(philo[i].philo, NULL) != 0)
-			return (ft_msg(2, "fail creating thread \n"), NULL);
+			return (ft_msg(2, "fail joining thread\n"), false);
 		i++;
 	}
-	return (philo);
+	return (true);
 }

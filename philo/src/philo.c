@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/30 18:59:35 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/07/03 20:59:23 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,24 @@
 	Command for checking threads while executing : valgrind tool=helgrind
  */
 
-int main(int ac, char**av)
+int	main(int ac, char**av)
 {
-	t_env	*table;
-	struct timeval tv;
-	long long time_exact;
+	t_env		*table;
 
 	if (ac < 5 || !ft_check_args(ac, av))
 		return (ft_msg(2, "Error args!\n"), 1);
-	if (gettimeofday(&tv, NULL))
-		return (ft_msg(2, "Error time!\n"), 1);
-	time_exact = (long long)tv.tv_sec * 1000000LL + tv.tv_sec;
-	printf("time exact: %lld\n", time_exact);
-    printf("Seconds since 1/1/1970: %lld\n", time_exact);
 	table = NULL;
 	table = init_table(table, av);
 	if (!table)
-		return (ft_msg(2, "bullshit\n"), 1);
+		return (ft_msg(2, "Init table fail\n"), 1);
+	table->philo = init_philo(table->fork, table->nb_philo, table);
+	if (!table->philo)
+		return (1);
+	pthread_mutex_lock(&table->start_mutex);
+	table->start_flag = true;
+	pthread_mutex_unlock(&table->start_mutex);
+	if (!join_thread(table->philo, table->nb_philo))
+		return (1);
 	free(table->philo);
 	free(table->fork);
 	free(table);

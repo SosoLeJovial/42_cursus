@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/30 22:24:57 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:33:07 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ typedef enum STATE
 	EATING,
 	SLEEPING,
 }	STATE;
+
+typedef enum MSG
+{
+	DEAD,
+	FORK,
+	EAT,
+	SLEEP,
+	THINK,
+}	MSG;
 
 typedef struct s_fork
 {
@@ -52,15 +61,24 @@ typedef struct s_env
 	size_t			die;
 	size_t			sleep;
 	size_t			iter;
+	bool			start_flag;
+	long long		start_time;
 	pthread_mutex_t	env;
+	pthread_mutex_t	start_mutex;
 } t_env;
 
+/* Routine */
 void*		routine(void	*args);
+
+/* Routine utils */
+void		philo_msg(MSG msg, long time, int position);
+long long	get_current_time(void);
 
 /* Config */
 t_env		*init_table(t_env *table, char **av);
 t_fork		*init_fork(size_t size);
 t_philo		*init_philo(t_fork *fork, size_t size, t_env *env);
+bool		join_thread(t_philo *philo, size_t size);
 
 /* Parsing */
 int			ft_isdigit(int c);
@@ -72,5 +90,4 @@ int			ft_check_args(int ac, char**av);
 void		ft_msg(int fd, char *msg);
 void		*ft_calloc(size_t nmemb, size_t size);
 void		ft_bzero(void *s, size_t n);
-
 #endif
