@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2024/07/03 11:05:26 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/07/24 00:01:30 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,13 +41,13 @@ MAIN			= philo.c
 #                                  Makefile  objs                              #
 ################################################################################
 
-SHELL := /bin/bash
+#SHELL := /bin/bash
+SHELL := /usr/bin/env bash
 
-
-OBJS				= $(addprefix objs/, ${SRCS:$(FILE_EXTENSION)=.o})
-OBJ_MAIN			= $(addprefix objs/, ${MAIN:$(FILE_EXTENSION)=.o})
-DEPS				= $(addprefix objs/, ${SRCS:$(FILE_EXTENSION)=.d})
-DEPS_MAIN			= $(addprefix objs/, ${MAIN:$(FILE_EXTENSION)=.d})
+OBJS				= $(addprefix .objs/, ${SRCS:$(FILE_EXTENSION)=.o})
+OBJ_MAIN			= $(addprefix .objs/, ${MAIN:$(FILE_EXTENSION)=.o})
+DEPS				= $(addprefix .objs/, ${SRCS:$(FILE_EXTENSION)=.d})
+DEPS_MAIN			= $(addprefix .objs/, ${MAIN:$(FILE_EXTENSION)=.d})
 
 ################################################################################
 #                                 Makefile logic                               #
@@ -228,7 +228,7 @@ $(NAME):	${OBJS} ${OBJ_MAIN}
 setup:
 	@$(call save_files_changed)
 
-objs/%.o: 	$(SRCS_PATH)/%$(FILE_EXTENSION)
+.objs/%.o: 	$(SRCS_PATH)/%$(FILE_EXTENSION)
 			@mkdir -p $(dir $@)
 			@$(call display_progress_bar)
 			@$(call run_and_test,$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@ -I$(INCLUDE_PATH))
