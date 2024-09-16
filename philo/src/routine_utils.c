@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:58:49 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/07/03 20:59:38 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/16 22:38:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,19 @@ long long	get_current_time(void)
 		return (ft_msg(2, "Error time!\n"), 1);
 	time = tv.tv_sec * 1000LL + tv.tv_usec / 1000;
 	return (time);
+}
+
+void	custom_wait(long long time_in_ms)
+{
+	long long current_time;
+	long long start;
+
+	start = get_current_time();
+	while (1)
+	{
+		current_time = get_current_time();
+		if ((current_time - start) >= time_in_ms)
+			break ;
+		usleep(500);
+	}
 }

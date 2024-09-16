@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:40 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/13 19:36:22 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:56:32 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	-> time to eat
 	-> time to sleep
 	-> time to think
-	[number of time each philo has to eat]
+	[number of iteration (eating)]
 	
  */
 

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:45:53 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/05/12 16:19:54 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/16 23:19:10 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 void	ft_msg(int fd, char *msg)
 {
-	write(fd, msg, ft_strlen(msg));
+	if (write(fd, msg, ft_strlen(msg) < 1))
+		return ;
 }
 
 int	ft_isdigit(int c)

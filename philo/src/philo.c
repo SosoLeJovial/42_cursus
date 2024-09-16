@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/07/03 20:59:23 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/16 23:13:00 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 	Command for checking threads while executing : valgrind tool=helgrind
  */
 
-int	main(int ac, char**av)
+int	main(int ac, char **av)
 {
-	t_env		*table;
+	t_table		*table;
 
 	if (ac < 5 || !ft_check_args(ac, av))
 		return (ft_msg(2, "Error args!\n"), 1);
@@ -33,7 +33,7 @@ int	main(int ac, char**av)
 	table = init_table(table, av);
 	if (!table)
 		return (ft_msg(2, "Init table fail\n"), 1);
-	table->philo = init_philo(table->fork, table->nb_philo, table);
+	table->philo = init_philo(table->fork, table->nb_philo, table, av);
 	if (!table->philo)
 		return (1);
 	pthread_mutex_lock(&table->start_mutex);
