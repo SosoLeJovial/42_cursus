@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:10:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/07/03 21:00:50 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/08/23 22:35:34 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void*	routine(void *args)
 {
-	t_env	*env;
+	t_env		*env;
+	long long	start;
 
 	env = (t_env *)args;
 	while (1)
@@ -23,7 +24,10 @@ void*	routine(void *args)
 		if (env->start_flag == true)
 		{
 			pthread_mutex_unlock(&env->start_mutex);
-			printf("starting\n");
+			start = get_current_time();
+			usleep(10000);
+			printf("starting:\n");
+			printf("time taken: %lld ms\n", get_current_time() - start);
 			break ;
 		}
 		pthread_mutex_unlock(&env->start_mutex);
