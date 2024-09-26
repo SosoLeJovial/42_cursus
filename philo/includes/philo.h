@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/16 23:23:15 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/26 04:40:15 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_env
 	size_t			eat;
 	size_t			die;
 	size_t			sleep;
-	size_t			iter;
+	int				iter;
 }	t_env;
 
 typedef struct s_fork
@@ -55,6 +55,7 @@ typedef struct s_fork
 typedef struct s_philo
 {
 	int			position;
+	bool		dead;
 	pthread_t	philo;
 	t_fork		*left_f;
 	t_fork		*right_f;
@@ -76,14 +77,15 @@ typedef struct s_table
 void*		routine(void	*args);
 
 /* Routine utils */
-void		philo_msg(MSG msg, long time, int position);
+void		philo_msg(MSG msg, long long time, int position);
 long long	get_current_time(void);
+void		custom_wait(long long time_in_ms);
 
 /* Config */
-t_table		*init_table(t_env *table, char **av);
+t_table		*init_table(t_table *table, char **av);
 t_fork		*init_fork(size_t size);
-t_philo		*init_philo(t_fork *fork, size_t size, t_env *env, char **av);
-t_env		*init_env(t_env *env, char **av);
+t_philo		*init_philo(t_fork *fork, size_t size, t_table *table, char **av);
+int			init_env(t_env **env, char **av);
 bool		join_thread(t_philo *philo, size_t size);
 
 /* Parsing */

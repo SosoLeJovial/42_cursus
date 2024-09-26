@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/16 23:13:00 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/26 01:43:57 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,17 @@ int	main(int ac, char **av)
 	t_table		*table;
 
 	if (ac < 5 || !ft_check_args(ac, av))
-		return (ft_msg(2, "Error args!\n"), 1);
+	{
+		ft_msg(2, "Error args!\n");
+		return (1);
+	}
 	table = NULL;
 	table = init_table(table, av);
 	if (!table)
-		return (ft_msg(2, "Init table fail\n"), 1);
+	{
+		ft_msg(2, "Init table fail\n");
+		return (1);
+	}
 	table->philo = init_philo(table->fork, table->nb_philo, table, av);
 	if (!table->philo)
 		return (1);

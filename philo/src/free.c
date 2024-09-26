@@ -1,46 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 17:32:40 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/25 22:35:32 by tsofien-         ###   ########.fr       */
+/*   Created: 2024/09/25 23:44:30 by tsofien-          #+#    #+#             */
+/*   Updated: 2024/09/26 01:15:38 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-/* 
-	Arguments :
-	-> number of philo 👴
-	-> time to eat
-	-> time to sleep
-	-> time to think
-	[number of iteration (eating)]
-	
- */
+#include <philo.h>
 
-int	ft_check_args(int ac, char**av)
+void	free_all(t_philo *philo, t_fork *fork, t_table)
 {
 	int	i;
-	int	j;
 
-	if (ac < 5)
-		return (0);
-	i = 1;
-	while (i < ac)
+	i = 0;
+	while ((philo[i])
 	{
-		j = 0;
-		while (av[i][j])
+		if (philo)
 		{
-			if (!ft_isdigit(av[i][j]))
-				return (0);
-			j++;
+			if (philo[i]->left_f)
+				pthread_mutex_destroy(philo->left_f)
 		}
-		if (ft_atoi(av[i]) < 0)
-			return (0);
 		i++;
 	}
-	return (1);
 }
