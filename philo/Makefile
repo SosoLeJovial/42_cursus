@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2024/09/17 11:58:47 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/09/27 23:00:59 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,8 @@ MAIN			= philo.c
 #                                  Makefile  objs                              #
 ################################################################################
 
-SHELL := /bin/bash
-#SHELL := /usr/bin/env bash
+#SHELL := /bin/bash
+SHELL := /usr/bin/env bash
 
 OBJS				= $(addprefix .objs/, ${SRCS:$(FILE_EXTENSION)=.o})
 OBJ_MAIN			= $(addprefix .objs/, ${MAIN:$(FILE_EXTENSION)=.o})

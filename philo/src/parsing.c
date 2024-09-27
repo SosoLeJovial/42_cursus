@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:40 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/25 22:35:32 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/27 22:42:59 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 	-> time to sleep
 	-> time to think
 	[number of iteration (eating)]
-	
  */
 
 int	ft_check_args(int ac, char**av)

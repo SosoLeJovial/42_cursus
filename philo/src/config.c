@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:54:45 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/26 04:41:02 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/27 23:43:18 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_table *init_table(t_table *table, char **av)
 	if (!table)
 		return (0);
 	table->start_flag = false;
+	table->death = false;
 	table->start_time = 0;
 	table->nb_philo = ft_atoi(av[1]);
 	table->fork = init_fork(table->nb_philo);
@@ -39,9 +40,6 @@ t_fork *init_fork(size_t size)
 	i = 0;
 	while(i < size)
 	{
-		pthread_mutex_destroy(&fork[i].mut_fork);
-		//fork[i].mut_fork = NULL;
-		fork[i].taken = false;
 		if (pthread_mutex_init(&fork[i].mut_fork, NULL) != 0)
 			return (NULL);
 		fork[i].position = i + 1;
@@ -57,12 +55,12 @@ int	init_env(t_env **env, char **av)
 		return (0);
 	(*env)->nb_philo = ft_atoi(av[1]);
 	(*env)->eat = (size_t) ft_atoi(av[2]);
-	(*env)->die = (size_t) ft_atoi(av[3]);
-	(*env)->sleep = (size_t) ft_atoi(av[4]);
+	(*env)->die = (size_t) ft_atoi(av[2]);
+	(*env)->sleep = (size_t) ft_atoi(av[3]);
+	(*env)->think = (size_t) ft_atoi(av[4]);
 	(*env)->iter = -1;
 	if (av[5])
 		(*env)->iter = ft_atoi(av[5]);
-
 	return (1);
 }
 
@@ -77,15 +75,17 @@ t_philo	*init_philo(t_fork *fork, size_t size, t_table *table, char **av)
 	i = 0;
 	while (i < size)
 	{
-		if (pthread_create(&philo[i].philo, NULL, routine, table) != 0)
-			return (ft_msg(2, "fail creating thread \n"), NULL);
 		philo[i].dead = false;
+		philo[i].last_meal = 0;
+		philo[i].table = table;
 		philo[i].position = i + 1;
 		philo[i].left_f = &fork[i];
 		philo[i].right_f = &fork[(i + 1) % size];
 		philo[i].right_f = &fork[(i + 1) % size];
 		if (!init_env(&(philo[i].data), av))
 			return (ft_msg(2, "fail creating philo's env \n"), NULL);
+		if (pthread_create(&philo[i].philo, NULL, routine, &philo[i]) != 0)
+			return (ft_msg(2, "fail creating thread \n"), NULL);
 		i++;
 	}
 	return (philo);

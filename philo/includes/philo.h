@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/26 04:40:15 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/27 23:26:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <sys/time.h>
+
+typedef struct s_table t_table;
 
 typedef enum STATE
 {
@@ -42,24 +44,26 @@ typedef struct s_env
 	size_t			eat;
 	size_t			die;
 	size_t			sleep;
+	size_t			think;
 	int				iter;
 }	t_env;
 
 typedef struct s_fork
 {
-	bool			taken;
 	int				position;
 	pthread_mutex_t	mut_fork;
 }	t_fork;
 
 typedef struct s_philo
 {
-	int			position;
-	bool		dead;
-	pthread_t	philo;
-	t_fork		*left_f;
-	t_fork		*right_f;
-	t_env		*data;
+	int					position;
+	long long			last_meal;
+	bool				dead;
+	t_table				*table;
+	pthread_t			philo;
+	t_fork				*left_f;
+	t_fork				*right_f;
+	t_env				*data;
 }	t_philo;
 
 typedef struct s_table
@@ -68,18 +72,24 @@ typedef struct s_table
 	t_philo			*philo;
 	t_fork			*fork;
 	bool			start_flag;
+	bool			death;
 	long long		start_time;
 	pthread_mutex_t	table_mut;
 	pthread_mutex_t	start_mutex;
 }	t_table;
 
 /* Routine */
-void*		routine(void	*args);
+void		*routine(void	*args);
+bool		take_fork(t_philo *philo, long long start);
+int			loop_philo(int iter, t_philo *philo, long long start);
+bool		check_philo_state(t_table *table);
+
 
 /* Routine utils */
 void		philo_msg(MSG msg, long long time, int position);
-long long	get_current_time(void);
 void		custom_wait(long long time_in_ms);
+int			check_death(t_table *table, t_philo *philo, long long start);
+long long	get_current_time(void);
 
 /* Config */
 t_table		*init_table(t_table *table, char **av);
