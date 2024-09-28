@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:58:49 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/27 23:53:10 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/28 06:01:39 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	philo_msg(MSG msg, long long time, int position)
 {
 	if (msg == DEAD)
-		printf("%lld ms %d died\n", time, position);
+		printf("%lld %d died\n", time, position);
 	else if (msg == FORK)
 		printf("%lld %d has taken a fork\n", time, position);
 	else if (msg == EAT)
@@ -66,7 +66,6 @@ int	check_death(t_table *table, t_philo *philo, long long start)
 	{
 		philo_msg(DEAD, get_current_time() - start, philo->position);
 		death = true;
-		return (death);
 	}
 	if (pthread_mutex_lock(&table->table_mut) != 0)
 		return (-1);

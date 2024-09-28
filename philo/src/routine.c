@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:10:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/27 23:52:06 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/09/28 06:02:17 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,20 @@ int	loop_philo(int iter, t_philo *philo, long long start)
 	int				i;
 
 	i = 0;
-	while (i++ < iter)
+	while (i++ != iter)
 	{
-		if (take_fork(philo, start) != 0)
+		if (!take_fork(philo, start) != 0)
 			return (-1);
+		if (check_death(philo->table, philo, start))
+			return (1);
 		philo_msg(SLEEP, get_current_time() - start, philo->position);
+		if (check_death(philo->table, philo, start))
+			return (1);
 		custom_wait(philo->data->sleep);
 		philo_msg(THINK, get_current_time() - start, philo->position);
-		custom_wait(philo->data->think);
 		if (check_death(philo->table, philo, start))
 			break ;
-	}
-	if (check_death(philo->table, philo, start))
-	{
-		pthread_mutex_lock(&philo->table->start_mutex);
-		philo->table->start_flag = false;
-		pthread_mutex_unlock(&philo->table->start_mutex);
+		custom_wait(philo->data->think);
 	}
 	return (1);
 }
