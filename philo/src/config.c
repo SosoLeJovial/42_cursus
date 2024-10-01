@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:54:45 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/27 23:43:18 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:03:14 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ t_table *init_table(t_table *table, char **av)
 		return (0);
 	table->start_flag = false;
 	table->death = false;
+	table->print = true;
 	table->start_time = 0;
 	table->nb_philo = ft_atoi(av[1]);
 	table->fork = init_fork(table->nb_philo);
 	if (!table->fork)
 		return (NULL);
 	pthread_mutex_init(&table->start_mutex, NULL);
+	pthread_mutex_init(&table->death_mut, NULL);
+	pthread_mutex_init(&table->print_mut, NULL);
 	pthread_mutex_init(&table->table_mut, NULL);
 	return (table);
 }
@@ -42,6 +45,7 @@ t_fork *init_fork(size_t size)
 	{
 		if (pthread_mutex_init(&fork[i].mut_fork, NULL) != 0)
 			return (NULL);
+		fork[i].taken = false;
 		fork[i].position = i + 1;
 		i++;
 	}
@@ -54,10 +58,10 @@ int	init_env(t_env **env, char **av)
 	if (!*env)
 		return (0);
 	(*env)->nb_philo = ft_atoi(av[1]);
-	(*env)->eat = (size_t) ft_atoi(av[2]);
-	(*env)->die = (size_t) ft_atoi(av[2]);
-	(*env)->sleep = (size_t) ft_atoi(av[3]);
-	(*env)->think = (size_t) ft_atoi(av[4]);
+	(*env)->die = ft_atoi(av[2]);
+	(*env)->eat = ft_atoi(av[3]);
+	(*env)->sleep = ft_atoi(av[4]);
+	(*env)->think = ft_atoi(av[3]);
 	(*env)->iter = -1;
 	if (av[5])
 		(*env)->iter = ft_atoi(av[5]);
@@ -76,12 +80,14 @@ t_philo	*init_philo(t_fork *fork, size_t size, t_table *table, char **av)
 	while (i < size)
 	{
 		philo[i].dead = false;
+		philo[i].state = START;
 		philo[i].last_meal = 0;
 		philo[i].table = table;
 		philo[i].position = i + 1;
 		philo[i].left_f = &fork[i];
-		philo[i].right_f = &fork[(i + 1) % size];
-		philo[i].right_f = &fork[(i + 1) % size];
+		philo[i].right_f = &fork[(i + 1) % 5];
+		if (pthread_mutex_init(&philo[i].philo_mut, NULL))
+			return (ft_msg(2, "fail creating philo's mutex \n"), NULL);
 		if (!init_env(&(philo[i].data), av))
 			return (ft_msg(2, "fail creating philo's env \n"), NULL);
 		if (pthread_create(&philo[i].philo, NULL, routine, &philo[i]) != 0)

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/27 23:26:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:01:33 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@
 
 typedef struct s_table t_table;
 
-typedef enum STATE
+typedef enum state
 {
+	START,
 	THINKING,
 	EATING,
 	SLEEPING,
-}	STATE;
+}	state;
 
 typedef enum MSG
 {
@@ -41,16 +42,17 @@ typedef enum MSG
 typedef struct s_env
 {
 	int				nb_philo;
-	size_t			eat;
-	size_t			die;
-	size_t			sleep;
-	size_t			think;
+	long long		eat;
+	long long		die;
+	long long		sleep;
+	long long		think;
 	int				iter;
 }	t_env;
 
 typedef struct s_fork
 {
 	int				position;
+	bool			taken;
 	pthread_mutex_t	mut_fork;
 }	t_fork;
 
@@ -59,11 +61,14 @@ typedef struct s_philo
 	int					position;
 	long long			last_meal;
 	bool				dead;
+	bool				fork;
+	state				state;
 	t_table				*table;
 	pthread_t			philo;
 	t_fork				*left_f;
 	t_fork				*right_f;
 	t_env				*data;
+	pthread_mutex_t		philo_mut;
 }	t_philo;
 
 typedef struct s_table
@@ -73,8 +78,11 @@ typedef struct s_table
 	t_fork			*fork;
 	bool			start_flag;
 	bool			death;
+	bool			print;
 	long long		start_time;
 	pthread_mutex_t	table_mut;
+	pthread_mutex_t	print_mut;
+	pthread_mutex_t	death_mut;
 	pthread_mutex_t	start_mutex;
 }	t_table;
 
@@ -83,13 +91,14 @@ void		*routine(void	*args);
 bool		take_fork(t_philo *philo, long long start);
 int			loop_philo(int iter, t_philo *philo, long long start);
 bool		check_philo_state(t_table *table);
-
+bool		eating(t_philo *philo, long long start);
 
 /* Routine utils */
-void		philo_msg(MSG msg, long long time, int position);
+void		philo_msg(MSG msg, long long time, int position, t_philo *philo);
 void		custom_wait(long long time_in_ms);
-int			check_death(t_table *table, t_philo *philo, long long start);
+int			check_death(t_table *table);
 long long	get_current_time(void);
+bool		check_last_meal(t_table *table, int i);
 
 /* Config */
 t_table		*init_table(t_table *table, char **av);

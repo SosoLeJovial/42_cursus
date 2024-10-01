@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/09/28 03:39:11 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:09:23 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,41 @@ int	main(int ac, char **av)
 	free(table->fork);
 	free(table);
 	return (0);
+}
+
+bool	check_philo_state(t_table *table)
+{
+	int	i;
+
+	while (1)
+	{
+		i = 0;
+		while (i < table->nb_philo)
+		{
+			if (check_last_meal(table, i))
+			{
+				pthread_mutex_lock(&table->table_mut);
+				table->death = true;
+				pthread_mutex_unlock(&table->table_mut);
+				pthread_mutex_lock(&table->print_mut);
+				table->print = false;
+				pthread_mutex_unlock(&table->print_mut);
+			}
+			else
+			{
+				i++;
+				continue ;
+			}
+		}
+	}
+	return (false);
+}	 
+
+bool	check_last_meal(t_table *table, int i)
+{
+	pthread_mutex_lock(&table->philo->philo_mut + i);
+	if (table->philo->last_meal - table->start_time > table->philo->data->die)
+		return (pthread_mutex_unlock(&table->philo->philo_mut + i), true);
+	pthread_mutex_unlock(&table->philo->philo_mut + i);
+	return (false);
 }
