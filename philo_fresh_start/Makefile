@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2024/10/02 07:55:57 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/10/02 11:34:54 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS_PATH		= ./src
 
 INCLUDE_PATH	= ./includes
 
-SRCS			= parsing.c utils.c config.c routine.c routine_utils.c philo_helpers.c
+SRCS			= parsing.c utils.c config.c free.c
 
 MAIN			= philo.c
 
@@ -41,11 +41,13 @@ MAIN			= philo.c
 #                                  Makefile  objs                              #
 ################################################################################
 
-#SHELL := /bin/bash
+# SHELL := /bin/bash
 SHELL := /usr/bin/env bash
 
 OBJS				= $(addprefix .objs/, ${SRCS:$(FILE_EXTENSION)=.o})
 OBJ_MAIN			= $(addprefix .objs/, ${MAIN:$(FILE_EXTENSION)=.o})
+DEPS				= $(addprefix .objs/, ${SRCS:$(FILE_EXTENSION)=.d})
+DEPS_MAIN			= $(addprefix .objs/, ${MAIN:$(FILE_EXTENSION)=.d})
 
 ################################################################################
 #                                 Makefile logic                               #
@@ -232,7 +234,7 @@ setup:
 			@$(call run_and_test,$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@ -I$(INCLUDE_PATH))
 
 clean:		header
-			@rm -rf objs objs_tests
+			@rm -rf .objs/ objs_tests
 			@printf "%-53b%b" "$(COM_COLOR)clean:" "$(OK_COLOR)[✓]$(NO_COLOR)\n"
 
 fclean:		header clean

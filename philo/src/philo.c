@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/01 13:09:23 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/02 06:15:33 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 int	main(int ac, char **av)
 {
 	t_table		*table;
+	t_philo		*philo;
 
 	if (ac < 5 || !ft_check_args(ac, av))
 		return (ft_msg(2, "Error args!\n"), 1);
@@ -33,22 +34,22 @@ int	main(int ac, char **av)
 	table = init_table(table, av);
 	if (!table)
 		return (ft_msg(2, "Init table fail\n"), 1);
-	table->philo = init_philo(table->fork, table->nb_philo, table, av);
-	if (!table->philo)
+	philo = init_philo(table->fork, table->nb_philo, table, av);
+	if (!philo)
 		return (1);
 	pthread_mutex_lock(&table->start_mutex);
 	table->start_flag = true;
 	pthread_mutex_unlock(&table->start_mutex);
-	if (!join_thread(table->philo, table->nb_philo))
+	if (!detach_thread(philo, table->nb_philo))
 		return (1);
-	check_philo_state(table);
-	free(table->philo);
+	check_philo_state(table, philo, av);
+	free(philo);
 	free(table->fork);
 	free(table);
 	return (0);
 }
 
-bool	check_philo_state(t_table *table)
+bool	check_philo_state(t_table *table, t_philo *philo, char **av)
 {
 	int	i;
 
@@ -57,7 +58,7 @@ bool	check_philo_state(t_table *table)
 		i = 0;
 		while (i < table->nb_philo)
 		{
-			if (check_last_meal(table, i))
+			if (check_last_meal(&philo[i], table, av))
 			{
 				pthread_mutex_lock(&table->table_mut);
 				table->death = true;
@@ -68,6 +69,7 @@ bool	check_philo_state(t_table *table)
 			}
 			else
 			{
+				break ;
 				i++;
 				continue ;
 			}
@@ -75,12 +77,18 @@ bool	check_philo_state(t_table *table)
 	}
 	return (false);
 }	 
-
-bool	check_last_meal(t_table *table, int i)
+bool	check_last_meal(t_philo *philo, t_table *table, char **av)
 {
-	pthread_mutex_lock(&table->philo->philo_mut + i);
-	if (table->philo->last_meal - table->start_time > table->philo->data->die)
-		return (pthread_mutex_unlock(&table->philo->philo_mut + i), true);
-	pthread_mutex_unlock(&table->philo->philo_mut + i);
+	long long	meal;
+	long long	start;
+
+	pthread_mutex_lock(&philo->philo_mut);
+	meal = philo->last_meal;
+	pthread_mutex_unlock(&philo->philo_mut);
+	pthread_mutex_lock(&table->start_mutex);
+	start = table->start_time;
+	pthread_mutex_unlock(&table->start_mutex);
+	if (meal - start > ft_atoi(av[3]))
+		return (true);
 	return (false);
 }

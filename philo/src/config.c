@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:54:45 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/01 13:03:14 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/02 06:10:18 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,15 @@ t_philo	*init_philo(t_fork *fork, size_t size, t_table *table, char **av)
 	return (philo);
 }
 
-bool	join_thread(t_philo *philo, size_t size)
+bool	detach_thread(t_philo *philo, size_t size)
 {
 	size_t		i;
 
 	i = 0;
 	while (i < size)
 	{
-		if (pthread_join(philo[i].philo, NULL) != 0)
-			return (ft_msg(2, "fail joining thread\n"), false);
+		if (pthread_detach(philo[i].philo) != 0)
+			return (ft_msg(2, "fail detach thread\n"), false);
 		i++;
 	}
 	return (true);

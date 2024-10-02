@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/01 13:01:33 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/02 06:15:21 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,32 @@ typedef struct s_table
 
 /* Routine */
 void		*routine(void	*args);
-bool		take_fork(t_philo *philo, long long start);
+bool		take_fork(t_philo *philo, long long start, int position);
+void		put_down_fork(t_philo *philo, int position);
 int			loop_philo(int iter, t_philo *philo, long long start);
-bool		check_philo_state(t_table *table);
-bool		eating(t_philo *philo, long long start);
+bool		check_philo_state(t_table *table, t_philo *philo, char **av);
+bool		eating(t_philo *philo, long long start, int position);
+
+
+/* Helpers */
+void		update_state_philo(t_philo *philo, state philo_state);
+void		update_last_meal(t_philo *philo, long long meal);
+void		update_philo_fork(t_philo *philo, bool taken);
+
 
 /* Routine utils */
 void		philo_msg(MSG msg, long long time, int position, t_philo *philo);
 void		custom_wait(long long time_in_ms);
 int			check_death(t_table *table);
 long long	get_current_time(void);
-bool		check_last_meal(t_table *table, int i);
+bool		check_last_meal(t_philo *philo, t_table *table, char **av);
 
 /* Config */
 t_table		*init_table(t_table *table, char **av);
 t_fork		*init_fork(size_t size);
 t_philo		*init_philo(t_fork *fork, size_t size, t_table *table, char **av);
 int			init_env(t_env **env, char **av);
-bool		join_thread(t_philo *philo, size_t size);
+bool		detach_thread(t_philo *philo, size_t size);
 
 /* Parsing */
 int			ft_isdigit(int c);
