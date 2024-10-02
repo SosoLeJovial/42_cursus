@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:45:57 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 11:37:04 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:59:55 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_table	*init_table(char **av)
 {
 	t_table	*table;
-	
+
 	table = ft_calloc(sizeof(t_table), 1);
 	if (!table)
 		return (NULL);
@@ -27,6 +27,8 @@ t_table	*init_table(char **av)
 	if (av[5])
 		table->nb_of_meals = ft_atoi(av[5]);
 	table->sim_over = false;
+	table->start = false;
+	table->print_sim = true;
 	table->forks = init_fork(table->nb_of_philo);
 	if (!table->forks)
 		return (free_table(&table), NULL);
@@ -41,7 +43,7 @@ bool	mutex_init(t_table *table)
 	table->print_mut = true;
 	if (pthread_mutex_init(&table->print, NULL))
 		table->print_mut = false;
-	if(!table->sim_mut || !table->print_mut)
+	if (!table->sim_mut || !table->print_mut)
 		return (false);
 	return (true);
 }
@@ -83,7 +85,7 @@ t_fork	*init_fork(int size)
 	if (!fork)
 		return (NULL);
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
 		fork[i].mut_init = true;
 		if (pthread_mutex_init(&fork[i].mut_fork, NULL) != 0)

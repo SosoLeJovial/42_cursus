@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2024/10/02 11:34:54 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/10/02 17:08:38 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,13 @@ SRCS_PATH		= ./src
 
 INCLUDE_PATH	= ./includes
 
-SRCS			= parsing.c utils.c config.c free.c
+SRCS			= parsing.c \
+				  utils.c \
+				  config.c \
+				  free.c \
+				  routine.c \
+				  time.c \
+				  routine_utils.c \
 
 MAIN			= philo.c
 

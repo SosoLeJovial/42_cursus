@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 10:11:39 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 11:40:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:44:51 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,26 @@ void	free_table(t_table **table)
 		pthread_mutex_destroy(&(*table)->sim);
 	if ((*table)->print_mut)
 		pthread_mutex_destroy(&(*table)->print);
-	free_fork((*table)->forks, *table);
-	free(*table);
+	if ((*table)->philo)
+		free_philo((*table)->philo);
+	if ((*table)->forks)
+		free_fork((*table)->forks, *table);
+	if (*table)
+		free(*table);
 }
 
-void	free_philo(t_philo *philo)
+void	free_philo(t_philo **philo)
 {
 	int	i;
 
 	i = 0;
-	while (i < philo->table->nb_of_philo)
+	while (i < (*philo)->table->nb_of_philo)
 	{
-		pthread_mutex_destroy(&philo[i].meal);
+		if ((*philo)[i].mut_meal)	
+			pthread_mutex_destroy(&(*philo)[i].meal);
 		i++;
 	}
-	free(philo);
+	free(*philo);
 }
 
 void	free_fork(t_fork *fork, t_table *table)
@@ -47,4 +52,33 @@ void	free_fork(t_fork *fork, t_table *table)
 		i++;
 	}
 	free(fork);
+}
+
+void	end_sim(t_table **table, t_philo *philo, int j)
+{
+	int	i;
+
+
+	pthread_mutex_lock(&(*table)->sim);
+	(*table)->start = false;
+	(*table)->sim_over = true;
+	pthread_mutex_unlock(&(*table)->sim);
+	i = j;
+	while (i >= 0)
+	{
+		printf("Joining thread %d\n", i);
+		pthread_join(philo[i].thread, NULL);
+		i--;
+	}
+}
+
+
+void	start_sim(t_table **table)
+{
+	pthread_mutex_lock(&(*table)->print);
+	(*table)->print_sim = true;
+	pthread_mutex_unlock(&(*table)->print);
+	pthread_mutex_lock(&(*table)->sim);
+	(*table)->start = true;
+	pthread_mutex_unlock(&(*table)->sim);	
 }

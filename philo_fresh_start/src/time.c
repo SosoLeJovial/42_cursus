@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:29:47 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 07:43:31 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:43:28 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ long	get_current_time(void)
 
 void	custom_wait(long time_in_ms)
 {
-	long current_time;
-	long time_remaining;
-	long start;
+	long	current_time;
+	long	time_remaining;
+	long	start;
 
 	start = get_current_time();
 	while (1)
@@ -41,4 +41,31 @@ void	custom_wait(long time_in_ms)
 		else
 			usleep(500);
 	}
+}
+
+void	ft_msg(int fd, char *msg)
+{
+	if (write(fd, msg, ft_strlen(msg)))
+		return ;
+}
+
+void	philo_msg(t_state msg, long time, int position, t_philo *philo)
+{
+	pthread_mutex_lock(&philo->table->sim);
+	if (!philo->table->start)
+	{
+		pthread_mutex_unlock(&philo->table->sim);
+		return ;
+	}
+	if (msg == DEAD)
+		printf("%ld %d died\n", time, position);
+	else if (msg == FORK)
+		printf("%ld %d has taken a fork\n", time, position);
+	else if (msg == EATING)
+		printf("%ld %d is eating\n", time, position);
+	else if (msg == SLEEPING)
+		printf("%ld %d is sleeping\n", time, position);
+	else if (msg == THINKING)
+		printf("%ld %d is thinking\n", time, position);
+	pthread_mutex_unlock(&philo->table->sim);
 }

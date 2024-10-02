@@ -6,17 +6,17 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:40 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 06:24:01 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:09:34 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-/* 
+/*  
 	Arguments :
 	-> number of philo 👴
+	-> time to die
 	-> time to eat
 	-> time to sleep
-	-> time to think
 	[number of iteration (eating)]
  */
 

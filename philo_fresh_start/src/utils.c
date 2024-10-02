@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:45:53 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 06:26:14 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:32:39 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	ft_bzero(ptr, nmemb * size);
 	return (ptr);
-}
-
-void	ft_msg(int fd, char *msg)
-{
-	write(fd, msg, ft_strlen(msg));
 }
 
 int	ft_isdigit(int c)
