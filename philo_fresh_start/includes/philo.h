@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 17:22:24 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:34:40 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ void				start_sim(t_table **table);
 void				philo_msg(t_state msg, long time, int position,\
 					t_philo *philo);
 void				update_last_meal(t_philo *philo);
-bool				check_dead(t_table *table);
+// bool				check_dead(t_table *table);
+bool	check_dead(t_table *table, t_philo *philo);
+
 
 /* Time */
 void				custom_wait(long time_in_ms);

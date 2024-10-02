@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:26:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 17:47:11 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:54:05 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	main(int ac, char **av)
 	if (!init_env(&philo, &table, av, &nb_thread))
 		return (ft_msg(2, "Error init program!\n"), 1);
 	start_sim(&table);
-	while (!check_dead(table))
-		;
-	printf("reach mdrrr\n");
+	// while (!check_dead(table, philo))
+	// 	;
+	usleep(300000);
 	end_sim(&table, philo, nb_thread - 1);
 	free_table(&table);
 	return (0);
