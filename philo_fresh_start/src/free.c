@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 10:11:39 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 03:46:52 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:13:33 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,4 @@ void	free_fork(t_fork *fork, t_table *table)
 		i++;
 	}
 	free(fork);
-}
-
-void	end_sim(t_table **table, t_philo *philo, int j)
-{
-	int	i;
-
-	pthread_mutex_lock(&(*table)->sim);
-	(*table)->start = false;
-	(*table)->sim_over = true;
-	pthread_mutex_unlock(&(*table)->sim);
-	i = j;
-	while 	(i >= 0)
-	{
-		pthread_join(philo[i].thread, NULL);
-		i--;
-	}
-}
-
-void	start_sim(t_table **table)
-{
-	pthread_mutex_lock(&(*table)->print);
-	(*table)->print_sim = true;
-	pthread_mutex_unlock(&(*table)->print);
-	pthread_mutex_lock(&(*table)->sim);
-	(*table)->start = true;
-	pthread_mutex_unlock(&(*table)->sim);	
 }

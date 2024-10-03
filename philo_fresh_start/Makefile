@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2024/10/02 18:25:19 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/10/03 19:19:15 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS			= parsing.c \
 				  routine.c \
 				  time.c \
 				  routine_utils.c \
+				  monitor.c \
 
 MAIN			= philo.c
 

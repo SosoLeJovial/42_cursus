@@ -6,11 +6,30 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:01:51 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 02:55:08 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:18:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+bool	waiting_all(t_philo *philo)
+{
+	while (1)
+	{
+		pthread_mutex_lock(&philo->table->thread_mut);
+		if (philo->table->thread_init == 1)
+		{
+			pthread_mutex_unlock(&philo->table->thread_mut);
+			return (true);
+		}
+		else if (philo->table->thread_init == -1)
+			break ;
+		pthread_mutex_unlock(&philo->table->thread_mut);
+		usleep(50);
+	}
+	pthread_mutex_unlock(&philo->table->thread_mut);
+	return (false);
+}
 
 void	update_last_meal(t_philo *philo)
 {
@@ -19,34 +38,20 @@ void	update_last_meal(t_philo *philo)
 	pthread_mutex_unlock(&philo->meal);
 }
 
-bool	check_dead(t_table *table, t_philo *philo)
+void	update_state_philo(t_philo *philo, t_state state)
 {
-	long time;
-	int i;
+	pthread_mutex_lock(&philo->meal);
+	philo->state = state;
+	pthread_mutex_unlock(&philo->meal);
+}
 
-	while (1)
-	{
-		i = 0;
-		while (i < table->nb_of_philo)
-		{
-			time = get_current_time();
-			pthread_mutex_lock(&philo[i].meal);
-			if (philo[i].last_meal && time - philo[i].last_meal > table->time_to_die)
-			{
-				table->start = false;
-				table->sim_over = false;
-				philo_msg(DEAD, time - table->start_time, philo[i].id, &philo[i]);
-				pthread_mutex_unlock(&philo[i].meal);
-				return (true);
-			}
-			pthread_mutex_unlock(&philo[i].meal);
-			i++;
-			usleep(100);
-		}
-		if (get_current_time() - table->start_time > 3000)
-		{
-			return (true);
-		}	
-	}
-	return (false);
+t_state	philo_state(t_philo *philo)
+{
+	t_state	ret;
+
+	pthread_mutex_lock(&philo->meal);
+	
+	ret = philo->state;
+	pthread_mutex_unlock(&philo->meal);
+	return (ret);
 }

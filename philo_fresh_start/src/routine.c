@@ -6,15 +6,11 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:42:34 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 03:43:13 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:39:22 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static void	eat_sleep_routine(t_philo *philo, long start, int id);
-static void	update_thread_init(t_philo *philo);
-bool	waiting_all(t_philo *philo);
 
 void	*routine(void *arg)
 {
@@ -24,76 +20,103 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	id = philo->id;
-	// update_thread_init(philo);
 	if (!waiting_all(philo))
 		return (NULL);
-	printf("Thread %d is rdy\n", philo->id);
-	start = get_current_time();	
+	start = get_current_time();
+	pthread_mutex_lock(&philo->table->sim);
+	philo->table->start_time = start;
+	pthread_mutex_unlock(&philo->table->sim);
+	// printf("Thread %d is rdy start at  %ld\n", philo->id, start);
 	eat_sleep_routine(philo, start, id);
 	return (NULL);
 }
 
-bool	waiting_all(t_philo *philo)
-{
-	while (1)
-	{
-		pthread_mutex_lock(&philo->table->thread_mut);
-		if (philo->table->thread_init == 1)
-		{
-			pthread_mutex_unlock(&philo->table->thread_mut);
-			return (true);
-		}
-		else if (philo->table->thread_init == -1)
-			break ;
-		pthread_mutex_unlock(&philo->table->thread_mut);
-		usleep(50);
-	}
-	pthread_mutex_unlock(&philo->table->thread_mut);
-	return (false);
-}
-
-static void	update_thread_init(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->meal);
-	philo->table->thread_init++;
-	pthread_mutex_unlock(&philo->meal);
-}
-
-static void	eat_sleep_routine(t_philo *philo, long start, int id)
+void	eat_sleep_routine(t_philo *philo, long start, int id)
 {
 	int	size;
 	int	i;
 	
 	i = 0;
 	size = philo->table->nb_of_meals;
+	update_last_meal(philo);
 	while (!check_sim(philo) && i++ != size)
 	{
-		philo_msg(EATING, get_current_time() - start, id, philo);
-		custom_wait(philo->table->time_to_eat);
-		update_last_meal(philo);
+		if (!is_eating(philo, id, start))
+		{
+			if (philo_state(philo) != THINKING)
+			{
+				philo_msg(THINKING, get_current_time() - start, id, philo);
+				update_state_philo(philo, THINKING);
+			}
+			usleep(50);
+			continue ;
+		}
+		if (check_sim(philo)) 
+			break ;
 		philo_msg(SLEEPING, get_current_time() - start, id, philo);
 		custom_wait(philo->table->time_to_sleep);
 	}
 }
 
-bool	check_sim(t_philo *philo)
+bool	take_fork(t_philo *philo, bool direction)
 {
-	bool	ret;
-
-	ret = false;
-	pthread_mutex_lock(&philo->table->sim);
-	if (philo->table->sim_over)
-		ret = true;
-	pthread_mutex_unlock(&philo->table->sim);
-	return (ret);
+	if (direction)
+	{
+		pthread_mutex_lock(&philo->left_fork->mut_fork);
+		if (philo->left_fork->taken)
+			return (pthread_mutex_unlock(&philo->left_fork->mut_fork));
+		philo->left_fork->taken = true;
+		pthread_mutex_unlock(&philo->left_fork->mut_fork);
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->right_fork->mut_fork);
+		if (philo->right_fork->taken)
+			return (pthread_mutex_unlock(&philo->right_fork->mut_fork));
+		philo->right_fork->taken = true;
+		pthread_mutex_unlock(&philo->right_fork->mut_fork);
+	}
+	return (true);
 }
 
-bool	take_fork_left(t_philo *philo)
+void	put_down_fork(t_philo *philo, bool direction)
 {
-	pthread_mutex_lock(&philo->left_fork->mut_fork);
-	if (philo->left_fork->taken)
-		return (pthread_mutex_unlock(&philo->left_fork->mut_fork));
-	philo->left_fork->taken = true;
-	pthread_mutex_unlock(&philo->left_fork->mut_fork);
+	if (direction)
+	{
+		pthread_mutex_lock(&philo->left_fork->mut_fork);
+		philo->left_fork->taken = false;
+		pthread_mutex_unlock(&philo->left_fork->mut_fork);
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->right_fork->mut_fork);
+		philo->right_fork->taken = false;
+		pthread_mutex_unlock(&philo->right_fork->mut_fork);
+	}
+}
+
+bool	is_eating(t_philo *philo, int id, long start)
+{
+	if (id % 2)
+	{
+		if (!take_fork(philo, true))
+			return (false);
+		if (!take_fork(philo, false))
+			return (put_down_fork(philo, true), false);
+	}
+	else
+	{
+		if (!take_fork(philo,false))
+			return (false);
+		if (!take_fork(philo, true))
+			return (put_down_fork(philo, false), false);
+	}
+	philo_msg(FORK, get_current_time() - start, id, philo);
+	philo_msg(FORK, get_current_time() - start, id, philo);
+	philo_msg(EATING, get_current_time() - start, id, philo);
+	custom_wait(philo->table->time_to_eat);
+	put_down_fork(philo, true);
+	put_down_fork(philo, false);
+	update_last_meal(philo);
 	return (true);
 }

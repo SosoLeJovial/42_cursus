@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:29:47 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 03:14:07 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:06:53 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_msg(int fd, char *msg)
 		return ;
 }
 
-void	philo_msg(t_state msg, long time, int position, t_philo *philo)
+void	philo_msg(t_state msg, long time, int id, t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->print);
 	if (!philo->table->print_sim)
@@ -58,14 +58,14 @@ void	philo_msg(t_state msg, long time, int position, t_philo *philo)
 		return ;
 	}
 	if (msg == DEAD)
-		printf("%ld %d died\n", time, position);
+		printf("%ld %d died\n", time, id);
 	else if (msg == FORK)
-		printf("%ld %d has taken a fork\n", time, position);
+		printf("%ld %d has taken a fork\n", time, id);
 	else if (msg == EATING)
-		printf("%ld %d is eating\n", time, position);
+		printf("%ld %d is eating\n", time, id);
 	else if (msg == SLEEPING)
-		printf("%ld %d is sleeping\n", time, position);
+		printf("%ld %d is sleeping\n", time, id);
 	else if (msg == THINKING)
-		printf("%ld %d is thinking\n", time, position);
+		printf("%ld %d is thinking\n", time, id);
 	pthread_mutex_unlock(&philo->table->print);
 }

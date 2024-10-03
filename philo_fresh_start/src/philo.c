@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:26:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 03:48:21 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:31:50 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 	if (!init_env(&philo, &table, av))
 		return (ft_msg(2, "Error init program!\n"), 1);
 	start_sim(&table);
-	// check_dead(table, philo);
+	check_dead(table, philo);
 	end_sim(&table, philo, table->nb_of_philo - 1);
 	free_table(&table);
 	return (0);
@@ -59,7 +59,7 @@ static bool	create_thread(t_table *table, t_philo *philo)
 	while (i < table->nb_of_philo)
 	{
 		philo[i].thread_created = true;
-		if (pthread_create(&philo[i].thread, NULL, routine, &philo[i]) || i == 5)
+		if (pthread_create(&philo[i].thread, NULL, routine, &philo[i]))
 		{
 			philo[i].thread_created = false;
 			pthread_mutex_lock(&table->thread_mut);

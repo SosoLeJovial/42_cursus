@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 03:20:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:18:01 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_philo
 	long			last_meal;
 	bool			mut_meal;
 	bool			thread_created;
-	t_fork			*right_fork;	
+	t_fork			*right_fork;
 	t_fork			*left_fork;
 	t_state			state;
 	t_table			*table;
@@ -82,24 +82,33 @@ t_table				*init_table(char **av);
 t_fork				*init_fork(int size);
 t_philo				*init_philo(t_table *table, t_fork *fork);
 
+/* Monitor */
+void				start_sim(t_table **table);
+void				end_sim(t_table **table, t_philo *philo, int j);
+bool				check_sim(t_philo *philo);
+bool				check_dead(t_table *table, t_philo *philo);
+
 /* Routine */
 void				*routine(void *philo);
-void				start_sim(t_table **table);
-void				philo_msg(t_state msg, long time, int position,\
-					t_philo *philo);
-void					update_last_meal(t_philo *philo);
-bool				check_dead(t_table *table, t_philo *philo);
-bool				check_sim(t_philo *philo);
+void				eat_sleep_routine(t_philo *philo, long start, int id);
+bool				take_fork(t_philo *philo, bool direction);
+bool				is_eating(t_philo *philo, int id, long start);
+
+/* Routine Utils */
+bool				waiting_all(t_philo *philo);
+void				update_last_meal(t_philo *philo);
+void				update_state_philo(t_philo *philo, t_state state);
+t_state				philo_state(t_philo *philo);
 
 /* Time */
 void				custom_wait(long time_in_ms);
 long				get_current_time(void);
+void				philo_msg(t_state msg, long time, int id, t_philo *philo);
 
 /* Free */
 void				free_fork(t_fork *fork, t_table *table);
 void				free_philo(t_philo **philo);
 void				free_table(t_table **table);
-void				end_sim(t_table **table, t_philo *philo, int j);
 
 /* Parsing */
 int					ft_isdigit(int c);
