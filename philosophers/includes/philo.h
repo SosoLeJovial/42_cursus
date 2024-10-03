@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 19:18:01 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/04 01:35:10 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct s_table	t_table;
 
-typedef enum state
+typedef enum e_state
 {
 	START,
 	DEAD,
@@ -43,6 +43,7 @@ typedef struct s_fork
 typedef struct s_philo
 {
 	int				id;
+	int				nb_of_meals;
 	long			last_meal;
 	bool			mut_meal;
 	bool			thread_created;
@@ -92,6 +93,7 @@ bool				check_dead(t_table *table, t_philo *philo);
 void				*routine(void *philo);
 void				eat_sleep_routine(t_philo *philo, long start, int id);
 bool				take_fork(t_philo *philo, bool direction);
+void				put_down_fork(t_philo *philo, bool direction);
 bool				is_eating(t_philo *philo, int id, long start);
 
 /* Routine Utils */
@@ -104,6 +106,7 @@ t_state				philo_state(t_philo *philo);
 void				custom_wait(long time_in_ms);
 long				get_current_time(void);
 void				philo_msg(t_state msg, long time, int id, t_philo *philo);
+void				waiting_room(t_philo *philo, long *start);
 
 /* Free */
 void				free_fork(t_fork *fork, t_table *table);

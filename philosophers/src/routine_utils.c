@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:01:51 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 19:18:58 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/04 01:33:00 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ bool	waiting_all(t_philo *philo)
 		else if (philo->table->thread_init == -1)
 			break ;
 		pthread_mutex_unlock(&philo->table->thread_mut);
-		usleep(50);
 	}
 	pthread_mutex_unlock(&philo->table->thread_mut);
 	return (false);
@@ -50,7 +49,6 @@ t_state	philo_state(t_philo *philo)
 	t_state	ret;
 
 	pthread_mutex_lock(&philo->meal);
-	
 	ret = philo->state;
 	pthread_mutex_unlock(&philo->meal);
 	return (ret);

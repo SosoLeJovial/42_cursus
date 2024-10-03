@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 19:13:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 22:44:51 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/04 01:31:09 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,36 @@ void	start_sim(t_table **table)
 	pthread_mutex_lock(&(*table)->print);
 	(*table)->print_sim = true;
 	pthread_mutex_unlock(&(*table)->print);
+	(*table)->start_time = get_current_time();
 	pthread_mutex_lock(&(*table)->sim);
 	(*table)->start = true;
-	pthread_mutex_unlock(&(*table)->sim);	
+	pthread_mutex_unlock(&(*table)->sim);
 }
 
 bool	check_dead(t_table *table, t_philo *philo)
 {
-	long time;
-	int i;
+	long	time;
+	int		i;
 
 	while (1)
 	{
-		i = 0;
-		while (i < table->nb_of_philo)
+		i = -1;
+		while (++i < table->nb_of_philo)
 		{
 			time = get_current_time();
 			pthread_mutex_lock(&philo[i].meal);
-			if (philo[i].last_meal && time - philo[i].last_meal > table->time_to_die)
+			if (philo[i].last_meal && \
+				time - philo[i].last_meal > table->time_to_die)
 			{
-				table->start = false;
 				table->sim_over = true;
-				philo_msg(DEAD, time - table->start_time, philo[i].id, &philo[i]);
+				if (philo[i].nb_of_meals == 0)
+					return (pthread_mutex_unlock(&philo[i].meal), false);
+				philo_msg(DEAD, time - table->start_time, \
+					philo[i].id, &philo[i]);
 				pthread_mutex_unlock(&philo[i].meal);
 				return (true);
 			}
 			pthread_mutex_unlock(&philo[i].meal);
-			i++;
 		}
 	}
 	return (false);
@@ -70,7 +73,7 @@ void	end_sim(t_table **table, t_philo *philo, int j)
 	(*table)->sim_over = true;
 	pthread_mutex_unlock(&(*table)->sim);
 	i = j;
-	while 	(i >= 0)
+	while (i >= 0)
 	{
 		pthread_join(philo[i].thread, NULL);
 		i--;

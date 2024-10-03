@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:26:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 22:42:20 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/04 01:32:25 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static bool	init_env(t_philo **philo, t_table **table, char **av)
 	*table = init_table(av);
 	if (!*table)
 		return (false);
-		
 	if (!mutex_init(*table))
 		return (free(*table), false);
 	*philo = init_philo(*table, (*table)->forks);
@@ -66,7 +65,8 @@ static bool	create_thread(t_table *table, t_philo *philo)
 			pthread_mutex_lock(&table->thread_mut);
 			table->thread_init = -1;
 			pthread_mutex_unlock(&table->thread_mut);
-			return (ft_msg(2, "Error thread!\n"), end_sim(&table, philo, i - 1), false);
+			return (ft_msg(2, "Error thread!\n"), \
+				end_sim(&table, philo, i - 1), false);
 		}
 		i++;
 	}

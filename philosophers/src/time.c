@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:29:47 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 22:47:11 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/04 01:33:27 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	custom_wait(long time_in_ms)
 		time_remaining = time_in_ms - (current_time - start);
 		if ((current_time - start) >= time_in_ms)
 			break ;
-		if (time_remaining > 10)
-			usleep(5000);
-		else
-			usleep(500);
+		usleep(500);
 	}
 }
 
@@ -52,10 +49,10 @@ void	ft_msg(int fd, char *msg)
 void	philo_msg(t_state msg, long time, int id, t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->print);
-	if (check_sim(philo) && msg != DEAD) 
+	if (check_sim(philo) && msg != DEAD)
 	{
 		pthread_mutex_unlock(&philo->table->print);
-		return ;	
+		return ;
 	}
 	if (!philo->table->print_sim)
 	{
@@ -73,4 +70,19 @@ void	philo_msg(t_state msg, long time, int id, t_philo *philo)
 	else if (msg == THINKING)
 		printf("%ld %d is thinking\n", time, id);
 	pthread_mutex_unlock(&philo->table->print);
+}
+
+void	waiting_room(t_philo *philo, long *start)
+{
+	while (1)
+	{
+		pthread_mutex_lock(&philo->table->sim);
+		if (philo->table->start)
+		{
+			*start = philo->table->start_time;
+			pthread_mutex_unlock(&philo->table->sim);
+			break ;
+		}
+		pthread_mutex_unlock(&philo->table->sim);
+	}
 }

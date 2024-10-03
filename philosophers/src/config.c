@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:45:57 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 03:21:30 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 23:43:09 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_philo	*init_philo(t_table *table, t_fork *fork)
 	{
 		philo[i].id = i + 1;
 		philo[i].last_meal = 0;
+		philo[i].nb_of_meals = table->nb_of_meals;
 		philo[i].state = START;
 		philo[i].table = table;
 		philo[i].right_fork = &fork[i];

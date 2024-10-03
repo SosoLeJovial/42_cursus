@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 10:11:39 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 19:13:33 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/04 01:27:01 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_philo(t_philo **philo)
 	i = 0;
 	while (i < (*philo)->table->nb_of_philo)
 	{
-		if ((*philo)[i].mut_meal)	
+		if ((*philo)[i].mut_meal)
 			pthread_mutex_destroy(&(*philo)[i].meal);
 		i++;
 	}
