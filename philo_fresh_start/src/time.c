@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:29:47 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 19:06:53 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:47:11 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ void	ft_msg(int fd, char *msg)
 void	philo_msg(t_state msg, long time, int id, t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->print);
+	if (check_sim(philo) && msg != DEAD) 
+	{
+		pthread_mutex_unlock(&philo->table->print);
+		return ;	
+	}
 	if (!philo->table->print_sim)
 	{
 		pthread_mutex_unlock(&philo->table->print);

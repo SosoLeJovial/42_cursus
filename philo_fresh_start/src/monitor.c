@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 19:13:04 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 19:38:17 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:44:51 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	check_dead(t_table *table, t_philo *philo)
 			if (philo[i].last_meal && time - philo[i].last_meal > table->time_to_die)
 			{
 				table->start = false;
-				table->sim_over = false;
+				table->sim_over = true;
 				philo_msg(DEAD, time - table->start_time, philo[i].id, &philo[i]);
 				pthread_mutex_unlock(&philo[i].meal);
 				return (true);

@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:26:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 18:31:50 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:42:20 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static bool	init_env(t_philo **philo, t_table **table, char **av)
 	*table = init_table(av);
 	if (!*table)
 		return (false);
+		
 	if (!mutex_init(*table))
 		return (free(*table), false);
 	*philo = init_philo(*table, (*table)->forks);

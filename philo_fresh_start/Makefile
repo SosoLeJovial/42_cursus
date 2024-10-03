@@ -6,7 +6,7 @@
 #    By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2024/10/03 19:19:15 by tsofien-         ###   ########.fr        #
+#    Updated: 2024/10/03 22:35:31 by tsofien-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@
 
 NAME	= philo
 CC 		= cc
-CFLAGS	= -pthread -fsanitize=address -g3
-# CFLAGS	= -Wall -Wextra -Werror -pthread -fsanitize=address -g3
+#CFLAGS	= -pthread -fsanitize=leak -g3
+CFLAGS	= -Wall -Wextra -Werror #-pthread -fsanitize=address -g3
 DFLAGS	= -MMD -MF $(@:.o=.d)
 AUTHOR	= tsofien-
 

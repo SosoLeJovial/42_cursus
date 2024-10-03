@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:42:34 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/03 19:39:22 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:49:01 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	*routine(void *arg)
 	pthread_mutex_lock(&philo->table->sim);
 	philo->table->start_time = start;
 	pthread_mutex_unlock(&philo->table->sim);
-	// printf("Thread %d is rdy start at  %ld\n", philo->id, start);
 	eat_sleep_routine(philo, start, id);
 	return (NULL);
 }
@@ -48,13 +47,13 @@ void	eat_sleep_routine(t_philo *philo, long start, int id)
 				philo_msg(THINKING, get_current_time() - start, id, philo);
 				update_state_philo(philo, THINKING);
 			}
-			usleep(50);
 			continue ;
 		}
-		if (check_sim(philo)) 
-			break ;
 		philo_msg(SLEEPING, get_current_time() - start, id, philo);
 		custom_wait(philo->table->time_to_sleep);
+		update_state_philo(philo, THINKING);
+		philo_msg(THINKING, get_current_time() - start, id, philo);
+		usleep(500);
 	}
 }
 
