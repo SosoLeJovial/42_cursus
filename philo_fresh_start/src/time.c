@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:29:47 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 17:43:28 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 03:14:07 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	ft_msg(int fd, char *msg)
 
 void	philo_msg(t_state msg, long time, int position, t_philo *philo)
 {
-	pthread_mutex_lock(&philo->table->sim);
-	if (!philo->table->start)
+	pthread_mutex_lock(&philo->table->print);
+	if (!philo->table->print_sim)
 	{
-		pthread_mutex_unlock(&philo->table->sim);
+		pthread_mutex_unlock(&philo->table->print);
 		return ;
 	}
 	if (msg == DEAD)
@@ -67,5 +67,5 @@ void	philo_msg(t_state msg, long time, int position, t_philo *philo)
 		printf("%ld %d is sleeping\n", time, position);
 	else if (msg == THINKING)
 		printf("%ld %d is thinking\n", time, position);
-	pthread_mutex_unlock(&philo->table->sim);
+	pthread_mutex_unlock(&philo->table->print);
 }

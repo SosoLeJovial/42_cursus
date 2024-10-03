@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:45:57 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 15:59:55 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 03:21:30 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_table	*init_table(char **av)
 	table = ft_calloc(sizeof(t_table), 1);
 	if (!table)
 		return (NULL);
+	table->thread_init = 0;
 	table->nb_of_philo = ft_atoi(av[1]);
 	table->time_to_die = ft_atoi(av[2]);
 	table->time_to_eat = ft_atoi(av[3]);
@@ -43,7 +44,12 @@ bool	mutex_init(t_table *table)
 	table->print_mut = true;
 	if (pthread_mutex_init(&table->print, NULL))
 		table->print_mut = false;
+	table->thread_bool = true;
+	if (pthread_mutex_init(&table->thread_mut, NULL))
+		table->thread_bool = false;
 	if (!table->sim_mut || !table->print_mut)
+		return (false);
+	if (!table->thread_bool)
 		return (false);
 	return (true);
 }

@@ -6,38 +6,34 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 06:26:46 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 18:54:05 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 03:48:21 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static bool	init_env(t_philo **philo, t_table **table, char **av, int *thread);
-static bool	create_thread(t_table *table, t_philo *philo, int *thread);
+static bool	init_env(t_philo **philo, t_table **table, char **av);
+static bool	create_thread(t_table *table, t_philo *philo);
 
 int	main(int ac, char **av)
 {
 	t_table	*table;
 	t_philo	*philo;
-	int		nb_thread;
 
 	table = NULL;
 	philo = NULL;
-	nb_thread = 0;
 	if (ac < 5 || !ft_check_args(ac, av))
 		return (ft_msg(2, "Error table!\n"), 1);
-	if (!init_env(&philo, &table, av, &nb_thread))
+	if (!init_env(&philo, &table, av))
 		return (ft_msg(2, "Error init program!\n"), 1);
 	start_sim(&table);
-	// while (!check_dead(table, philo))
-	// 	;
-	usleep(300000);
-	end_sim(&table, philo, nb_thread - 1);
+	// check_dead(table, philo);
+	end_sim(&table, philo, table->nb_of_philo - 1);
 	free_table(&table);
 	return (0);
 }
 
-static bool	init_env(t_philo **philo, t_table **table, char **av, int *thread)
+static bool	init_env(t_philo **philo, t_table **table, char **av)
 {
 	*table = init_table(av);
 	if (!*table)
@@ -48,11 +44,12 @@ static bool	init_env(t_philo **philo, t_table **table, char **av, int *thread)
 	if (!philo)
 		return (free_table(table), false);
 	(*table)->philo = philo;
-	create_thread(*table, *philo, thread);
+	if (!create_thread(*table, *philo))
+		return (free_table(table), false);
 	return (true);
 }
 
-static bool	create_thread(t_table *table, t_philo *philo, int *thread)
+static bool	create_thread(t_table *table, t_philo *philo)
 {
 	int		i;
 	bool	ret;
@@ -62,15 +59,18 @@ static bool	create_thread(t_table *table, t_philo *philo, int *thread)
 	while (i < table->nb_of_philo)
 	{
 		philo[i].thread_created = true;
-		if (pthread_create(&philo[i].thread, NULL, routine, &philo[i]))
+		if (pthread_create(&philo[i].thread, NULL, routine, &philo[i]) || i == 5)
 		{
 			philo[i].thread_created = false;
-			*thread = i;
-			ret = false;
-			break  ;
+			pthread_mutex_lock(&table->thread_mut);
+			table->thread_init = -1;
+			pthread_mutex_unlock(&table->thread_mut);
+			return (ft_msg(2, "Error thread!\n"), end_sim(&table, philo, i - 1), false);
 		}
 		i++;
 	}
-	*thread = i;
+	pthread_mutex_lock(&table->thread_mut);
+	table->thread_init++;
+	pthread_mutex_unlock(&table->thread_mut);
 	return (ret);
 }

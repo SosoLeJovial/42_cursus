@@ -6,7 +6,7 @@
 /*   By: tsofien- <tsofien-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:32:26 by tsofien-          #+#    #+#             */
-/*   Updated: 2024/10/02 18:34:40 by tsofien-         ###   ########.fr       */
+/*   Updated: 2024/10/03 03:20:58 by tsofien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_philo
 
 typedef struct s_table
 {
+	int				thread_init;
 	int				nb_of_philo;
 	int				nb_of_meals;
 	long			start_time;
@@ -67,8 +68,10 @@ typedef struct s_table
 	bool			start;
 	bool			print_mut;
 	bool			sim_mut;
+	bool			thread_bool;
 	t_philo			**philo;
 	t_fork			*forks;
+	pthread_mutex_t	thread_mut;
 	pthread_mutex_t	print;
 	pthread_mutex_t	sim;
 }	t_table;
@@ -84,10 +87,9 @@ void				*routine(void *philo);
 void				start_sim(t_table **table);
 void				philo_msg(t_state msg, long time, int position,\
 					t_philo *philo);
-void				update_last_meal(t_philo *philo);
-// bool				check_dead(t_table *table);
-bool	check_dead(t_table *table, t_philo *philo);
-
+void					update_last_meal(t_philo *philo);
+bool				check_dead(t_table *table, t_philo *philo);
+bool				check_sim(t_philo *philo);
 
 /* Time */
 void				custom_wait(long time_in_ms);
