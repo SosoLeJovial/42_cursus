@@ -1,3 +1,6 @@
 [submodule "get_next_line"]
 	path = get_next_line
 	url = git@vogsphere.42lyon.fr:vogsphere/intra-uuid-7de9aa86-62bf-4a1f-9145-d3a210d6f7bb-5339548-tsofien-
+[submodule "pool_cpp"]
+	path = pool_cpp
+	url = git@github.com:SosoLeJovial/pool_cpp.git
